@@ -11,10 +11,12 @@ class PWInput extends React.Component {
     this.state = {
       type: "basic",
       inputRef: null,
-      email: "default@gmail.com",
+      defaultEmail: "default@gmail.com",
       password: "",
       openAlert: false,
       alertContent: "",
+      userEmail: "",
+      userMessage: "",
       showEmailAlert: false
     };
     this.handleRef = this.handleRef.bind(this);
@@ -25,7 +27,7 @@ class PWInput extends React.Component {
     this.closeAlert = this.closeAlert.bind(this);
     /*---Function for Email Request--*/
     this.handleAlertDismiss = this.handleAlertDismiss.bind(this);
-    this.handleEmailChange = this.handleEmailChange.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
     this.handleEmailRequestSubmit = this.handleEmailRequestSubmit.bind(this);
   }
 
@@ -56,12 +58,18 @@ class PWInput extends React.Component {
     });
   }
 
-  handleEmailChange() {
-    console.log("Email. Input: ");
+  handleInputChange(e, { name, value }) {
+    this.setState({ [name]: value });
   }
 
-  handleEmailRequestSubmit(){
-    console.log("Email Request Submit");
+  handleEmailRequestSubmit() {
+    if (this.state.userEmail.indexOf("@") < 0) {
+      console.log("EMAIL FORMAT ERROR");
+      this.setState({
+        showEmailAlert: true
+      })
+    }
+    console.log("Email Request Submit:", this.state.userEmail, this.state.userMessage);
   }
 
   handleAlertDismiss() {
@@ -71,7 +79,7 @@ class PWInput extends React.Component {
   }
 
   createFirebaseAccount() {
-    firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
+    firebase.auth().createUserWithEmailAndPassword(this.state.defaultEmail, this.state.password)
       .catch((error) => {
         // Handle Errors here.
         const errorCode = error.code;
@@ -83,7 +91,7 @@ class PWInput extends React.Component {
 
   loginFirebaseAccount() {
     firebase.auth()
-      .signInWithEmailAndPassword(this.state.email, this.state.password)
+      .signInWithEmailAndPassword(this.state.defaultEmail, this.state.password)
       .catch(error => { // Handle Errors here.
         this.setState({
           openAlert: true,
@@ -94,7 +102,7 @@ class PWInput extends React.Component {
 
   render() {
     const { label, enableBack } = this.props;
-    const { password, alertContent, openAlert, showEmailAlert } = this.state;
+    const { password, alertContent, openAlert, showEmailAlert, userEmail, userMessage } = this.state;
     return (
       <section className="input-container bub-60wid-center">
         <Grid className="input-header">
@@ -124,10 +132,11 @@ class PWInput extends React.Component {
         <Confirm content={alertContent} open={openAlert} onCancel={this.closeAlert} onConfirm={this.closeAlert} />
         {/* <!----------   Form to get password by send email  ----------> */}
         <Form className="input-request-form" onSubmit={this.handleEmailRequestSubmit} >
-          <Form.Input className="form-input" id="form-email" label="Email Address" placeholder="Your email address" error={showEmailAlert} onChange={this.handleEmailChange} />
+          <Form.Input className="form-input" id="form-email" label="Email Address" placeholder="Your email address" error={showEmailAlert} name="userEmail" value={userEmail} onChange={this.handleInputChange} />
           <Message error header="Wrong Email Format" visible={showEmailAlert}
             onDismiss={this.handleAlertDismiss} content="Provide valid e-mail address to get reply." />
           <Form.Field className="form-input" id="form-message" control={TextArea}
+            name="userMessage" value={userMessage} onChange={this.handleInputChange}
             label="Email Content" placeholder="You need to mention at least your full name, company, and your purpose here. Thank you! :)" />
           <Button>Submit Password Request</Button>
         </Form>
