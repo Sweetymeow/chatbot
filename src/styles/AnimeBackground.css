@@ -1,0 +1,44 @@
+.bg-container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1; }
+  .bg-container .animeBg {
+    position: relative;
+    display: flex;
+    height: 100%; }
+    .bg-container .animeBg img {
+      flex: 1 1 10%; }
+  .bg-container .animeBg-narrow {
+    position: fixed;
+    display: flex;
+    height: 100%;
+    width: 90%;
+    margin: 0 5vw;
+    justify-content: space-around; }
+    .bg-container .animeBg-narrow img {
+      flex: 1 1 10%; }
+    .bg-container .animeBg-narrow .space-hodler {
+      display: flex;
+      flex: 5 1 50%; }
+
+.footer-container {
+  position: fixed;
+  bottom: 8vh;
+  left: 50%;
+  width: 70vw;
+  transform: translateX(-50%); }
+  .footer-container .social-link {
+    color: #3f3a3a;
+    font-family: "SF Display", Helvetica, sans-serif;
+    text-decoration: underline;
+    font-size: 1.2rem;
+    font-weight: 600; }
+  .footer-container .copyright-des {
+    margin-top: 2vh;
+    text-align: center;
+    color: #9b9b9b; }
+    .footer-container .copyright-des p {
+      margin: 0 0 .6rem 0; }
