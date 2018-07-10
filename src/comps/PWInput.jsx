@@ -96,6 +96,7 @@ class PWInput extends React.Component {
 
   handleAlertDismiss() {
     this.setState({
+      userEmail: "",
       showEmailAlert: false
     });
   }
@@ -114,6 +115,10 @@ class PWInput extends React.Component {
   loginFirebaseAccount() {
     firebase.auth()
       .signInWithEmailAndPassword(this.state.defaultEmail, this.state.password)
+      .then( msg => {
+        console.log(msg);
+        window.open('https://www.google.com', '_blank');
+      })
       .catch(error => { // Handle Errors here.
         this.setState({
           openAlert: true,

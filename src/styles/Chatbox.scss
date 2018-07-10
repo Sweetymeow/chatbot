@@ -119,10 +119,15 @@
       .input-password{
         border-radius: 1rem;
         input{
-          border-color: $mid-gray; // $primary-color;
+          border: 2px solid $mid-gray; // border-color: $mid-gray;
           border-radius: 1.4rem;
           caret-color: $primary-color;
           font-size: $standard-font-size;
+          &:focus{
+            border-radius: 1.4rem;
+            border: 2px solid rgba($mid-gray, .5);
+            color: $primary-color;
+          }
         }
         .icon{
           font-size: $standard-font-size;

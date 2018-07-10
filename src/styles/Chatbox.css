@@ -84,10 +84,14 @@
     .chatbox-container .input-container .input-pw-form .input-password {
       border-radius: 1rem; }
       .chatbox-container .input-container .input-pw-form .input-password input {
-        border-color: #979797;
+        border: 2px solid #979797;
         border-radius: 1.4rem;
         caret-color: #1fdab0;
         font-size: 1rem; }
+        .chatbox-container .input-container .input-pw-form .input-password input:focus {
+          border-radius: 1.4rem;
+          border: 2px solid rgba(151, 151, 151, 0.5);
+          color: #1fdab0; }
       .chatbox-container .input-container .input-pw-form .input-password .icon {
         font-size: 1rem; }
     .chatbox-container .input-container .input-pw-form .input-email-link {
