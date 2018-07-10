@@ -51,6 +51,7 @@
       "maximum": 4,
       "when": "multiline"
     }],
+    "spaced-comment": ["warn", "never"],
     "react/jsx-boolean-value": ["warn", "never"],
     "object-curly-newline": ["off"]
   }

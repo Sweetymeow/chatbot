@@ -55,7 +55,7 @@
   .chatbox-container .btn-container .btn-group-label {
     text-align: center;
     color: #d3d3d3;
-    font-size: .8rem; }
+    font-size: 0.8rem; }
   .chatbox-container .btn-container .btn-group .ui.primary.button {
     background-color: #1fdab0;
     border-radius: 1.4rem;
@@ -63,31 +63,44 @@
     box-shadow: 0 0 6px 1px rgba(74, 74, 74, 0.3); }
     .chatbox-container .btn-container .btn-group .ui.primary.button:hover {
       background-color: #19ad8c; }
-  .chatbox-container .input-container .input-header {
-    margin-bottom: .2rem; }
-    .chatbox-container .input-container .input-header .row {
-      padding-bottom: .6rem; }
-      .chatbox-container .input-container .input-header .row .back-button {
-        color: #1fdab0; }
-        .chatbox-container .input-container .input-header .row .back-button a {
-          color: #1fdab0; }
-      .chatbox-container .input-container .input-header .row .input-label {
-        color: #d3d3d3; }
-  .chatbox-container .input-container .input-action .input-field {
-    border-radius: 1rem; }
-    .chatbox-container .input-container .input-action .input-field input {
-      border-color: #979797;
-      border-radius: 1.4rem;
-      caret-color: #1fdab0; }
-  .chatbox-container .input-container .input-action .input-email-link {
-    margin-top: 1rem;
-    text-decoration: underline;
-    color: #1fdab0;
-    cursor: default; }
-    .chatbox-container .input-container .input-action .input-email-link a {
-      color: #1fdab0; }
-    .chatbox-container .input-container .input-action .input-email-link:hover {
-      color: #19ad8c; }
+  .chatbox-container .input-container .input-pw-form {
+    margin-top: 1.4rem;
+    padding: .4rem 25%; }
+    .chatbox-container .input-container .input-pw-form .input-header {
+      margin-bottom: 0.6rem;
+      text-align: center;
+      position: relative; }
+      .chatbox-container .input-container .input-pw-form .input-header .back-button {
+        color: #1fdab0;
+        line-height: 1rem;
+        font-size: 0.8rem;
+        position: absolute;
+        left: -15%; }
+      .chatbox-container .input-container .input-pw-form .input-header .input-label {
+        margin: auto;
+        color: #d3d3d3;
+        line-height: 1rem;
+        font-size: 0.8rem; }
+    .chatbox-container .input-container .input-pw-form .input-password {
+      border-radius: 1rem; }
+      .chatbox-container .input-container .input-pw-form .input-password input {
+        border-color: #979797;
+        border-radius: 1.4rem;
+        caret-color: #1fdab0;
+        font-size: 1rem; }
+      .chatbox-container .input-container .input-pw-form .input-password .icon {
+        font-size: 1rem; }
+    .chatbox-container .input-container .input-pw-form .input-email-link {
+      text-decoration: underline;
+      color: #1fdab0;
+      cursor: default;
+      background: transparent;
+      font-size: 0.8rem;
+      display: block;
+      margin: 0 auto;
+      padding: 0; }
+      .chatbox-container .input-container .input-pw-form .input-email-link:hover {
+        color: #19ad8c; }
   .chatbox-container .input-container .input-request-form {
     border: 1px solid #1fdab0;
     margin-top: 1rem;
@@ -112,3 +125,5 @@
     float: left; }
   .chatbox-container .right-bubble {
     float: right; }
+  .chatbox-container .borderless-btn {
+    border: none; }

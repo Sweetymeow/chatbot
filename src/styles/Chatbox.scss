@@ -77,14 +77,13 @@
     .btn-group-label{
       text-align: center;
       color: $bot-label;
-      font-size: .8rem;
+      font-size: $label-font-size;
     }
     .btn-group{
       .ui.primary.button{
         background-color: $user-bub-color;
         border-radius: 1.4rem;
-        // height: 2rem;
-        font-size: 1rem;
+        font-size: $standard-font-size;
         box-shadow: $bub-btn-shadow;
 
         &:hover{
@@ -96,40 +95,49 @@
 
   /*------------   general bubble styles  ------------*/
   .input-container{
-    .input-header{
-      margin-bottom: .2rem;
-      .row{
-        padding-bottom: .6rem;
-
+    .input-pw-form{
+      margin-top: $md-pw;
+      padding: .4rem 25%;
+      .input-header{
+        margin-bottom: $mini-pw;
+        text-align: center;
+        position: relative;
         .back-button{ // border: none;
           color: $primary-color;
-          a{
-            color: $primary-color;
-          }
+          line-height: 1rem;
+          font-size: $label-font-size;
+          position: absolute;
+          left: -15%;
         }
         .input-label{
+          margin: auto;
           color: $bot-label;
+          line-height: 1rem;
+          font-size: $label-font-size;
         }
       }
-    }
-    .input-action{
-      .input-field{
+      .input-password{
         border-radius: 1rem;
         input{
           border-color: $mid-gray; // $primary-color;
           border-radius: 1.4rem;
-          // width: 16rem;
           caret-color: $primary-color;
+          font-size: $standard-font-size;
+        }
+        .icon{
+          font-size: $standard-font-size;
         }
       }
       .input-email-link{
-        margin-top: 1rem;
         text-decoration: underline;
         color: $primary-color;
         cursor: default;
-        a{
-          color: $primary-color;
-        }
+        background: transparent;
+        font-size: $label-font-size;
+        display: block;
+        margin: 0 auto;
+        padding: 0;
+
         &:hover{
           color: darken( $primary-color, 10% );
         }
@@ -172,5 +180,8 @@
   }
   .right-bubble{
     float: right;
+  }
+  .borderless-btn{
+    border: none;
   }
 }

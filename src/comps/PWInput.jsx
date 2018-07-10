@@ -18,6 +18,8 @@ class PWInput extends React.Component {
       userEmail: "",
       userMessage: "",
       showEmailAlert: false,
+      isPWinputVisible: true,
+      pwAnimeDuration: 500,
       isFormVisible: false,
       fbDatabase: null
     };
@@ -70,10 +72,16 @@ class PWInput extends React.Component {
     this.setState({ [name]: value });
   }
 
-  showForm() {
+  showForm(e) {
+    e.preventDefault();
     this.setState({
-      isFormVisible: true
-    })
+      isPWinputVisible: false
+    });
+    setTimeout(() => {
+      this.setState({
+        isFormVisible: true
+      });
+    }, this.state.pwAnimeDuration);
   }
 
   handleEmailRequestSubmit() {
@@ -116,37 +124,26 @@ class PWInput extends React.Component {
 
   render() {
     const { label, enableBack } = this.props;
-    const { password, alertContent, openAlert, showEmailAlert, userEmail, userMessage, isFormVisible } = this.state;
+    const { password, alertContent, openAlert, showEmailAlert, userEmail, userMessage, isFormVisible, isPWinputVisible, pwAnimeDuration } = this.state;
     return (
       <section className="input-container bub-60wid-center">
-        <Grid className="input-header">
-          <Grid.Row centered columns={3}>
-            <Grid.Column width={3} />
-            <Grid.Column className="back-button" width={3}>
-              {enableBack ? (<a href="http://localhost:3000/"><Icon name="arrow left" /> BACK</a>)
+        <Transition className="input-pw-container" animation="swing up" duration={pwAnimeDuration} visible={isPWinputVisible}>
+          <Form className="input-pw-form">
+            <Form.Group className="input-header">
+              {enableBack ? (<a className="back-button" href="http://localhost:3000/"><Icon name="arrow left" /> BACK</a>)
                 : null}
-            </Grid.Column>
-            <Grid.Column width={10}>
-                <p className="input-label">{label}</p>
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
-        <form className="input-action">
-            {/* <Input className="input-field" icon={{ name: 'arrow right', circular: true, link: true}}
-             type="password" ref={this.handleRef} size="big" focus placeholder="Password..."
-             value={password} onChange={this.handlePWChange} /> */}
-           <Input icon className="input-field" ref={this.handleRef} size="big" focus placeholder="Password...">
-             <input type="password" onChange={this.handlePWChange} value={password} />
-             <Icon circular color="teal" name="arrow right" link onClick={this.handleSubmit} />
-           </Input>
-           <p className="input-email-link" onClick={this.showForm} role="button">
-             Request the Password
-             {/* <Button onClick={this.showForm} content='Request the Password' basic /> */}
-           </p>
-        </form>
+              <p className="input-label">{label}</p>
+            </Form.Group>
+            <Form.Input icon className="input-password" ref={this.handleRef} size="big" focus placeholder="Password...">
+               <input type="password" onChange={this.handlePWChange} value={password} />
+               <Icon circular color="teal" name="arrow right" link onClick={this.handleSubmit} />
+            </Form.Input>
+            <Button className="input-email-link borderless-btn" onClick={this.showForm} content="Request the Password" />
+          </Form>
+        </Transition>
         <Confirm content={alertContent} open={openAlert} onCancel={this.closeAlert} onConfirm={this.closeAlert} />
-        {/* <!----------   Form to get password by send email  ----------> */}
-        <Transition visible={isFormVisible} animation="fade" duration={500}>
+        {/*<!----------   Form to get password by send email  ----------> */}
+        <Transition visible={isFormVisible} animation="slide up" duration={500}>
           <Form className="input-request-form" onSubmit={this.handleEmailRequestSubmit} >
             <Form.Input className="form-input" id="form-email" label="Email Address" placeholder="Your email address" error={showEmailAlert} name="userEmail" value={userEmail} onChange={this.handleInputChange} />
             <Message error header="Wrong Email Format" visible={showEmailAlert}
