@@ -1,0 +1,36 @@
+$font-stack:  "SF Display", Helvetica, sans-serif;
+
+// Prime Colors
+$primary-color: #1fdab0;
+$white: #FFF;
+$dark-gray: #9b9b9b;
+$mid-gray: #979797;
+$light-gray: #BCBCBC;
+$bg-gray: #f7f7f7;
+
+$chat-con-bgcolor: $white;
+$bot-bub-color: $bg-gray;
+$bot-bub-text-color: $dark-gray;
+$user-bub-color: $primary-color;
+$user-bub-text-color: $white;
+$bot-label: #d3d3d3;
+
+$footer-link-color: #3f3a3a;
+$footer-copyright-color: #9b9b9b;
+$test-color: pink;
+
+// Size Variables
+$lg-pw: 2rem;
+$md-pw: 1.4rem;
+$sm-pw: 1rem;
+$mini-pw: .6rem;
+$text-pw: .2rem;
+
+$chat-con-max-width: 70vw;
+$chat-con-radius: .8rem;
+$chat-con-shadow:  -1px 2px 28px 1px rgba(155, 155, 155, 0.35); // box-shadow
+
+$bub-text-size: 1rem;
+$bub-radius: 1.2rem;
+$bub-pw: .8rem 1.8rem ;
+$bub-btn-shadow: 0 0 6px 1px rgba(74, 74, 74, 0.3);

@@ -1,0 +1,171 @@
+@import 'var';
+
+.chatbox-container{
+  margin: 8vh auto 22vh auto;
+  padding: $md-pw $lg-pw;
+  max-width: 76vw;
+  height: 70vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  border-radius: 9px;
+  background-color: $chat-con-bgcolor; // $background-color;
+  box-shadow: -1px 2px 28px 1px rgba(155, 155, 155, 0.35);
+
+  .bub-fullwidth{
+    &:after{
+      content: "";
+      clear: both;
+      display: block;
+    }
+  }
+  .bub-90wid-center{
+    width: 90%;
+    text-align: center;
+    margin: 1em auto;
+  }
+  .bub-60wid-center{
+    width: 60%;
+    text-align: center;
+    margin: 1em auto;
+  }
+
+  /*------------  TEXT bubble container   ------------*/
+  .text-bubble{
+    text-align: left;
+    max-width: 40rem;
+    padding: $bub-pw;
+    border-radius: $bub-radius;
+    position: relative;
+    // box-shadow: -1px 2px 2px 1px rgba(155, 155, 155, 0.2);
+    margin-bottom: $md-pw;
+
+    p{
+      margin: $text-pw auto;
+      font-size: $bub-text-size;
+    }
+  }
+  .text-bubble.left-bubble{
+      background: $bot-bub-color;
+      &:after{
+        content: url('../res/bubble_tail.svg');
+        position: absolute;
+        left: 0;
+        bottom: -.8rem;
+      }
+  }
+  .text-bubble.right-bubble{
+      background: $user-bub-color;
+      color: $user-bub-text-color;
+
+      &:after{
+        content: url('../res/bubble_tail_R.svg');
+        // height: 2rem;
+        // width: 2rem;
+        position: absolute;
+        right: 0;
+        bottom: -.8rem;
+      }
+  }
+
+  /*------------  image bubble container   ------------*/
+  .imgbub-container{
+    margin: $md-pw;
+  }
+
+  /*------------   button group container   ------------*/
+  .btn-container{
+    .btn-group-label{
+      text-align: center;
+      color: $bot-label;
+      font-size: .8rem;
+    }
+    .btn-group{
+      .ui.primary.button{
+        background-color: $user-bub-color;
+        border-radius: 1.4rem;
+        // height: 2rem;
+        font-size: 1rem;
+        box-shadow: $bub-btn-shadow;
+
+        &:hover{
+          background-color: darken( $user-bub-color, 10% );
+        }
+      }
+    }
+  }
+
+  /*------------   general bubble styles  ------------*/
+  .input-container{
+    .input-header{
+      margin-bottom: .2rem;
+      .row{
+        padding-bottom: .6rem;
+
+        .back-button{ // border: none;
+          color: $primary-color;
+          a{
+            color: $primary-color;
+          }
+        }
+        .input-label{
+          color: $bot-label;
+        }
+      }
+    }
+    .input-action{
+      .input-field{
+        border-radius: 1rem;
+        input{
+          border-color: $mid-gray; // $primary-color;
+          border-radius: 1.4rem;
+          // width: 16rem;
+          caret-color: $primary-color;
+        }
+      }
+      .input-email-link{
+        margin-top: 1rem;
+        text-decoration: underline;
+        a{
+          color: $primary-color;
+        }
+      }
+    }
+    .input-request-form{
+      border: 1px solid $primary-color;
+      margin-top: $sm-pw;
+      padding: $sm-pw;
+      border-radius: $mini-pw;
+      // background-color: $bot-bub-color;
+      .form-input{
+        label{
+          text-align: left;
+          padding: 0 0 $mini-pw $sm-pw;
+          color: $primary-color;
+        }
+        input[type="text"], textarea{
+          background-color: $bot-bub-color;
+          color: $bot-bub-text-color;
+          &:focus {
+              outline: none !important;
+              border:1px solid $primary-color;
+              box-shadow: $bub-btn-shadow;
+          }
+        }
+        textarea{
+          height: 10rem;
+        }
+      }
+      .ui.button{
+        border-radius: $md-pw;
+      }
+    }
+  }
+
+  /*------------   general bubble styles  ------------*/
+  .left-bubble{
+    float: left;
+  }
+  .right-bubble{
+    float: right;
+  }
+}
