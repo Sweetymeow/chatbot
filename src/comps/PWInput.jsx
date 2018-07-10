@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Grid, Icon, Input, Confirm, Form, Button, TextArea, Message } from 'semantic-ui-react'; // Image,
+import { Grid, Icon, Input, Confirm, Form, Button, TextArea, Message, Transition } from 'semantic-ui-react';
 import '../styles/Chatbox.css';
 import firebase from '../firebase';
 // import signinError from '../res/signinError';
@@ -17,7 +17,9 @@ class PWInput extends React.Component {
       alertContent: "",
       userEmail: "",
       userMessage: "",
-      showEmailAlert: false
+      showEmailAlert: false,
+      isFormVisible: false,
+      fbDatabase: null
     };
     this.handleRef = this.handleRef.bind(this);
     this.handlePWChange = this.handlePWChange.bind(this);
@@ -25,14 +27,20 @@ class PWInput extends React.Component {
     this.createFirebaseAccount = this.createFirebaseAccount.bind(this);
     this.loginFirebaseAccount = this.loginFirebaseAccount.bind(this);
     this.closeAlert = this.closeAlert.bind(this);
-    /*---Function for Email Request--*/
+    /* ---Function for Email Request(Form)--- */
+    this.showForm = this.showForm.bind(this);
     this.handleAlertDismiss = this.handleAlertDismiss.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleEmailRequestSubmit = this.handleEmailRequestSubmit.bind(this);
   }
 
   componentDidMount() {
-    const defaultDatabase = firebase.database();
+    // get Reference to the database service
+    // const defaultDatabase = firebase.database();
+    this.setState({
+      fbDatabase: firebase.database()
+    })
+    // const user = firebase.auth().currentUser;
   }
 
   handleRef(c) {
@@ -62,8 +70,14 @@ class PWInput extends React.Component {
     this.setState({ [name]: value });
   }
 
+  showForm() {
+    this.setState({
+      isFormVisible: true
+    })
+  }
+
   handleEmailRequestSubmit() {
-    if (this.state.userEmail.indexOf("@") < 0) {
+    if (this.state.userEmail.indexOf("@") < 0 || this.state.userEmail.indexOf(".com") < 0) {
       console.log("EMAIL FORMAT ERROR");
       this.setState({
         showEmailAlert: true
@@ -102,7 +116,7 @@ class PWInput extends React.Component {
 
   render() {
     const { label, enableBack } = this.props;
-    const { password, alertContent, openAlert, showEmailAlert, userEmail, userMessage } = this.state;
+    const { password, alertContent, openAlert, showEmailAlert, userEmail, userMessage, isFormVisible } = this.state;
     return (
       <section className="input-container bub-60wid-center">
         <Grid className="input-header">
@@ -125,21 +139,24 @@ class PWInput extends React.Component {
              <input type="password" onChange={this.handlePWChange} value={password} />
              <Icon circular color="teal" name="arrow right" link onClick={this.handleSubmit} />
            </Input>
-           <p className="input-email-link">
-             <a href="http://localhost:3000/">Request the Password</a>
+           <p className="input-email-link" onClick={this.showForm} role="button">
+             Request the Password
+             {/* <Button onClick={this.showForm} content='Request the Password' basic /> */}
            </p>
         </form>
         <Confirm content={alertContent} open={openAlert} onCancel={this.closeAlert} onConfirm={this.closeAlert} />
         {/* <!----------   Form to get password by send email  ----------> */}
-        <Form className="input-request-form" onSubmit={this.handleEmailRequestSubmit} >
-          <Form.Input className="form-input" id="form-email" label="Email Address" placeholder="Your email address" error={showEmailAlert} name="userEmail" value={userEmail} onChange={this.handleInputChange} />
-          <Message error header="Wrong Email Format" visible={showEmailAlert}
-            onDismiss={this.handleAlertDismiss} content="Provide valid e-mail address to get reply." />
-          <Form.Field className="form-input" id="form-message" control={TextArea}
-            name="userMessage" value={userMessage} onChange={this.handleInputChange}
-            label="Email Content" placeholder="You need to mention at least your full name, company, and your purpose here. Thank you! :)" />
-          <Button>Submit Password Request</Button>
-        </Form>
+        <Transition visible={isFormVisible} animation="fade" duration={500}>
+          <Form className="input-request-form" onSubmit={this.handleEmailRequestSubmit} >
+            <Form.Input className="form-input" id="form-email" label="Email Address" placeholder="Your email address" error={showEmailAlert} name="userEmail" value={userEmail} onChange={this.handleInputChange} />
+            <Message error header="Wrong Email Format" visible={showEmailAlert}
+              onDismiss={this.handleAlertDismiss} content="Provide valid e-mail address to get reply." />
+            <Form.Field className="form-input" id="form-message" control={TextArea}
+              name="userMessage" value={userMessage} onChange={this.handleInputChange}
+              label="Email Content" placeholder="You need to mention at least your full name, company, and your purpose here. Thank you! :)" />
+            <Button>Submit Password Request</Button>
+          </Form>
+        </Transition>
       </section>
     );
   }

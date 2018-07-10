@@ -49,3 +49,5 @@ $ firebase deploy
 ## [Semantic UI React](https://react.semantic-ui.com/introduction)
 
 ## [JavaScript 标准参考教程（alpha）](http://javascript.ruanyifeng.com/) & [ES6](http://es6.ruanyifeng.com/?search=%60&x=0&y=0)
+
+## [SCSS Color](https://robots.thoughtbot.com/controlling-color-with-sass-color-functions)

@@ -125,8 +125,13 @@
       .input-email-link{
         margin-top: 1rem;
         text-decoration: underline;
+        color: $primary-color;
+        cursor: default;
         a{
           color: $primary-color;
+        }
+        &:hover{
+          color: darken( $primary-color, 10% );
         }
       }
     }

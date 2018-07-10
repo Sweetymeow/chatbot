@@ -81,9 +81,13 @@
       caret-color: #1fdab0; }
   .chatbox-container .input-container .input-action .input-email-link {
     margin-top: 1rem;
-    text-decoration: underline; }
+    text-decoration: underline;
+    color: #1fdab0;
+    cursor: default; }
     .chatbox-container .input-container .input-action .input-email-link a {
       color: #1fdab0; }
+    .chatbox-container .input-container .input-action .input-email-link:hover {
+      color: #19ad8c; }
   .chatbox-container .input-container .input-request-form {
     border: 1px solid #1fdab0;
     margin-top: 1rem;
