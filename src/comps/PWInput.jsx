@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Grid, Icon, Input, Confirm, Form, Button, TextArea, Message, Transition } from 'semantic-ui-react';
+import { Icon, Confirm, Form, Button, TextArea, Message, Transition } from 'semantic-ui-react';
 import '../styles/Chatbox.css';
 import firebase from '../firebase';
 // import signinError from '../res/signinError';
@@ -117,7 +117,7 @@ class PWInput extends React.Component {
       .signInWithEmailAndPassword(this.state.defaultEmail, this.state.password)
       .then( msg => {
         console.log(msg);
-        window.open('https://www.google.com', '_blank');
+        // window.open('https://www.google.com', '_blank');
       })
       .catch(error => { // Handle Errors here.
         this.setState({
