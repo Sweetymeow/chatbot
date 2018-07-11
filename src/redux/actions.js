@@ -1,46 +1,29 @@
-import C from './constants';
+// import C from './constants';
 import CBUB from './constbubtype';
+import { imgBub, textBub, btnBub } from './bubble_sample';
 
-// const goalAction = {
-//   type: C.SET_GOAL,
-//   payload: 15
-// };
-//
-// const addProdAction = {
-//   type: C.ADD_ITEM,
-//   payload: {
-//     "name": "REDERMIC R WITH RETINOL",
-//     "date": "2018-06-18",
-//     "purchased": false,
-//     "brand": "La Roche-Posay",
-//     "price": "56.99",
-//     "currency": "usd",
-//     "link": "https://www.laroche-posay.us/redermic-r-with-retinol-3337872413063.html?cgid=anti-aging-serum#start=1"
-//   }
-// }
-
-const newTextBubble = {
+const ADD_TEXT_BUBBLE = {
   type: CBUB.ADD_TEXT_BUBBLE,
-  payload: "TEXT"
+  payload: textBub
 };
-const newImageBubble = {
+const ADD_IMAGE_BUBBLE = {
   type: CBUB.ADD_IMAGE_BUBBLE,
-  payload: "IMAGE"
+  payload: imgBub
 };
-const newBtnGroupBubble = {
+const ADD_BUTTONGROUP_BUBBLE = {
   type: CBUB.ADD_BUTTONGROUP_BUBBLE,
-  payload: "TEXT"
+  payload: btnBub
 };
-const newPWInputBubble = {
+const ADD_INPUTPW_BUBBLE = {
   type: CBUB.ADD_INPUTPW_BUBBLE,
-  payload: "TEXT"
+  payload: "NO INPUT SAMPLE"
 };
 
 const ACTIONS = {
-  newTxtBubble: newTextBubble,
-  newImageBubble: newImageBubble,
-  newBtnGroupBubble: newBtnGroupBubble,
-  newPWInputBubble: newPWInputBubble,
-}
+  ADD_TEXT_BUBBLE,
+  ADD_IMAGE_BUBBLE,
+  ADD_BUTTONGROUP_BUBBLE,
+  ADD_INPUTPW_BUBBLE
+};
 
 export default ACTIONS;

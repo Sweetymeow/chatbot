@@ -1,6 +1,6 @@
 {
-  "currentStep": 0,
-  "step_list": [{
+  "step": 0,
+  "allBubbles": [{
     "step_id": 0,
     "type": "img_bub",
     "next_step_type": "go",
@@ -40,7 +40,5 @@
       "html": "My name is <s>Juan</s>. I am a <s>UX / UI designer</s> currently working at <s className='underline'>SAP</s>.",
       "max-width": "10rem"
     }
-  }],
-  "bub_types": ["text_bub", "img_bub", "card_bub", "buttons_bub", "input_bub", "link_bub", "load_bub"],
-  "next_step_types": ["go", "judge", "choose"]
+  }]
 }

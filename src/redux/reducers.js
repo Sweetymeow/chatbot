@@ -2,9 +2,16 @@ import { combineReducers } from 'redux';
 import C from './constants';
 import CBUB from './constbubtype';
 
-export const step = (state = 0, action) => (
-  (action.type === C.NEXT_STEP) ? parseInt(action.payload, 0) + 1 : state
-);
+export const step = (state = 0, action) => {
+  switch (action.type) {
+    case C.INIT_STEP:
+      return 0; //return [...state, action.payload]; //return new array with
+    case C.NEXT_STEP:
+      return action.payload ? action.payload : state + 1;
+    default:
+      return state;
+  }
+}; //(action.type === C.NEXT_STEP) ? parseInt(action.payload, 0) + 1 : state
 
 //export const products = (state = null, action) =>
 //(action.type === C.ADD_ITEM) ? [...state, action.payload] : state;
@@ -59,12 +66,13 @@ export const suggestions = (state = [], action) => {
 }
 
 export const allBubbles = (state = [], action) => {
-  const hasProduct = state.some( prod => prod.name === action.payload.name );
+  // let hasProduct = state.some( prod => prod.step_id === action.payload.step_id );
   switch (action.type) {
     case C.ADD_BUBBLE:
-      return hasProduct ? state : [...state, action.payload]; //return new array with
+      // return hasProduct ? state : [...state, action.payload];
+      return [...state, action.payload];
     case C.REMOVED_BUBBLE:
-      return state.filter(item => item.name !== action.payload.name);
+      return state.filter(item => item.step_id !== action.payload.step_id);
     case C.CLEAR_BOX:
       return [];
     default:

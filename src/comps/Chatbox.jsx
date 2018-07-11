@@ -13,23 +13,20 @@ import PWInput from './PWInput';
 //Image
 import Gopher from '../res/Gopher.png';
 
+//testText
+import { testText, testText2, options } from '../test/testText';
+
 //redux
 import C from "../redux/constants";
 import appReducer from "../redux/reducers";
-import initState from "../redux/initState";
+//import initState from "../redux/initState";
+import { imgBub, textBub, btnBub } from '../redux/bubble_sample';
 
-const testText = "My name is Juan. && I am a UX/UI designer currently working at SAP. ";
-const testText2 = "Thanks for your interest in my portfolio!&& May I ask your purpose of visiting today? :)";
-const options = [{
-  key: 1,
-  text: "Recruiting designer",
-  val: "RECRUITER"
-}, {
-  key: 2,
-  text: "Just wander around",
-  val: "VIEWER"
-}];
-const store = createStore(appReducer);
+const store = createStore(appReducer); //,initState
+//*Get the current state
+const unsubscribeStateUpdate = store.subscribe(() => console.log("next state", store.getState()));
+
+//setTimeout(() => { unsubscribeStateUpdate() }, 3000);
 
 class Chatbox extends React.Component {
   constructor(props) {
@@ -43,25 +40,41 @@ class Chatbox extends React.Component {
     };
     this.handleClearBox = this.handleClearBox.bind(this);
     this.addBubbles = this.addBubbles.bind(this);
+    this.addReduxBubbles = this.addReduxBubbles.bind(this);
   }
 
   componentDidMount() {
     this.setState({
       testTextArr1: testText.split("&&"),
       testTextArr2: testText2.split("&&")
-    })
-    //Mutate the state with .dispatch()
+    });
+    // store.dispatch({
+    //   type: C.INIT_STEP
+    // });
     store.dispatch({
       type: C.ADD_BUBBLE,
-      payload: "TEXT"
+      payload: imgBub
     });
-    //*Get the current state
-    console.log("next state", store.getState());
+    store.dispatch({
+      type: C.NEXT_STEP,
+      payload: 2
+    });
   }
 
   handleClearBox() {
     //Clear all Bubble from Box
     console.log("SHOULD CLEAR BOX");
+  }
+
+  addReduxBubbles() {
+    //Mutate the state with .dispatch()
+    store.dispatch({
+      type: C.ADD_BUBBLE,
+      payload: textBub
+    });
+    store.dispatch({
+      type: C.NEXT_STEP
+    });
   }
 
   addBubbles(e, { type }) {
@@ -93,6 +106,7 @@ class Chatbox extends React.Component {
     return (
       <section className="chatbox-container">
         <Button onClick={this.addBubbles} type={constbubtype.ADD_TEXT_BUBBLE}>Add Bubble(TEST)</Button>
+        <Button onClick={this.addReduxBubbles} type={constbubtype.ADD_TEXT_BUBBLE}>Add Bubble(REDUX)</Button>
         <ImgBubble imgSrc={Gopher}/>
         <TextBubble text={testTextArr1} type="bot" />
         <TextBubble text={testTextArr2} type="user" />
