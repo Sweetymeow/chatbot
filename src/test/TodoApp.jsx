@@ -1,19 +1,19 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import rootRducer from './reducers';
+import rootReducer from './reducers';
 //import App from './components/App';
 
 import Footer from './Footer';
 import AddTodo from './AddTodo';
 import VisibleTodoList from './Containers/VisibleTodoList';
 
-const store = createStore(rootRducer);
+const store = createStore(rootReducer);
 
 console.log("init State: ", store.getState());
 
 const unsubscribe = store.subscribe(() => console.log("next state", store.getState()));
-unsubscribe();
+// unsubscribe();
 
 //console.log(rootRducer);
 const TodoApp = () => (

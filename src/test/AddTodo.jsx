@@ -5,14 +5,12 @@ import './test.css';
 
 const AddTodo = ({ dispatch }) => {
   let input;
-
   return (
     <div>
       <h3>Add Todo Form</h3>
       <form
         onSubmit={e => {
           e.preventDefault();
-          console.log("AddTodo() value: ", addTodo(input.value));
           if (!input.value.trim()) {
             return;
           }

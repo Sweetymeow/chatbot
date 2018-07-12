@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
 
 const todos = (state = [], action) => {
-  switch (action) {
+  console.log("Reducer -> action ", action);
+  switch (action.type) {
     case "ADD_TODO":
       return [...state, {
         id: action.id,
@@ -16,7 +17,7 @@ const todos = (state = [], action) => {
 };
 
 const visibilityFilter = (state = "SHOW_ALL", action) => {
-  switch (action) {
+  switch (action.type) {
     case "SET_VISIBILITY_FILTERE":
       return action.filter;
     default:
