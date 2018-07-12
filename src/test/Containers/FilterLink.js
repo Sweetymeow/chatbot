@@ -9,6 +9,7 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   onClick: () => {
+    console.log("FILTERLINK: action -> ", setVisibilityFilter(ownProps.filter));
     dispatch(setVisibilityFilter(ownProps.filter));
   }
 });

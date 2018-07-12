@@ -1,19 +1,26 @@
+import C from './constact';
+
 let nextTodoId = 0;
 
 const addTodo = text => ({
-  type: "ADD_TODO",
+  type: C.ADD_TODO,
   id: nextTodoId++,
   text
 });
 
 const setVisibilityFilter = filter => ({
-  type: "SET_VISIBILITY_FILTER",
+  type: C.SET_VISIBILITY_FILTER,
   filter
 });
 
 const toggleTodo = id => ({
-  type: 'TOGGLE_TODO',
+  type: C.TOGGLE_TODO,
   id
+});
+
+const setTodoLength = length => ({
+  type: C.SET_TODO_LENGTH,
+  length
 });
 
 const VisibilityFilters = {
@@ -22,4 +29,4 @@ const VisibilityFilters = {
   SHOW_ACTIVE: "SHOW_ACTIVE"
 };
 
-export { addTodo, setVisibilityFilter, toggleTodo, VisibilityFilters };
+export { addTodo, setVisibilityFilter, toggleTodo, VisibilityFilters, setTodoLength };

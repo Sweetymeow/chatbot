@@ -1,0 +1,21 @@
+{
+  "todos": [{
+    "id": 0,
+    "text": "task 1",
+    "completed": false
+  }, {
+    "id": 1,
+    "text": "task 2",
+    "completed": false
+  }, {
+    "id": 2,
+    "text": "Task 3",
+    "completed": false
+  }, {
+    "id": 3,
+    "text": "Task 4",
+    "completed": false
+  }],
+  "visibilityFilter": "SHOW_ALL",
+  "todoLength": 4
+}

@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import { addTodo } from './actions';
 import './test.css';
 
-const AddTodo = ({ dispatch }) => {
+const AddTodo = ({ store, dispatch }) => {
   let input;
+  console.log(store.getState());
   return (
     <div>
       <h3>Add Todo Form</h3>
