@@ -1,7 +1,7 @@
 // import React from 'react';
 import { connect } from 'react-redux';
 import C from "../redux/constants";
-import { getNewBubble } from "../redux/actions";
+import { getNewBubble, downloadCV, openNewTab, nextStep } from "../redux/actions";
 import Chatbox from '../comps/Chatbox';
 
 // const addReduxBubbles = () => {
@@ -23,9 +23,18 @@ const mapStateToProps = state => ({
 
 //接收 dispatch() 方法, 并返回期望注入到展示组件的 props 中的回调方法dispatch()
 const mapDispatchToProps = dispatch => ({
-  onBubbleClick: bubType => {
+  onBubbleClick: (nextID, bubType) => {
     //toggleTodo(id) 返回 使用该 id的 "TOGGLE_TODO" 的 action
-    dispatch(getNewBubble(bubType));
+    dispatch(nextStep(nextID, bubType));
+    dispatch(getNewBubble(nextID, bubType));
+  },
+  onCardClick: link => {
+    //toggleTodo(id) 返回 使用该 id的 "TOGGLE_TODO" 的 action
+    dispatch(openNewTab(link));
+  },
+  onDownloadBtnClick: link => {
+    //toggleTodo(id) 返回 使用该 id的 "TOGGLE_TODO" 的 action
+    dispatch(downloadCV(link));
   }
 });
 

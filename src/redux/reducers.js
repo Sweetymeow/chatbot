@@ -68,10 +68,11 @@ export const allBubbles = (state = [], action) => {
   //let hasProduct = state.some( prod => prod.step_id === action.payload.step_id );
   switch (action.type) {
     case C.INIT_BUBBLE:
-      console.log("reducer: ", state);
       return [...state.allBubbles];
     case C.ADD_BUBBLE:
       // return hasProduct ? state : [...state, action.payload];
+      console.log("NEW Bubble:", action.bubble);
+      console.log("NEW Bubble ID:", action.nextId);
       return [...state, action.bubble];
     case C.BACK_TO_LAST_BUBBLE:
       return state.slice(0, state.length);

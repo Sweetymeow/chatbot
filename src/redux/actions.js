@@ -1,11 +1,6 @@
 import { C, CBUB } from './constants';
 import { imgBub, textBub, btnBub } from './bubble_sample';
 
-// const setTodoLength = length => ({
-//   type: C.SET_TODO_LENGTH,
-//   length
-// });
-
 const getByBubType = (bubType) => {
   switch (bubType) {
     case CBUB.IMAGE_BUBBLE:
@@ -31,9 +26,20 @@ const nextStep = step => ({
   step
 });
 
-const getNewBubble = bubType => ({
+const getNewBubble = (nextId, bubType) => ({
   type: C.ADD_BUBBLE,
-  bubble: getByBubType(bubType)
+  bubble: getByBubType(bubType),
+  nextId
+});
+
+const downloadCV = link => ({
+  type: C.DOWNLOAD_CV,
+  link
+});
+
+const openNewTab = link => ({
+  type: C.SHOW_CARDS,
+  link
 });
 
 // const getVisibleBubbles = allBubbles => ({
@@ -41,4 +47,4 @@ const getNewBubble = bubType => ({
 //   allBubbles
 // });
 
-export { getNewBubble, nextStep, removeBubble };
+export { getNewBubble, nextStep, removeBubble, downloadCV, openNewTab };
