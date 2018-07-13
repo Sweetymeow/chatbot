@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'semantic-ui-react';
 import '../styles/Chatbox.css';
-import BUBTYPE from '../redux/constbubtype';
+import { CBUB } from '../redux/constants';
 
 //Bubble Comps
 import ImgBubble from './ImgBubble';
@@ -24,13 +24,20 @@ class Chatbox extends React.Component {
     };
     this.handleClearBox = this.handleClearBox.bind(this);
     this.addBubbles = this.addBubbles.bind(this);
+    this.getTextArr = this.getTextArr.bind(this);
+    // this.onBubClick = this.onBubClick.bind(this);
   }
 
   componentDidMount() {
+    console.log("Chatbox Comps Did Mount");
     this.setState({
       testTextArr1: testText.split("&&"),
       testTextArr2: testText2.split("&&")
     });
+  }
+
+  getTextArr(text) {
+    return text.split("$$");
   }
 
   handleClearBox() {
@@ -58,30 +65,34 @@ class Chatbox extends React.Component {
       default:
         newBubble = (<TextBubble text={["NO Content"]} type="bot" />);
     }
-    console.log(BUBTYPE);
+    console.log(CBUB);
     console.log(type, newBubble);
   }
 
   render() {
-    const { allBubbles } = this.props;
+    const { allBubbles, onBubbleClick } = this.props;
     const { testTextArr1, testTextArr2 } = this.state;
     return (
       <section className="chatbox-container">
-        <Button onClick={this.addBubbles} type={BUBTYPE.ADD_TEXT_BUBBLE}>Add Bubble(TEST)</Button>
-        {/*<Button onClick={this.addReduxBubbles} type={constbubtype.ADD_TEXT_BUBBLE}>Add Bubble(REDUX)</Button>*/}
-        <ImgBubble imgSrc={Gopher}/>
-        <TextBubble text={testTextArr1} type="bot" />
-        <TextBubble text={testTextArr2} type="user" />
+        <Button onClick={this.addBubbles} type={CBUB.TEXT_BUBBLE}>Add Bubble(TEST)</Button>
+        {/*<ImgBubble imgSrc={Gopher}/>
+        <TextBubble text={testTextArr1} speaker="bot" />
+        <TextBubble text={testTextArr2} speaker="user" />
         <BtnGroupBubble options={options} label="Choose an option" />
-        <PWInput label="Type the Password" enableBack clearBox={this.handleClearBox} />
+        <PWInput label="Type the Password" enableBack clearBox={this.handleClearBox} />*/}
         {allBubbles.map((bub, index) => {
-          if (bub.bubType === BUBTYPE.TEXT_BUBBLE) {
-            return <TextBubble text={testTextArr1} type="bot" />;
-          }else if (bub.bubType === BUBTYPE.IMAGE_BUBBLE) {
-            return <ImgBubble imgSrc={Gopher}/>;
-          }else {
-            return null;
+          if (bub.bubType === CBUB.TEXT_BUBBLE) {
+            return <TextBubble key={bub.stepId} text={this.getTextArr(bub.bubContent.text)} speaker="bot" />;
           }
+          if (bub.bubType === CBUB.IMAGE_BUBBLE) {
+            console.log(bub);
+            return <ImgBubble key={bub.stepId} imgSrc={Gopher}/>;
+          }
+          if (bub.bubType === CBUB.BUTTONGROUP_BUBBLE) {
+            console.log(bub);
+            return <BtnGroupBubble key={bub.stepId} options={bub.options} label="Choose an option" />;
+          }
+          return null;
         })}
       </section>);
   }
@@ -94,8 +105,9 @@ Chatbox.propTypes = {
       requestClick: PropTypes.bool,
       bubType: PropTypes.string,
       bubContent: PropTypes.object
-    }).isRequired),
-  onBubClick: PropTypes.func.isRequired
+    }).isRequired
+  ),
+  onBubbleClick: PropTypes.func
 };
 
 export default Chatbox;

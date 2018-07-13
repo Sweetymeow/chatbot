@@ -16,7 +16,7 @@ TodoList.propTypes = {
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       completed: PropTypes.bool.isRequired,
-      style: PropTypes.string,
+      inputType: PropTypes.string,
       text: PropTypes.string.isRequired
     }).isRequired
   ).isRequired,

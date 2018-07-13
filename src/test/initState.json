@@ -2,22 +2,22 @@
   "todos": [{
     "id": 0,
     "text": "task 1",
-    "styel": "Text",
+    "inputType": "Text",
     "completed": false
   }, {
     "id": 1,
     "text": "task 2",
-    "styel": "Image",
+    "inputType": "Image",
     "completed": false
   }, {
     "id": 2,
     "text": "Task 3",
-    "styel": "ButtonGroup",
+    "inputType": "ButtonGroup",
     "completed": false
   }, {
     "id": 3,
     "text": "Task 4",
-    "styel": "Text",
+    "inputType": "Text",
     "completed": true
   }],
   "visibilityFilter": "SHOW_ALL",

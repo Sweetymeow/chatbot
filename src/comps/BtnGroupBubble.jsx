@@ -4,7 +4,7 @@ import { Grid, Button } from 'semantic-ui-react'; // Image,
 import '../styles/Chatbox.css';
 
 const BtnGroupBubble = (props) => {
-  const { options, btnWidth, label } = props;
+  const { options, label } = props; // btnWidth
   return (
     <div className="btn-container bub-60wid-center">
       {/* <Image className="bot-tail-left" src={BubTail} size="tiny" /> */}
@@ -12,8 +12,8 @@ const BtnGroupBubble = (props) => {
       <Grid className="btn-group">
         <Grid.Row centered columns={options.length}>
           {options.map(item => (
-              <Grid.Column key={item.key} textAlign='center'>
-                <Button primary>{item.text}</Button>
+              <Grid.Column key={item.opId} textAlign='center'>
+                <Button primary value={item.opVal}>{item.opText}</Button>
               </Grid.Column>))}
            {/* <Grid.Column>
              <Button secondary>Secondary</Button>
@@ -25,8 +25,13 @@ const BtnGroupBubble = (props) => {
 };
 
 BtnGroupBubble.propTypes = {
-  options: PropTypes.array.isRequired,
-  btnWidth: PropTypes.string,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      opId: PropTypes.number,
+      opText: PropTypes.string,
+      opVal: PropTypes.string
+    })
+  ),
   label: PropTypes.string
 };
 

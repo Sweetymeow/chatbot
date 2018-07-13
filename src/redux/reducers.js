@@ -1,13 +1,12 @@
 import { combineReducers } from 'redux';
-import C from './constants';
-import CBUB from './constbubtype';
+import { C, CBUB } from './constants';
 
 export const step = (state = 0, action) => {
   switch (action.type) {
     case C.INIT_STEP:
       return 0; //return [...state, action.payload]; //return new array with
     case C.NEXT_STEP:
-      return action.payload ? action.payload : state + 1;
+      return action.step ? action.step : state + 1;
     default:
       return state;
   }
@@ -68,9 +67,12 @@ export const suggestions = (state = [], action) => {
 export const allBubbles = (state = [], action) => {
   //let hasProduct = state.some( prod => prod.step_id === action.payload.step_id );
   switch (action.type) {
+    case C.INIT_BUBBLE:
+      console.log("reducer: ", state);
+      return [...state.allBubbles];
     case C.ADD_BUBBLE:
       // return hasProduct ? state : [...state, action.payload];
-      return [...state, action.payload];
+      return [...state, action.bubble];
     case C.BACK_TO_LAST_BUBBLE:
       return state.slice(0, state.length);
     case C.REMOVED_BUBBLE:
