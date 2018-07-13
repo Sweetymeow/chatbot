@@ -2,19 +2,23 @@
   "todos": [{
     "id": 0,
     "text": "task 1",
+    "styel": "Text",
     "completed": false
   }, {
     "id": 1,
     "text": "task 2",
+    "styel": "Image",
     "completed": false
   }, {
     "id": 2,
     "text": "Task 3",
+    "styel": "ButtonGroup",
     "completed": false
   }, {
     "id": 3,
     "text": "Task 4",
-    "completed": false
+    "styel": "Text",
+    "completed": true
   }],
   "visibilityFilter": "SHOW_ALL",
   "todoLength": 4

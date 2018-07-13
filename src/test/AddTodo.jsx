@@ -1,27 +1,25 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addTodo } from './actions';
+import { addTodo, setTodoLength } from './actions';
 import './test.css';
 
 const AddTodo = ({ store, dispatch }) => {
-  let input, type;
-  const initState = store.getState();
-  console.log("initState: ", initState);
+  let input, style;
+  // console.log("initState: ", initState);
   return (
     <div>
       <h3>Add Todo Form</h3>
-      <form
-        onSubmit={e => {
-          e.preventDefault();
-          if (!input.value.trim()) {
-            return;
-          }
-          // console.log("Input Value", input.value, type);
-          dispatch(addTodo(input.value, initState.todoLength)); //发布增加 "ADD_TODO"的 action
-          input.value = '';
-        }}>
+      <form onSubmit={e => {
+        e.preventDefault();
+        const curState = store.getState();
+        if (!input.value.trim()) { return; }
+        dispatch(addTodo(input.value, style, curState.todos.length - 1)); //发布增加 "ADD_TODO"的 action
+        dispatch(setTodoLength(curState.todos.length));
+        input.value = '';
+      }}>
         <input ref={node => { input = node; }} />
-        <select onChange={e => { type = e.target.value; }}>
+        <select onChange={e => { style = e.target.value; }}>
+          <option value="">--Please choose an option--</option>
           <option value="Text">Text</option>
           <option value="Image">Image</option>
           <option value="ButtonGroup">ButtonGroup</option>
