@@ -2,9 +2,9 @@ import C from './constact';
 
 let nextTodoId = 0;
 
-const addTodo = text => ({
+const addTodo = (text, index) => ({
   type: C.ADD_TODO,
-  id: nextTodoId++,
+  id: index ? index + 1 : nextTodoId++,
   text
 });
 

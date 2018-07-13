@@ -8,9 +8,9 @@ import C from '../constact';
 const getVisibleTodos = (todos, filter) => {
   switch (filter) {
     case C.SHOW_COMPLETED:
-      return todos.fitler(t => t.completed);
+      return todos.filter(t => t.completed);
     case C.SHOW_ACTIVE:
-      return todos.fitler(t => !t.completed);
+      return todos.filter(t => !t.completed);
     case C.SHOW_ALL:
     default:
       return todos;

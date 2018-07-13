@@ -10,7 +10,8 @@ import Footer from './Footer';
 import AddTodo from './AddTodo';
 import VisibleTodoList from './Containers/VisibleTodoList';
 
-const store = createStore(rootReducer, initState);
+// const store = createStore(rootReducer, initState);
+const store = createStore(rootReducer);
 
 store.dispatch(setTodoLength(initState.todoLength ? initState.todoLength : initState.todos.length));
 
@@ -21,7 +22,7 @@ const unsubscribe = store.subscribe( () => console.log("next state", store.getSt
 const TodoApp = () => (
   <Provider store={store}>
     <div>
-      <AddTodo store={store} />
+      <AddTodo store={store} currentIdx={0} />
       <VisibleTodoList />
       <Footer />
     </div>
