@@ -1,5 +1,7 @@
 import { C, CBUB } from './constants';
-import { imgBub, textBub, btnBub } from './bubble_sample';
+import { imgBub, textBub, btnBub, btnBub7, textBub4, textBub5, textBub2, textBub8, cardsBub, inputBub9, textBub11, btnBub12 } from './bubble_sample';
+
+const bubList = [imgBub, textBub, textBub2, btnBub, textBub4, textBub5, btnBub7, textBub8, inputBub9, cardsBub, textBub11, btnBub12];
 
 const getByBubType = (bubType) => {
   switch (bubType) {
@@ -28,7 +30,8 @@ const nextStep = step => ({
 
 const getNewBubble = (nextId, bubType) => ({
   type: C.ADD_BUBBLE,
-  bubble: getByBubType(bubType),
+  bubble: bubList[nextId],
+  // bubble: getByBubType(bubType),
   nextId
 });
 

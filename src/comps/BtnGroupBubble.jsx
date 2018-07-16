@@ -13,7 +13,16 @@ const BtnGroupBubble = (props) => {
         <Grid.Row centered columns={options.length}>
           {options.map(item => (
               <Grid.Column key={item.opId} textAlign="center">
-                <Button primary value={item.opVal} onClick={onBtnClick} >{item.opText}</Button>
+                <Button primary value={item.opVal}
+                  key={item.opId + 2}
+                  onClick={() => onBtnClick(item.nextStepId)} >
+                  {item.opText}
+                </Button>
+                {/*<Button primary value={item.opVal}
+                  key={item.opId + 2}
+                  onClick={onBtnClick} >
+                  {item.opText}
+                </Button>*/}
               </Grid.Column>))}
         </Grid.Row>
       </Grid>

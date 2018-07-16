@@ -21,18 +21,30 @@
     }
   }, {
     "stepId": 2,
+    "bubType": "TEXT_BUBBLE",
+    "nextStepId": 3,
+    "requestClick": false,
+    "opionts": [],
+    "bubContent": {
+      "text": "Thanks for your interest in my portfolio! $$ May I ask your purpose of visiting today? :)",
+      "html": "Thanks for your interest in my portfolio! <s>May I ask your purpose of visiting today? :)</s>"
+    }
+  }, {
+    "stepId": 3,
     "bubType": "BUTTONGROUP_BUBBLE",
     "requestClick": true,
-    "nextStepId": 3,
+    "nextStepId": 4,
     "request": "123qwe",
     "options": [{
       "opId": 0,
       "opText": "Recruiting Designer",
-      "opVal": "RECRUITER"
+      "opVal": "RECRUITER",
+      "nextStepId": 4
     }, {
       "opId": 1,
       "opText": "Just Wander Around",
-      "opVal": "VIEWER"
+      "opVal": "VIEWER",
+      "nextStepId": 5
     }],
     "bubContent": {
       "text": "My name is Juan. $$ I am a UX/UI designer currently working at SAP.",

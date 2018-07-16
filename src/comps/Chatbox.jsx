@@ -12,25 +12,14 @@ import PWInput from './PWInput';
 //Image
 import Gopher from '../res/Gopher.png';
 
-//testText
-import { testText, testText2, options } from '../test/testText';
-
 class Chatbox extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      testTextArr1: [""],
-      testTextArr2: [""]
-    };
     this.getTextArr = this.getTextArr.bind(this);
   }
 
   componentDidMount() {
     console.log("Chatbox Comps Did Mount");
-    this.setState({
-      testTextArr1: testText.split("&&"),
-      testTextArr2: testText2.split("&&")
-    });
   }
 
   getTextArr(text) {
@@ -39,7 +28,6 @@ class Chatbox extends React.Component {
 
   render() {
     const { allBubbles, onBubbleClick } = this.props;
-    const { testTextArr1, testTextArr2 } = this.state;
     const lastBub = allBubbles[allBubbles.length - 1];
     return (
       <section className="chatbox-container">
@@ -49,8 +37,7 @@ class Chatbox extends React.Component {
         <TextBubble text={testTextArr2} speaker="user" />
         <BtnGroupBubble options={options} label="Choose an option" />
         <PWInput label="Type the Password" enableBack clearBox={this.handleClearBox} />*/}
-        {allBubbles.map((bub, index) => {
-          // console.log(bub);
+        {allBubbles.map((bub) => {
           if (bub.bubType === CBUB.TEXT_BUBBLE) {
             return <TextBubble key={bub.stepId} text={this.getTextArr(bub.bubContent.text)} speaker="bot" />;
           }
@@ -58,11 +45,12 @@ class Chatbox extends React.Component {
             return <ImgBubble key={bub.stepId} imgSrc={Gopher}/>;
           }
           if (bub.bubType === CBUB.BUTTONGROUP_BUBBLE) {
+            console.log(bub.options);
             return (
               <BtnGroupBubble
                 key={bub.stepId}
                 options={bub.options}
-                onBtnClick={() => onBubbleClick(bub.nextStepId, CBUB.INPUTPW_BUBBLE)}
+                onBtnClick={onBubbleClick}
                 label="Choose an option"
               />);
           }
@@ -71,6 +59,12 @@ class Chatbox extends React.Component {
       </section>);
   }
 }
+// <BtnGroupBubble
+//     key={bub.stepId}
+//     options={bub.options}
+//     onBtnClick={() => onBubbleClick()}
+//     label="Choose an option"
+//   />
 
 Chatbox.propTypes = {
   allBubbles: PropTypes.arrayOf(
