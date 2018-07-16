@@ -1,29 +1,50 @@
-// import C from './constants';
-import CBUB from './constbubtype';
+import { C, CBUB } from './constants';
 import { imgBub, textBub, btnBub } from './bubble_sample';
 
-const ADD_TEXT_BUBBLE = {
-  type: CBUB.ADD_TEXT_BUBBLE,
-  payload: textBub
-};
-const ADD_IMAGE_BUBBLE = {
-  type: CBUB.ADD_IMAGE_BUBBLE,
-  payload: imgBub
-};
-const ADD_BUTTONGROUP_BUBBLE = {
-  type: CBUB.ADD_BUTTONGROUP_BUBBLE,
-  payload: btnBub
-};
-const ADD_INPUTPW_BUBBLE = {
-  type: CBUB.ADD_INPUTPW_BUBBLE,
-  payload: "NO INPUT SAMPLE"
+const getByBubType = (bubType) => {
+  switch (bubType) {
+    case CBUB.IMAGE_BUBBLE:
+      return imgBub;
+    case CBUB.TEXT_BUBBLE:
+      return textBub;
+    case CBUB.BUTTONGROUP_BUBBLE:
+      return btnBub;
+    case CBUB.INPUTPW_BUBBLE:
+      return btnBub;
+    default:
+      return null;
+  }
 };
 
-const ACTIONS = {
-  ADD_TEXT_BUBBLE,
-  ADD_IMAGE_BUBBLE,
-  ADD_BUTTONGROUP_BUBBLE,
-  ADD_INPUTPW_BUBBLE
-};
+const removeBubble = bubId => ({
+  type: C.REMOVE_BUBBLE,
+  bubId
+});
 
-export default ACTIONS;
+const nextStep = step => ({
+  type: C.NEXT_STEP,
+  step
+});
+
+const getNewBubble = (nextId, bubType) => ({
+  type: C.ADD_BUBBLE,
+  bubble: getByBubType(bubType),
+  nextId
+});
+
+const downloadCV = link => ({
+  type: C.DOWNLOAD_CV,
+  link
+});
+
+const openNewTab = link => ({
+  type: C.SHOW_CARDS,
+  link
+});
+
+// const getVisibleBubbles = allBubbles => ({
+//   type: C.INIT_BUBBLE,
+//   allBubbles
+// });
+
+export { getNewBubble, nextStep, removeBubble, downloadCV, openNewTab };

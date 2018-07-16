@@ -1,11 +1,20 @@
 import React from 'react';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import initState from './redux/initState.json';
+import appReducer from "./redux/reducers";
 import AnimeBackground from './comps/AnimeBackground';
-import Chatbox from './comps/Chatbox';
+// import Chatbox from './comps/Chatbox';
 import Footerlink from './comps/Footerlink';
+import ChatboxContainer from './container/ChatboxContainer';
 
-const style = {
-  margin: '20px'
-};
+// import './styles/index.css';
+
+const store = createStore(appReducer, initState);
+// const initialState = store.getState();
+
+const unsubscribeStateUpdate = store.subscribe(() => console.log("next state", store.getState()));
+//setTimeout(() => { unsubscribeStateUpdate() }, 3000);
 
 class App extends React.Component {
   constructor(props) {
@@ -17,11 +26,14 @@ class App extends React.Component {
 
   render() {
     return (
-      <section style={style} className="root-container">
-        <Chatbox />
-        <AnimeBackground />
-        <Footerlink />
-      </section>
+      <Provider store={store}>
+        <section className="root-container">
+          {/*<Chatbox allBubbles={initialState.allBubbles} />*/}
+          <ChatboxContainer />
+          <AnimeBackground />
+          <Footerlink />
+        </section>
+      </Provider>
     );
   }
 }

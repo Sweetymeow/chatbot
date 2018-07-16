@@ -65,8 +65,15 @@ body {
   height: 100vh;
   width: 100vw;
   overflow: hidden; }
-  body .root-container {
-    text-align: center; }
+  body #root {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    margin: 0; }
+    body #root .root-container {
+      text-align: center;
+      height: 100%;
+      width: 100%; }
 
 html {
   font-size: 62.5%;

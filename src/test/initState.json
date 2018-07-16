@@ -2,19 +2,23 @@
   "todos": [{
     "id": 0,
     "text": "task 1",
+    "inputType": "Text",
     "completed": false
   }, {
     "id": 1,
     "text": "task 2",
+    "inputType": "Image",
     "completed": false
   }, {
     "id": 2,
     "text": "Task 3",
+    "inputType": "ButtonGroup",
     "completed": false
   }, {
     "id": 3,
     "text": "Task 4",
-    "completed": false
+    "inputType": "Text",
+    "completed": true
   }],
   "visibilityFilter": "SHOW_ALL",
   "todoLength": 4

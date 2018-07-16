@@ -7,6 +7,7 @@ const todos = (state = [], action) => {
       return [...state, {
         id: action.id,
         text: action.text,
+        inputType: action.style,
         completed: false
       }];
     case C.TOGGLE_TODO:

@@ -1,6 +1,7 @@
-const constants = {
+const C = {
   INIT_STEP: "INIT_STEP",
   NEXT_STEP: "NEXT_STEP",
+  INIT_BUBBLE: "INIT_BUBBLE",
   ADD_BUBBLE: "ADD_BUBBLE",
   REMOVE_BUBBLE: "REMOVE_BUBBLE",
   CLEAR_BOX: "CLEAR_BOX",
@@ -17,7 +18,15 @@ const constants = {
   CLEAR_SUGGETIONS: "CLEAR_SUGGETIONS"
 };
 
-export default constants;
+const CBUB = {
+  TEXT_BUBBLE: "TEXT_BUBBLE",
+  IMAGE_BUBBLE: "IMAGE_BUBBLE",
+  BUTTONGROUP_BUBBLE: "BUTTONGROUP_BUBBLE",
+  INPUTPW_BUBBLE: "INPUTPW_BUBBLE",
+  CARD_BUBBLE: "CARD_BUBBLE"
+};
+
+export { C, CBUB };
 
 // const constants = {
 //   ADD_ITEM: "ADD_ITEM",

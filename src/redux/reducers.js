@@ -1,13 +1,12 @@
 import { combineReducers } from 'redux';
-import C from './constants';
-import CBUB from './constbubtype';
+import { C, CBUB } from './constants';
 
 export const step = (state = 0, action) => {
   switch (action.type) {
     case C.INIT_STEP:
       return 0; //return [...state, action.payload]; //return new array with
     case C.NEXT_STEP:
-      return action.payload ? action.payload : state + 1;
+      return action.step ? action.step : state + 1;
     default:
       return state;
   }
@@ -35,7 +34,7 @@ export const newBubble = (state = 'DEFAULT', action) => {
 export const error = (state = null, action) => {
   switch (action.type) {
     case C.ADD_ERROR:
-      return [...state, action.payload] //return new array with
+      return [...state, action.payload]; //return new array with
     case C.CLEAR_ERROR:
       return state.filter(errorMsg => errorMsg !== action.payload);
     default:
@@ -46,9 +45,9 @@ export const error = (state = null, action) => {
 export const fetching = (state = null, action) => {
   switch (action.type) {
     case C.FETCH_USER_PW:
-      return action.payload //true
+      return action.payload; //true
     case C.CANCEL_FETCHING:
-      return action.payload //false
+      return action.payload; //false
     default:
       return state;
   }
@@ -59,18 +58,24 @@ export const suggestions = (state = [], action) => {
     case C.CLEAR_SUGGESTIONS:
       return [];
     case C.CHANGE_SUGGESTIONS:
-      return action.payload
+      return action.payload;
     default:
-      return state
+      return state;
   }
-}
+};
 
 export const allBubbles = (state = [], action) => {
-  // let hasProduct = state.some( prod => prod.step_id === action.payload.step_id );
+  //let hasProduct = state.some( prod => prod.step_id === action.payload.step_id );
   switch (action.type) {
+    case C.INIT_BUBBLE:
+      return [...state.allBubbles];
     case C.ADD_BUBBLE:
       // return hasProduct ? state : [...state, action.payload];
-      return [...state, action.payload];
+      console.log("NEW Bubble:", action.bubble);
+      console.log("NEW Bubble ID:", action.nextId);
+      return [...state, action.bubble];
+    case C.BACK_TO_LAST_BUBBLE:
+      return state.slice(0, state.length);
     case C.REMOVED_BUBBLE:
       return state.filter(item => item.step_id !== action.payload.step_id);
     case C.CLEAR_BOX:
@@ -81,7 +86,7 @@ export const allBubbles = (state = [], action) => {
 };
 
 export default combineReducers({
-  newBubble,
+  // newBubble,
   allBubbles,
   step,
   error,
