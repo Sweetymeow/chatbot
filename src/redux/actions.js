@@ -3,34 +3,19 @@ import { imgBub, textBub, btnBub, btnBub7, textBub4, textBub5, textBub2, textBub
 
 const bubList = [imgBub, textBub, textBub2, btnBub, textBub4, textBub5, btnBub7, textBub8, inputBub9, cardsBub, textBub11, btnBub12];
 
-const getByBubType = (bubType) => {
-  switch (bubType) {
-    case CBUB.IMAGE_BUBBLE:
-      return imgBub;
-    case CBUB.TEXT_BUBBLE:
-      return textBub;
-    case CBUB.BUTTONGROUP_BUBBLE:
-      return btnBub;
-    case CBUB.INPUTPW_BUBBLE:
-      return btnBub;
-    default:
-      return null;
-  }
-};
-
 const removeBubble = bubId => ({
   type: C.REMOVE_BUBBLE,
   bubId
 });
 
-const nextStep = step => ({
+const nextStep = (step, bubNextId) => ({
   type: C.NEXT_STEP,
-  step
+  step: step || bubNextId
 });
 
-const getNewBubble = (nextId, bubType) => ({
+const getNewBubble = (nextId, bubInfo) => ({
   type: C.ADD_BUBBLE,
-  bubble: bubList[nextId],
+  bubble: nextId ? bubList[nextId] : bubInfo,
   // bubble: getByBubType(bubType),
   nextId
 });

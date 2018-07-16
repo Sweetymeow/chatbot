@@ -11,6 +11,7 @@
   /*------------  TEXT bubble container   ------------*/
   /*------------  image bubble container   ------------*/
   /*------------   button group container   ------------*/
+  /*------------   cards container   ------------*/
   /*------------   general bubble styles  ------------*/
   /*------------   general bubble styles  ------------*/ }
   .chatbox-container .bub-fullwidth:after {
@@ -63,6 +64,18 @@
     box-shadow: 0 0 6px 1px rgba(74, 74, 74, 0.3); }
     .chatbox-container .btn-container .btn-group .ui.primary.button:hover {
       background-color: #19ad8c; }
+  .chatbox-container .cards-container .ui.card {
+    width: 100%;
+    margin: 0; }
+    .chatbox-container .cards-container .ui.card .content .meta {
+      margin: 0.6rem 0; }
+      .chatbox-container .cards-container .ui.card .content .meta .card-label {
+        color: #33cca6;
+        padding: 0.2rem 0.6rem;
+        border-radius: 1rem;
+        background: #d0eee7; }
+  .chatbox-container .ui.grid.cards-container {
+    margin: 0.6rem; }
   .chatbox-container .input-container .input-pw-form {
     margin-top: 1.4rem;
     padding: .4rem 25%; }

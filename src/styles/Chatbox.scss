@@ -92,6 +92,33 @@
       }
     }
   }
+  /*------------   cards container   ------------*/
+  .cards-container{
+    .ui.card{
+      width: 100%;
+      margin: 0;
+      .content{
+        .header{
+
+        }
+        .meta{
+          margin: $mini-pw 0;
+          .card-label{
+            color: $green-text-color;
+            padding: $text-pw $mini-pw;
+            border-radius: $sm-pw;
+            background: $light-green-color;
+          }
+        }
+        .description{
+
+        }
+      }
+    }
+  }
+  .ui.grid.cards-container{
+    margin: $mini-pw;
+  }
 
   /*------------   general bubble styles  ------------*/
   .input-container{

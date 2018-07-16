@@ -12,11 +12,11 @@ const mapStateToProps = state => ({
 
 //接收 dispatch() 方法, 并返回期望注入到展示组件的 props 中的回调方法dispatch()
 const mapDispatchToProps = dispatch => ({
-  onBubbleClick: (nextID, bubType) => {
-    console.log("Button Click - ID: ", nextID);
+  onBubbleClick: (nextID, bubInfo) => {
+    console.log("Button Click - ID: ", nextID, bubInfo);
     //toggleTodo(id) 返回 使用该 id的 "TOGGLE_TODO" 的 action
-    dispatch(nextStep(nextID, bubType));
-    dispatch(getNewBubble(nextID, bubType));
+    dispatch(nextStep(nextID, bubInfo.stepId));
+    dispatch(getNewBubble(nextID, bubInfo));
   },
   onCheckNextStep: (goNextStep, nextStepId) => {
     console.log("check the next step is automatically? - ", goNextStep);

@@ -3,7 +3,7 @@ const imgBub = {
   bubType: "IMAGE_BUBBLE",
   nextStepId: 1,
   requestClick: false,
-  opionts: [],
+  options: [],
   bubContent: {
     img_src: "../res/Gopher.png"
   }
@@ -14,7 +14,7 @@ const textBub = {
   bubType: "TEXT_BUBBLE",
   nextStepId: 2,
   requestClick: false,
-  opionts: [],
+  options: [],
   bubContent: {
     text: "My name is Juan. I am a UX/UI designer currently working at SAP.",
     html: "My name is <s>Juan</s>. I am a <s>UX / UI designer</s> currently working at <s className='underline'>SAP</s>."
@@ -26,7 +26,7 @@ const textBub2 = {
   bubType: "TEXT_BUBBLE",
   nextStepId: 3,
   requestClick: false,
-  opionts: [],
+  options: [],
   bubContent: {
     text: "Thanks for your interest in my portfolio! $$ May I ask your purpose of visiting today? :)",
     html: "Thanks for your interest in my portfolio! <s>May I ask your purpose of visiting today? :)</s>"
@@ -38,7 +38,7 @@ const textBub4 = {
   bubType: "TEXT_BUBBLE",
   nextStepId: 7,
   requestClick: false,
-  opionts: [],
+  options: [],
   bubContent: {
     text: "Nice to e-meet you! 😃 Here is my resume.",
     html: "Nice to e-meet you! &#x1F601; Here is my resume."
@@ -49,7 +49,7 @@ const textBub5 = {
   bubType: "TEXT_BUBBLE",
   nextStepId: 7,
   requestClick: false,
-  opionts: [],
+  options: [],
   bubContent: {
     text: "Nice to e-meet you! Hope you are doing well today! 😃",
     html: "Nice to e-meet you! Hope you are doing well today! 😃"
@@ -62,7 +62,7 @@ const textBub8 = {
   bubType: "TEXT_BUBBLE",
   nextStepId: 7,
   requestClick: false,
-  opionts: [],
+  options: [],
   bubContent: {
     text: "I have been a pretty hands-on UX/UI designer for 3+ years on both B2C and B2B areas. The projects include both release and concept work that cross many industries such as medical, marketing, sales, utility and etc… Before I start to give you a guide, you need a password to access as all my projects are signed with NDA.",
     html: "I have been a pretty hands-on UX/UI designer for <s>3+ years</s> on both <s>B2C</s> and <s>B2B</s> areas. The projects include both release and concept work that cross many industries such as <s>medical, marketing, sales, utility and etc…</s> Before I start to give you a guide, you need a password to access as all my projects are signed with NDA."
@@ -74,7 +74,7 @@ const textBub11 = {
   bubType: "TEXT_BUBBLE",
   nextStepId: 12,
   requestClick: false,
-  opionts: [],
+  options: [],
   bubContent: {
     text: "Since all my projects are signed with NDA , and you are not recruiting people, I’m afraid I can’t give you a password to access… $$ BUT, we still can talk continually! $$ What do you want to know me more?",
     html: "Since all my projects are signed with NDA , and you are not recruiting people, I’m afraid I can’t give you a password to access… $$ BUT, we still can talk continually! $$ What do you want to know me more?"
@@ -86,7 +86,7 @@ const btnBub = {
   bubType: "BUTTONGROUP_BUBBLE",
   requestClick: true,
   nextStepId: 4,
-  opionts: [{
+  options: [{
     opId: 0,
     opText: "Recruiting Designer",
     opVal: "RECRUITER",
@@ -106,7 +106,7 @@ const btnBub12 = {
   bubType: "BUTTONGROUP_BUBBLE",
   requestClick: true,
   nextStepId: 13,
-  opionts: [{
+  options: [{
     opId: 0,
     opText: "My background",
     opVal: "background",
@@ -126,7 +126,7 @@ const inputBub9 = {
   bubType: "PWInput_BUBBLE",
   requestClick: true,
   nextStepId: -1,
-  opionts: [],
+  options: [],
   bubContent: {}
 };
 
@@ -135,7 +135,7 @@ const btnBub7 = {
   bubType: "BUTTONGROUP_BUBBLE",
   requestClick: true,
   nextStepId: 8,
-  opionts: [{
+  options: [{
     opId: 0,
     opText: "Download CV",
     opVal: "Download",
@@ -147,10 +147,10 @@ const btnBub7 = {
 
 const cardsBub = {
   stepId: 9,
-  bubType: "CARDS",
+  bubType: "CARDS_BUBBLE",
   requestClick: true,
   nextStepId: -1,
-  opionts: [{
+  options: [{
     opId: 0,
     opTitle: "Project One",
     opVal: "proj1",
