@@ -2,10 +2,11 @@ import C from './constact';
 
 let nextTodoId = 0;
 
-const addTodo = (text, index) => ({
+const addTodo = (text, style, index) => ({
   type: C.ADD_TODO,
   id: index ? index + 1 : nextTodoId++,
-  text
+  text,
+  style
 });
 
 const setVisibilityFilter = filter => ({
