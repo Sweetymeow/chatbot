@@ -27,7 +27,7 @@ class Chatbox extends React.Component {
   }
 
   render() {
-    const { allBubbles, onBubbleClick } = this.props;
+    const { allBubbles, onBubbleClick, onCheckNextStep } = this.props;
     const lastBub = allBubbles[allBubbles.length - 1];
     return (
       <section className="chatbox-container">
@@ -39,7 +39,7 @@ class Chatbox extends React.Component {
         <PWInput label="Type the Password" enableBack clearBox={this.handleClearBox} />*/}
         {allBubbles.map((bub) => {
           if (bub.bubType === CBUB.TEXT_BUBBLE) {
-            return <TextBubble key={bub.stepId} text={this.getTextArr(bub.bubContent.text)} speaker="bot" />;
+            return <TextBubble key={bub.stepId} text={this.getTextArr(bub.bubContent.text)} speaker="bot" onNext={onCheckNextStep} />;
           }
           if (bub.bubType === CBUB.IMAGE_BUBBLE) {
             return <ImgBubble key={bub.stepId} imgSrc={Gopher}/>;
@@ -53,6 +53,10 @@ class Chatbox extends React.Component {
                 onBtnClick={onBubbleClick}
                 label="Choose an option"
               />);
+          }
+          if (bub.bubType === CBUB.INPUTPW_BUBBLE) {
+            console.log("INPUTPW_BUBBLE - ", bub);
+            return (<PWInput label="Type the Password" enableBack clearBox={this.handleClearBox} />);
           }
           return null;
         })}

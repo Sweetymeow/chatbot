@@ -18,6 +18,13 @@ const mapDispatchToProps = dispatch => ({
     dispatch(nextStep(nextID, bubType));
     dispatch(getNewBubble(nextID, bubType));
   },
+  onCheckNextStep: (goNextStep, nextStepId) => {
+    console.log("check the next step is automatically? - ", goNextStep);
+    if (goNextStep) {
+      dispatch(nextStep(nextStepId));
+      dispatch(getNewBubble(nextStepId));
+    }
+  },
   onCardClick: link => {
     //toggleTodo(id) 返回 使用该 id的 "TOGGLE_TODO" 的 action
     dispatch(openNewTab(link));
