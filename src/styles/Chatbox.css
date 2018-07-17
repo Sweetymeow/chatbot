@@ -11,6 +11,7 @@
   /*------------  TEXT bubble container   ------------*/
   /*------------  image bubble container   ------------*/
   /*------------   button group container   ------------*/
+  /*------------   Button Animation   ------------*/
   /*------------   cards container   ------------*/
   /*------------   general bubble styles  ------------*/
   /*------------   general bubble styles  ------------*/ }
@@ -32,7 +33,7 @@
     padding: 0.8rem 1.8rem;
     border-radius: 1.2rem;
     position: relative;
-    margin-bottom: 1.4rem; }
+    margin: 0.6rem 0; }
     .chatbox-container .text-bubble p {
       margin: 0.2rem auto;
       font-size: 1rem; }
@@ -53,17 +54,58 @@
       bottom: -.8rem; }
   .chatbox-container .imgbub-container {
     margin: 1.4rem; }
-  .chatbox-container .btn-container .btn-group-label {
+  .chatbox-container .btn-container {
     text-align: center;
-    color: #d3d3d3;
-    font-size: 0.8rem; }
-  .chatbox-container .btn-container .btn-group .ui.primary.button {
-    background-color: #1fdab0;
-    border-radius: 1.4rem;
-    font-size: 1rem;
-    box-shadow: 0 0 6px 1px rgba(74, 74, 74, 0.3); }
-    .chatbox-container .btn-container .btn-group .ui.primary.button:hover {
-      background-color: #19ad8c; }
+    margin: 1em auto; }
+    .chatbox-container .btn-container .btn-group-label {
+      text-align: center;
+      color: #d3d3d3;
+      font-size: 0.8rem; }
+    .chatbox-container .btn-container .btn-group {
+      width: 100%;
+      margin: 0.6rem 0; }
+      .chatbox-container .btn-container .btn-group .ui.primary.button {
+        background-color: #1fdab0;
+        border-radius: 1.4rem;
+        font-size: 1rem;
+        box-shadow: 0 0 6px 1px rgba(74, 74, 74, 0.3); }
+        .chatbox-container .btn-container .btn-group .ui.primary.button:hover {
+          background-color: #19ad8c; }
+      .chatbox-container .btn-container .btn-group .column.row .column:first-child {
+        opacity: 0; }
+      .chatbox-container .btn-container .btn-group .column.row .column:last-child {
+        opacity: 0; }
+      .chatbox-container .btn-container .btn-group .column.row .test {
+        background: pink; }
+      .chatbox-container .btn-container .btn-group .button.ui {
+        transition: all 1s ease-out; }
+    .chatbox-container .btn-container .bub-fullwidth .ui.button.text-bubble.right-bubble {
+      margin-top: 0.6rem;
+      background-color: #1fdab0;
+      color: #FFF; }
+      .chatbox-container .btn-container .bub-fullwidth .ui.button.text-bubble.right-bubble:after {
+        content: url("../res/bubble_tail_R.svg");
+        position: absolute;
+        right: 0;
+        bottom: -.8rem; }
+    .chatbox-container .btn-container .hiddenAnime {
+      /* @keyframes duration | timing-function | delay |
+iteration-count | direction | fill-mode | play-state | name */
+      animation: 500ms ease-in both fadeColumn; }
+
+@keyframes moveToRight {
+  from {
+    margin-left: 100%;
+    width: 300%; }
+  to {
+    margin-left: 0%;
+    width: 100%; } }
+
+@keyframes fadeColumn {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 0; } }
   .chatbox-container .cards-container .ui.card {
     width: 100%;
     margin: 0; }

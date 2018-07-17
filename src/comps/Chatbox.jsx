@@ -9,7 +9,8 @@ import { cardsBub10 } from '../redux/bubble_sample';
 //Bubble Comps
 import ImgBubble from './ImgBubble';
 import TextBubble from './TextBubble';
-import BtnGroupBubble from './BtnGroupBubble';
+import BtnAnimeBubble from './BtnAnimeBubble';
+// import BtnGroupBubble from './BtnGroupBubble';
 import PWInput from './PWInput';
 import CardsBubble from './CardsBubble';
 //Image
@@ -31,14 +32,14 @@ class Chatbox extends React.Component {
 
   render() {
     const { allBubbles, onBubbleClick, onCheckNextStep } = this.props;
-    const lastBub = allBubbles[allBubbles.length - 1];
+    // Just for test
     const bubInfo = [];
     bubInfo.push(cardsBub10);
     return (
       <section className="chatbox-container">
         {/*<CardsBubble bubInfo={bubInfo[0].options} />*/}
         <Button onClick={() => onBubbleClick(null, cardsBub10)} type={CBUB.CARDS_BUBBLE}>Add Bubble(TEST)</Button>
-        {/*<Button onClick={() => onBubbleClick(lastBub.nextStepId, CBUB.INPUTPW_BUBBLE)} type={CBUB.TEXT_BUBBLE}>Add Bubble(TEST)</Button>*/}
+        {/*TEST BUTTON */}
         {allBubbles.map((bub) => {
           if (bub.bubType === CBUB.TEXT_BUBBLE) {
             return (
@@ -55,7 +56,7 @@ class Chatbox extends React.Component {
           if (bub.bubType === CBUB.BUTTONGROUP_BUBBLE) {
             // console.log("BUTTONGROUP_BUBBLE - ", bub.options);
             return (
-              <BtnGroupBubble
+              <BtnAnimeBubble
                 key={bub.stepId}
                 options={bub.options}
                 onBtnClick={onBubbleClick}

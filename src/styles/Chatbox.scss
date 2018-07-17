@@ -37,7 +37,7 @@
     border-radius: $bub-radius;
     position: relative;
     // box-shadow: -1px 2px 2px 1px rgba(155, 155, 155, 0.2);
-    margin-bottom: $md-pw;
+    margin: $mini-pw 0;
 
     p{
       margin: $text-pw auto;
@@ -74,12 +74,17 @@
 
   /*------------   button group container   ------------*/
   .btn-container{
+    text-align: center;
+    margin: 1em auto;
+
     .btn-group-label{
       text-align: center;
       color: $bot-label;
       font-size: $label-font-size;
     }
     .btn-group{
+      width: 100%;
+      margin: $mini-pw 0;
       .ui.primary.button{
         background-color: $user-bub-color;
         border-radius: 1.4rem;
@@ -90,7 +95,58 @@
           background-color: darken( $user-bub-color, 10% );
         }
       }
+      .column.row{
+        .column{
+          &:first-child{
+            opacity: 0;
+          }
+          &:last-child{
+            opacity: 0;
+          }
+        }
+        .test{
+          background: pink;
+        }
+      }
+      .button.ui{
+        transition: all 1s ease-out;
+      }
     }
+    .bub-fullwidth{
+      .ui.button.text-bubble.right-bubble{
+          margin-top: $mini-pw;
+          background-color: $user-bub-color;
+          color: $user-bub-text-color;
+
+          &:after{
+            content: url('../res/bubble_tail_R.svg');
+            position: absolute;
+            right: 0;
+            bottom: -.8rem;
+          }
+      }
+    }
+    .hiddenAnime{
+      /* @keyframes duration | timing-function | delay |
+iteration-count | direction | fill-mode | play-state | name */
+      animation: 500ms ease-in both fadeColumn;
+      // display: none;
+    }
+  }
+  /*------------   Button Animation   ------------*/
+  @keyframes moveToRight {
+    from {
+      margin-left: 100%;
+      width: 300%;
+    }
+    to {
+      margin-left: 0%;
+      width: 100%;
+    }
+  }
+  @keyframes fadeColumn {
+    0%   { opacity: 1; }
+    100%  { opacity: 0; }
   }
   /*------------   cards container   ------------*/
   .cards-container{
