@@ -9,7 +9,6 @@ class PWInput extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      type: "basic",
       inputRef: null,
       defaultEmail: "default@gmail.com",
       password: "",
@@ -26,6 +25,7 @@ class PWInput extends React.Component {
     this.handleRef = this.handleRef.bind(this);
     this.handlePWChange = this.handlePWChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleEnterPress = this.handleEnterPress.bind(this);
     this.createFirebaseAccount = this.createFirebaseAccount.bind(this);
     this.loginFirebaseAccount = this.loginFirebaseAccount.bind(this);
     this.closeAlert = this.closeAlert.bind(this);
@@ -58,6 +58,12 @@ class PWInput extends React.Component {
 
   handleSubmit() {
     console.log(`PW: ${this.state.password}`);
+    // const itemsRef = firebase.database().ref('items');
+    this.loginFirebaseAccount();
+  }
+
+  handleEnterPress() {
+    console.log(`ENTER PRESS - PW: ${this.state.password}`);
     // const itemsRef = firebase.database().ref('items');
     this.loginFirebaseAccount();
   }
@@ -141,7 +147,7 @@ class PWInput extends React.Component {
             </Form.Group>
             <Form.Input icon className="input-password" ref={this.handleRef} size="big" focus placeholder="Password...">
                <input type="password" onChange={this.handlePWChange} value={password} />
-               <Icon circular color="teal" name="arrow right" link onClick={this.handleSubmit} />
+               <Icon circular color="teal" name="arrow right" link onClick={this.handleSubmit} onKeyPress={this.handleEnterPress} />
             </Form.Input>
             <Button className="input-email-link borderless-btn" onClick={this.showForm} content="Request the Password" />
           </Form>

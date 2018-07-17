@@ -15,7 +15,7 @@ const mapDispatchToProps = dispatch => ({
   onBubbleClick: (nextID, bubInfo) => {
     console.log("Button Click - ID: ", nextID, bubInfo);
     //toggleTodo(id) 返回 使用该 id的 "TOGGLE_TODO" 的 action
-    dispatch(nextStep(nextID, bubInfo.stepId));
+    dispatch(nextID ? nextStep(nextID) : nextStep(null, bubInfo.stepId));
     dispatch(getNewBubble(nextID, bubInfo));
   },
   onCheckNextStep: (goNextStep, nextStepId) => {

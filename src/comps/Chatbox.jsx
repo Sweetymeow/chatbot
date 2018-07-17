@@ -4,7 +4,7 @@ import { Button } from 'semantic-ui-react';
 import '../styles/Chatbox.css';
 import { CBUB } from '../redux/constants';
 
-import { cardsBub } from '../redux/bubble_sample';
+import { cardsBub10 } from '../redux/bubble_sample';
 
 //Bubble Comps
 import ImgBubble from './ImgBubble';
@@ -33,18 +33,24 @@ class Chatbox extends React.Component {
     const { allBubbles, onBubbleClick, onCheckNextStep } = this.props;
     const lastBub = allBubbles[allBubbles.length - 1];
     const bubInfo = [];
-    bubInfo.push(cardsBub);
+    bubInfo.push(cardsBub10);
     return (
       <section className="chatbox-container">
         {/*<CardsBubble bubInfo={bubInfo[0].options} />*/}
-        <Button onClick={() => onBubbleClick(null, cardsBub)} type={CBUB.CARDS_BUBBLE}>Add Bubble(TEST)</Button>
+        <Button onClick={() => onBubbleClick(null, cardsBub10)} type={CBUB.CARDS_BUBBLE}>Add Bubble(TEST)</Button>
         {/*<Button onClick={() => onBubbleClick(lastBub.nextStepId, CBUB.INPUTPW_BUBBLE)} type={CBUB.TEXT_BUBBLE}>Add Bubble(TEST)</Button>*/}
         {allBubbles.map((bub) => {
           if (bub.bubType === CBUB.TEXT_BUBBLE) {
-            return <TextBubble key={bub.stepId} text={this.getTextArr(bub.bubContent.text)} speaker="bot" onNext={onCheckNextStep} />;
+            return (
+              <TextBubble key={bub.stepId}
+              checkNextStep={onCheckNextStep(bub.requestClick, bub.nextStepId)}
+              text={this.getTextArr(bub.bubContent.text)} speaker="bot" onNext={onCheckNextStep} />);
           }
           if (bub.bubType === CBUB.IMAGE_BUBBLE) {
-            return <ImgBubble key={bub.stepId} imgSrc={Gopher}/>;
+            return ( <ImgBubble key={bub.stepId}
+              checkNextStep={onCheckNextStep}
+              imgSrc={Gopher} />
+            );
           }
           if (bub.bubType === CBUB.BUTTONGROUP_BUBBLE) {
             // console.log("BUTTONGROUP_BUBBLE - ", bub.options);
@@ -53,16 +59,22 @@ class Chatbox extends React.Component {
                 key={bub.stepId}
                 options={bub.options}
                 onBtnClick={onBubbleClick}
+                checkNextStep={onCheckNextStep}
                 label="Choose an option"
               />);
           }
           if (bub.bubType === CBUB.INPUTPW_BUBBLE) {
             // console.log("INPUTPW_BUBBLE - ", bub);
-            return (<PWInput label="Type the Password" enableBack clearBox={this.handleClearBox} />);
+            return (
+              <PWInput checkNextStep={onCheckNextStep}
+              label="Type the Password" enableBack clearBox={this.handleClearBox} />);
           }
           if (bub.bubType === CBUB.CARDS_BUBBLE) {
             console.log("CARDS_BUBBLE - ", bub);
-            return (<CardsBubble key={bub.stepId} bubInfo={bub.options} />);
+            return (
+              <CardsBubble key={bub.stepId}
+                checkNextStep={onCheckNextStep}
+                bubInfo={bub.options} />);
           }
           return null;
         })}

@@ -1,7 +1,7 @@
-import { C, CBUB } from './constants';
-import { imgBub, textBub, btnBub, btnBub7, textBub4, textBub5, textBub2, textBub8, cardsBub, inputBub9, textBub11, btnBub12 } from './bubble_sample';
+import { C } from './constants';
+import { imgBub0, textBub1, textBub2, btnBub3, textBub4, textBub5, btnBub6, textBub7, inputBub8, textBub9, cardsBub10, textBub11, btnBub12 } from './bubble_sample';
 
-const bubList = [imgBub, textBub, textBub2, btnBub, textBub4, textBub5, btnBub7, textBub8, inputBub9, cardsBub, textBub11, btnBub12];
+const bubList = [imgBub0, textBub1, textBub2, btnBub3, textBub4, textBub5, btnBub6, textBub7, inputBub8, textBub9, cardsBub10, textBub11, btnBub12];
 
 const removeBubble = bubId => ({
   type: C.REMOVE_BUBBLE,
@@ -29,10 +29,5 @@ const openNewTab = link => ({
   type: C.SHOW_CARDS,
   link
 });
-
-// const getVisibleBubbles = allBubbles => ({
-//   type: C.INIT_BUBBLE,
-//   allBubbles
-// });
 
 export { getNewBubble, nextStep, removeBubble, downloadCV, openNewTab };
