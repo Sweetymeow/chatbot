@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Grid, Button } from 'semantic-ui-react'; // Image,
+import { Grid, Button, Transition, Image } from 'semantic-ui-react'; // Image,
 import '../styles/Chatbox.css';
 
 const fadeTimer = 500; // ms
-const moveRightStyle = "transform: translate(36vw)";
+const moveRightVal = [{ transform: "translate(196%)" }, { transform: "translate(76%)" }];
 
 class BtnAnimeBubble extends React.Component {
   constructor(props) {
@@ -20,13 +20,15 @@ class BtnAnimeBubble extends React.Component {
   }
 
   componentDidMount() {
-    const colLength = this.props.options.length + 2;
+    const colLength = this.props.options.length;
     const newActiveIdx = [];
     for (let i = 0; i < colLength; i++) {
       newActiveIdx.push(i);
     }
+    console.log("newActiveIdx - ", newActiveIdx);
     this.setState({
-      activeIndex: newActiveIdx
+      activeIndex: newActiveIdx,
+      animeStyle: {}
     });
   }
 
@@ -34,15 +36,12 @@ class BtnAnimeBubble extends React.Component {
   //   console.log("activeIndex: ", this.state.activeIndex);
   // }
 
-  btnToTextBub(idx, btnColLength) {
+  btnToTextBub(idx) {
     const { options } = this.props;
     console.log("Click btn idx: ", idx);
 
     this.setState(prevState => ({
-      activeIndex: [prevState.activeIndex[0],
-        ...prevState.activeIndex.filter(index => index === idx),
-        prevState.activeIndex[prevState.activeIndex.length - 1]
-      ]
+      activeIndex: prevState.activeIndex.filter(index => index === idx)
     }));
 
     setTimeout( () => {
@@ -50,9 +49,9 @@ class BtnAnimeBubble extends React.Component {
         console.log("Button Options -> ", index, option);
         this.setState({
           showLabel: false,
-          isMoveRight: true
+          animeStyle: moveRightVal[idx]
         });
-        // style={{ transform : "translate(36vw)" }}
+        return null;
       })
     }, fadeTimer);
   }
@@ -61,54 +60,39 @@ class BtnAnimeBubble extends React.Component {
   }
 
   render() {
-    const { activeIndex, showLabel,isMoveRight } = this.state;
+    const { activeIndex, showLabel, animeStyle } = this.state;
     const { options, onBtnClick, label, checkNextStep } = this.props;
-    const btnColLength = options.length + 2;
+    const btnColLength = options.length;
     return (
       <div className="btn-container">
         {/*<div className="bub-60wid-center">*/}
-          {showLabel ? (<p className="btn-group-label">{label}</p>) : null}
+         <Transition visible={showLabel} animation="fade" duration={500}>
+           <p className="btn-group-label">{label}</p>
+         </Transition>
           <Grid className="btn-group">
-            <Grid.Row centered columns={btnColLength}>
-              {/*<Grid.Column className={activeIndex.indexOf(0) !== -1 ? "test" : "hiddenAnime"} width={2} largeScreen={4} mobile={1}>..</Grid.Column>*/}
-              {activeIndex.indexOf(0) !== -1 ? <Grid.Column width={2} largeScreen={4} mobile={1}>..</Grid.Column> : null}
+            <Grid.Row centered columns={btnColLength} stretched>
               {options.map((item, idx) => (
                   <Grid.Column width={6}
-                    largeScreen={4} mobile={7}
-                    className={activeIndex.indexOf(idx + 1) !== -1 ? "" : "hiddenAnime"} id={`btn-column-${item.opId}`} key={item.opId} textAlign="center">
+                    largeScreen={5}
+                    className={activeIndex.indexOf(idx) !== -1 ? "" : "hiddenAnime"} id={`btn-column-${item.opId}`} key={item.opId} textAlign="center">
                     <Button primary value={item.opVal}
                       key={item.opId + 2}
+                      style={animeStyle}
                       onClick={() => {
                         onBtnClick(item.nextStepId);
                         checkNextStep(item.requestClick, item.nextStepId);
-                        this.btnToTextBub(idx + 1, btnColLength);
+                        this.btnToTextBub(idx);
                       }}>
                       {item.opText}
                     </Button>
                   </Grid.Column>))}
-              {/*{options.map((item, idx) => (
-                  <Grid.Column width={6}
-                    largeScreen={4} mobile={7}
-                    className={activeIndex.indexOf(0) !== -1 ? "test" : "hiddenAnime"} id={`btn-column-${item.opId}`} key={item.opId} textAlign="center">
-                    <Button primary value={item.opVal}
-                      key={item.opId + 2}
-                      onClick={() => {
-                        onBtnClick(item.nextStepId);
-                        checkNextStep(item.requestClick, item.nextStepId);
-                        this.btnToTextBub(idx + 1);
-                      }}>
-                      {item.opText}
-                    </Button>
-                  </Grid.Column>))}*/}
-               {/*<Grid.Column className={(activeIndex.indexOf(options.length + 1) !== -1) > 0 ? "test" : "hiddenAnime"} width={2} largeScreen={4} mobile={1}>..</Grid.Column>*/}
-               {activeIndex.indexOf(btnColLength - 1) !== -1 ? <Grid.Column width={2} largeScreen={4} mobile={1}>..</Grid.Column> : null}
             </Grid.Row>
           </Grid>
-        <div className="bub-fullwidth init-bubposition">
+        {/*<div className="bub-fullwidth init-bubposition">
           <Button className="text-bubble right-bubble">
             {options[0].opText}
           </Button>
-        </div>
+        </div>*/}
       </div>
     );
   }

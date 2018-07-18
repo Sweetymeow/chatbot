@@ -97,15 +97,9 @@
       }
       .column.row{
         .column{
-          &:first-child{
-            opacity: 0;
-          }
-          &:last-child{
-            opacity: 0;
-          }
-        }
-        .test{
-          background: pink;
+          // &:first-child{
+          //   opacity: 0;
+          // }
         }
       }
       .button.ui{

@@ -71,12 +71,6 @@
         box-shadow: 0 0 6px 1px rgba(74, 74, 74, 0.3); }
         .chatbox-container .btn-container .btn-group .ui.primary.button:hover {
           background-color: #19ad8c; }
-      .chatbox-container .btn-container .btn-group .column.row .column:first-child {
-        opacity: 0; }
-      .chatbox-container .btn-container .btn-group .column.row .column:last-child {
-        opacity: 0; }
-      .chatbox-container .btn-container .btn-group .column.row .test {
-        background: pink; }
       .chatbox-container .btn-container .btn-group .button.ui {
         transition: all 1s ease-out; }
     .chatbox-container .btn-container .bub-fullwidth .ui.button.text-bubble.right-bubble {
