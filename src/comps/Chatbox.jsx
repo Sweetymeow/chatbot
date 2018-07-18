@@ -40,15 +40,17 @@ class Chatbox extends React.Component {
         {/*<CardsBubble bubInfo={bubInfo[0].options} />*/}
         <Button onClick={() => onBubbleClick(null, cardsBub10)} type={CBUB.CARDS_BUBBLE}>Add Bubble(TEST)</Button>
         {/*TEST BUTTON */}
-        {allBubbles.map((bub) => {
+        {allBubbles.map((bub, idx) => {
           if (bub.bubType === CBUB.TEXT_BUBBLE) {
+            console.log(bub);
             return (
-              <TextBubble key={bub.stepId}
+              <TextBubble key={bub.stepId} delayTimer={bub.delayTimer || 600 * idx}
               checkNextStep={onCheckNextStep(bub.requestClick, bub.nextStepId)}
               text={this.getTextArr(bub.bubContent.text)} speaker="bot" onNext={onCheckNextStep} />);
           }
           if (bub.bubType === CBUB.IMAGE_BUBBLE) {
             return ( <ImgBubble key={bub.stepId}
+              delayTimer={bub.delayTimer || 600}
               checkNextStep={onCheckNextStep}
               imgSrc={Gopher} />
             );
@@ -58,6 +60,7 @@ class Chatbox extends React.Component {
             return (
               <BtnAnimeBubble
                 key={bub.stepId}
+                delayTimer={bub.delayTimer || 600}
                 options={bub.options}
                 onBtnClick={onBubbleClick}
                 checkNextStep={onCheckNextStep}
@@ -95,7 +98,8 @@ Chatbox.propTypes = {
       stepId: PropTypes.number.isRequired,
       requestClick: PropTypes.bool,
       bubType: PropTypes.string,
-      bubContent: PropTypes.object
+      bubContent: PropTypes.object,
+      delayTimer: PropTypes.number
     }).isRequired
   ),
   onBubbleClick: PropTypes.func,

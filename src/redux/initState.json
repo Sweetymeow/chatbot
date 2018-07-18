@@ -15,6 +15,7 @@
     "nextStepId": 2,
     "requestClick": false,
     "options": [],
+    "delayTimer": 500,
     "bubContent": {
       "text": "My name is Juan. $$ I am a UX/UI designer currently working at SAP.",
       "html": "My name is <s>Juan</s>. I am a <s>UX / UI designer</s> currently working at <s className='underline'>SAP</s>."
@@ -25,6 +26,7 @@
     "nextStepId": 3,
     "requestClick": false,
     "opionts": [],
+    "delayTimer": 1000,
     "bubContent": {
       "text": "Thanks for your interest in my portfolio! $$ May I ask your purpose of visiting today? :)",
       "html": "Thanks for your interest in my portfolio! <s>May I ask your purpose of visiting today? :)</s>"
@@ -35,6 +37,7 @@
     "requestClick": true,
     "nextStepId": 4,
     "request": "123qwe",
+    "delayTimer": 1500,
     "options": [{
       "opId": 0,
       "opText": "Recruiting Designer",

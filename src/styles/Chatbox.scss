@@ -18,16 +18,16 @@
       display: block;
     }
   }
-  .bub-90wid-center{
-    width: 90%;
-    text-align: center;
-    margin: 1em auto;
-  }
-  .bub-60wid-center{
-    width: 60%;
-    text-align: center;
-    margin: 1em auto;
-  }
+  // .bub-90wid-center{
+  //   width: 90%;
+  //   text-align: center;
+  //   margin: 1em auto;
+  // }
+  // .bub-60wid-center{
+  //   width: 60%;
+  //   text-align: center;
+  //   margin: 1em auto;
+  // }
 
   /*------------  TEXT bubble container   ------------*/
   .text-bubble{
@@ -44,6 +44,7 @@
       font-size: $bub-text-size;
     }
   }
+
   .text-bubble.left-bubble{
       background: $bot-bub-color;
       &:after{
@@ -65,6 +66,11 @@
         right: 0;
         bottom: -.8rem;
       }
+  }
+  /*------------   Text Animation   ------------*/
+  @keyframes textBubExpand {
+    from { }
+    to {  }
   }
 
   /*------------  image bubble container   ------------*/

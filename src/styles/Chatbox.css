@@ -9,6 +9,7 @@
   background-color: #FFF;
   box-shadow: -1px 2px 28px 1px rgba(155, 155, 155, 0.35);
   /*------------  TEXT bubble container   ------------*/
+  /*------------   Text Animation   ------------*/
   /*------------  image bubble container   ------------*/
   /*------------   button group container   ------------*/
   /*------------   Button Animation   ------------*/
@@ -19,14 +20,6 @@
     content: "";
     clear: both;
     display: block; }
-  .chatbox-container .bub-90wid-center {
-    width: 90%;
-    text-align: center;
-    margin: 1em auto; }
-  .chatbox-container .bub-60wid-center {
-    width: 60%;
-    text-align: center;
-    margin: 1em auto; }
   .chatbox-container .text-bubble {
     text-align: left;
     max-width: 40rem;
@@ -52,6 +45,10 @@
       position: absolute;
       right: 0;
       bottom: -.8rem; }
+
+@keyframes textBubExpand {
+  from { }
+  to { } }
   .chatbox-container .imgbub-container {
     margin: 1.4rem; }
   .chatbox-container .btn-container {
