@@ -30,4 +30,17 @@ const openNewTab = link => ({
   link
 });
 
-export { getNewBubble, nextStep, removeBubble, downloadCV, openNewTab };
+const fetchRequest = (url, status, res) => ({
+  type: C.FETCH_USER_PW,
+  url,
+  status: status || null,
+  error: status === "error" ? res : null,
+  response: status === "success" ? res : null
+});
+
+const goNextAuto = (nextId, isNeedClick) => ({
+  type: C.GO_NEXT_AUTO,
+  nextId: isNeedClick ? nextId : null
+});
+
+export { getNewBubble, nextStep, removeBubble, downloadCV, openNewTab, fetchRequest, goNextAuto };

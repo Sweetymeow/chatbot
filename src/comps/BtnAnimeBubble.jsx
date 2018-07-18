@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Grid, Button, Transition } from 'semantic-ui-react'; // Image,
+import { Grid, Button, Transition, Image } from 'semantic-ui-react';
+import imgDownload from '../res/DownloadCV.svg';
 import '../styles/Chatbox.css';
 
 const fadeTimer = 500; // ms
@@ -25,7 +26,6 @@ class BtnAnimeBubble extends React.Component {
     for (let i = 0; i < colLength; i++) {
       newActiveIdx.push(i);
     }
-    console.log("newActiveIdx - ", newActiveIdx);
     this.setState({
       activeIndex: newActiveIdx,
       animeStyle: {}
@@ -33,7 +33,7 @@ class BtnAnimeBubble extends React.Component {
     setTimeout(() => {
       this.setState({
         showBtnGroup: true
-      })
+      });
     }, delayTimer);
   }
 
@@ -43,7 +43,7 @@ class BtnAnimeBubble extends React.Component {
 
   btnToTextBub(idx) {
     const { options } = this.props;
-    console.log("Click btn idx: ", idx);
+    // console.log("Click btn idx: ", idx);
 
     this.setState(prevState => ({
       activeIndex: prevState.activeIndex.filter(index => index === idx)
@@ -51,7 +51,7 @@ class BtnAnimeBubble extends React.Component {
 
     setTimeout( () => {
       options.map((option, index) => {
-        console.log("Button Options -> ", index, option);
+        // console.log("Button Options -> ", index, option);
         this.setState({
           showLabel: false,
           animeStyle: moveRightVal[idx]
@@ -86,11 +86,13 @@ class BtnAnimeBubble extends React.Component {
                           checkNextStep(item.requestClick, item.nextStepId);
                           this.btnToTextBub(idx);
                         }}>
-                        {item.opText}
+                        {item.opLink ? (<Image as="a" src={imgDownload} target="_blank" href={item.opLink} />) : item.opText }
                       </Button>
                     </Grid.Column>))}
               </Grid.Row>
             </Grid>
+            {/*<Icon name='download' /> Facebook
+            {item.opText}*/}
           {/*<div className="bub-fullwidth init-bubposition">
             <Button className="text-bubble right-bubble">
               {options[0].opText}

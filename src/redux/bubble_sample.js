@@ -2,10 +2,11 @@ const imgBub0 = {
   stepId: 0,
   bubType: "IMAGE_BUBBLE",
   nextStepId: 1,
-  requestClick: false,
+  isGoNextAuto: false,
   options: [],
   bubContent: {
-    img_src: "../res/Gopher.png"
+    imgSrc: "../res/Gopher.png",
+    imgName: "Gppher"
   }
 };
 
@@ -13,7 +14,7 @@ const textBub1 = {
   stepId: 1,
   bubType: "TEXT_BUBBLE",
   nextStepId: 2,
-  requestClick: false,
+  isGoNextAuto: false,
   options: [],
   delayTimer: 500,
   bubContent: {
@@ -26,7 +27,7 @@ const textBub2 = {
   stepId: 2,
   bubType: "TEXT_BUBBLE",
   nextStepId: 3,
-  requestClick: false,
+  isGoNextAuto: false,
   options: [],
   delayTimer: 1000,
   bubContent: {
@@ -38,8 +39,9 @@ const textBub2 = {
 const btnBub3 = {
   stepId: 3,
   bubType: "BUTTONGROUP_BUBBLE",
-  requestClick: true,
+  isGoNextAuto: false,
   nextStepId: 4,
+  label: "Choose an option",
   options: [{
     opId: 0,
     opText: "Recruiting Designer",
@@ -60,7 +62,7 @@ const textBub4 = {
   stepId: 4,
   bubType: "TEXT_BUBBLE",
   nextStepId: 6,
-  requestClick: false,
+  isGoNextAuto: true,
   delayTimer: 2000,
   options: [],
   bubContent: {
@@ -74,7 +76,7 @@ const textBub5 = {
   stepId: 5,
   bubType: "TEXT_BUBBLE",
   nextStepId: 11,
-  requestClick: false,
+  isGoNextAuto: true,
   options: [],
   delayTimer: 500,
   bubContent: {
@@ -85,8 +87,9 @@ const textBub5 = {
 
 const btnBub6 = {
   stepId: 6,
+  label: "",
   bubType: "BUTTONGROUP_BUBBLE",
-  requestClick: false,
+  isGoNextAuto: true,
   nextStepId: 7,
   delayTimer: 1000,
   options: [{
@@ -94,7 +97,8 @@ const btnBub6 = {
     opText: "Download CV",
     opVal: "Download",
     opImage: "../res/DOWNLOAD_CV.svg",
-    opLink: "https://drive.google.com/file/d/0BzsBT6AUXTeeczZsc05tZUtkRU0/view?usp=sharing"
+    opLink: "https://drive.google.com/file/d/0BzsBT6AUXTeeczZsc05tZUtkRU0/view?usp=sharing",
+    nextStepId: 7
   }],
   bubContent: {}
 };
@@ -103,7 +107,7 @@ const textBub7 = {
   stepId: 7,
   bubType: "TEXT_BUBBLE",
   nextStepId: 8,
-  requestClick: false,
+  isGoNextAuto: true,
   options: [],
   delayTimer: 1500,
   bubContent: {
@@ -114,8 +118,9 @@ const textBub7 = {
 
 const inputBub8 = {
   stepId: 8,
-  bubType: "PWInput_BUBBLE",
-  requestClick: true,
+  bubType: "INPUTPW_BUBBLE",
+  label: "Type the Password",
+  isGoNextAuto: false,
   nextStepId: 9,
   delayTimer: 1000,
   options: [{
@@ -130,7 +135,7 @@ const textBub9 = {
   stepId: 9,
   bubType: "TEXT_BUBBLE",
   nextStepId: 10,
-  requestClick: false,
+  isGoNextAuto: true,
   options: [],
   delayTimer: 500,
   bubContent: {
@@ -142,7 +147,7 @@ const textBub9 = {
 const cardsBub10 = {
   stepId: 10,
   bubType: "CARDS_BUBBLE",
-  requestClick: true,
+  isGoNextAuto: false,
   nextStepId: -1,
   delayTimer: 1000,
   options: [{
@@ -177,7 +182,7 @@ const textBub11 = {
   stepId: 11,
   bubType: "TEXT_BUBBLE",
   nextStepId: 12,
-  requestClick: false,
+  isGoNextAuto: true,
   options: [],
   delayTimer: 500,
   bubContent: {
@@ -189,7 +194,7 @@ const textBub11 = {
 const btnBub12 = {
   stepId: 12,
   bubType: "BUTTONGROUP_BUBBLE",
-  requestClick: true,
+  isGoNextAuto: false,
   nextStepId: 13,
   delayTimer: 1000,
   options: [{

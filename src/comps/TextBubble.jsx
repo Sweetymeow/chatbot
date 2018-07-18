@@ -8,19 +8,19 @@ class TextBubble extends React.Component {
     super(props);
     this.state = {
       isShowText: false
-    }
+    };
   }
 
   componentDidMount() {
-    const { checkNextStep } = this.props;
-
+    const { onCheckNextAuto, isGoNextStep, nextStepId } = this.props;
     const { delayTimer } = this.props;
-    // checkNextStep(item.requestClick, item.nextStepId);
-    console.log("## checkNextStep", checkNextStep);
-    setTimeout( () => {
+
+    onCheckNextAuto(isGoNextStep, nextStepId);
+
+    setTimeout(() => {
       this.setState({
         isShowText: true
-      })
+      });
     }, delayTimer);
   }
 
@@ -51,10 +51,11 @@ class TextBubble extends React.Component {
 
 TextBubble.propTypes = {
   text: PropTypes.array.isRequired,
-  bubWidth: PropTypes.string,
-  checkNextStep: PropTypes.func,
+  isGoNextStep: PropTypes.bool,
+  nextStepId: PropTypes.number,
   type: PropTypes.string,
-  delayTimer: PropTypes.number
+  delayTimer: PropTypes.number,
+  onCheckNextAuto: PropTypes.func
   // html: PropTypes.string
 };
 

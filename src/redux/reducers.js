@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { C, CBUB } from './constants';
+import { C } from './constants';
 
 export const step = (state = 0, action) => {
   switch (action.type) {
@@ -15,21 +15,6 @@ export const step = (state = 0, action) => {
 //export const products = (state = null, action) =>
 //(action.type === C.ADD_ITEM) ? [...state, action.payload] : state;
 //return typeof state === "object" ? state.push(action.payload) : action.payload;
-
-export const newBubble = (state = 'DEFAULT', action) => {
-  switch (action.type) {
-    case CBUB.ADD_TEXT_BUBBLE:
-      return "TEXT"; //return [...state, action.payload]; //return new array with
-    case CBUB.ADD_IMAGE_BUBBLE:
-      return "IMAGE";
-    case CBUB.ADD_INPUTPW_BUBBLE:
-      return "BUTTON_GROUP"; //return new array with
-    case CBUB.ADD_BUTTONGROUP_BUBBLE:
-      return "INPUT_PASSWORD";
-    default:
-      return state;
-  }
-};
 
 export const error = (state = null, action) => {
   switch (action.type) {
@@ -71,8 +56,7 @@ export const allBubbles = (state = [], action) => {
       return [...state.allBubbles];
     case C.ADD_BUBBLE:
       // return hasProduct ? state : [...state, action.payload];
-      console.log("NEW Bubble:", action.bubble);
-      console.log("NEW Bubble ID:", action.nextId);
+      // console.log(`NEW Bubble ${action.nextId} - `, action.bubble);
       return [...state, action.bubble];
     case C.BACK_TO_LAST_BUBBLE:
       return state.slice(0, state.length);

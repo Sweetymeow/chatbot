@@ -22,9 +22,7 @@ class Chatbox extends React.Component {
     this.getTextArr = this.getTextArr.bind(this);
   }
 
-  componentDidMount() {
-    console.log("Chatbox Comps Did Mount");
-  }
+  // componentDidMount() {}
 
   getTextArr(text) {
     return text.split("$$");
@@ -38,15 +36,15 @@ class Chatbox extends React.Component {
     return (
       <section className="chatbox-container">
         {/*<CardsBubble bubInfo={bubInfo[0].options} />*/}
-        <Button onClick={() => onBubbleClick(null, cardsBub10)} type={CBUB.CARDS_BUBBLE}>Add Bubble(TEST)</Button>
-        {/*TEST BUTTON */}
         {allBubbles.map((bub, idx) => {
           if (bub.bubType === CBUB.TEXT_BUBBLE) {
-            console.log(bub);
             return (
-              <TextBubble key={bub.stepId} delayTimer={bub.delayTimer || 600 * idx}
-              checkNextStep={onCheckNextStep(bub.requestClick, bub.nextStepId)}
-              text={this.getTextArr(bub.bubContent.text)} speaker="bot" onNext={onCheckNextStep} />);
+              <TextBubble key={bub.stepId}
+                delayTimer={bub.delayTimer || 600 * idx}
+                isGoNextStep={bub.isGoNextAuto}
+                nextStepId={bub.nextStepId}
+                onCheckNextAuto={onCheckNextStep}
+                text={this.getTextArr(bub.bubContent.text)} speaker="bot" />);
           }
           if (bub.bubType === CBUB.IMAGE_BUBBLE) {
             return ( <ImgBubble key={bub.stepId}
@@ -64,14 +62,14 @@ class Chatbox extends React.Component {
                 options={bub.options}
                 onBtnClick={onBubbleClick}
                 checkNextStep={onCheckNextStep}
-                label="Choose an option"
+                label={bub.label}
               />);
           }
           if (bub.bubType === CBUB.INPUTPW_BUBBLE) {
             // console.log("INPUTPW_BUBBLE - ", bub);
             return (
               <PWInput checkNextStep={onCheckNextStep}
-              label="Type the Password" enableBack clearBox={this.handleClearBox} />);
+              label={bub.label} enableBack clearBox={this.handleClearBox} />);
           }
           if (bub.bubType === CBUB.CARDS_BUBBLE) {
             console.log("CARDS_BUBBLE - ", bub);
@@ -82,6 +80,8 @@ class Chatbox extends React.Component {
           }
           return null;
         })}
+        {/*TEST BUTTON */}
+        <Button onClick={() => onBubbleClick(null, cardsBub10)} type={CBUB.CARDS_BUBBLE}>Add Bubble(TEST)</Button>
       </section>);
   }
 }
@@ -96,7 +96,7 @@ Chatbox.propTypes = {
   allBubbles: PropTypes.arrayOf(
     PropTypes.shape({
       stepId: PropTypes.number.isRequired,
-      requestClick: PropTypes.bool,
+      isGoNextAuto: PropTypes.bool,
       bubType: PropTypes.string,
       bubContent: PropTypes.object,
       delayTimer: PropTypes.number

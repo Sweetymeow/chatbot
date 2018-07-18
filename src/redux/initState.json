@@ -7,7 +7,8 @@
     "requestClick": false,
     "options": [],
     "bubContent": {
-      "img_src": "../res/Gopher.png"
+      "imgSrc": "../res/Gopher.png",
+      "imgName": "Gopher"
     }
   }, {
     "stepId": 1,

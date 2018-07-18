@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Grid, Button } from 'semantic-ui-react'; // Image,
+import { Grid, Button, Image, Icon } from 'semantic-ui-react';
 import '../styles/Chatbox.css';
+import imgDownload from '../res/DownloadCV.svg';
 
 class BtnGroupBubble extends React.Component {
   // constructor(props) {
@@ -14,6 +15,7 @@ class BtnGroupBubble extends React.Component {
 
   render() {
     const { options, onBtnClick, label, checkNextStep } = this.props;
+    console.log("BUTTON OPTIONS", options);
     return (
       <div className="btn-container bub-60wid-center">
         {/* <Image className="bot-tail-left" src={BubTail} size="tiny" /> */}
@@ -28,8 +30,11 @@ class BtnGroupBubble extends React.Component {
                       onBtnClick(item.nextStepId);
                       checkNextStep(item.requestClick, item.nextStepId);
                     }}>
+                    <Icon name='download' /> Facebook
                     {item.opText}
                   </Button>
+                  <Image as="a" src={imgDownload} href={item.opLink} />
+                  {item.opLink ? <Image as="a" src={imgDownload} href={item.opLink} /> : null}
                   {/*<Button primary value={item.opVal}
                     key={item.opId + 2}
                     onClick={onBtnClick} >

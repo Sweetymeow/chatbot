@@ -1,6 +1,6 @@
 // import React from 'react';
 import { connect } from 'react-redux';
-import C from "../redux/constants";
+// import C from "../redux/constants";
 import { getNewBubble, downloadCV, openNewTab, nextStep } from "../redux/actions";
 import Chatbox from '../comps/Chatbox';
 
@@ -18,11 +18,12 @@ const mapDispatchToProps = dispatch => ({
     dispatch(nextID ? nextStep(nextID) : nextStep(null, bubInfo.stepId));
     dispatch(getNewBubble(nextID, bubInfo));
   },
-  onCheckNextStep: (goNextStep, nextStepId) => {
-    console.log("check the next step is automatically? - ", goNextStep);
-    if (goNextStep) {
+  onCheckNextStep: (isGoNextStep, nextStepId) => {
+    console.log(`##  ${isGoNextStep} checkNextStep -> ${nextStepId}`);
+    if (isGoNextStep) {
       dispatch(nextStep(nextStepId));
       dispatch(getNewBubble(nextStepId));
+      // goNextAuto = (nextId, isNeedClick)
     }
   },
   onCardClick: link => {
