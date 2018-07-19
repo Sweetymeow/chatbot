@@ -61,6 +61,8 @@ class Chatbox extends React.Component {
                 delayTimer={bub.delayTimer || 600}
                 options={bub.options}
                 onBtnClick={onBubbleClick}
+                isGoNextStep={bub.isGoNextAuto}
+                nextStepId={bub.nextStepId}
                 checkNextStep={onCheckNextStep}
                 label={bub.label}
               />);
@@ -68,8 +70,11 @@ class Chatbox extends React.Component {
           if (bub.bubType === CBUB.INPUTPW_BUBBLE) {
             // console.log("INPUTPW_BUBBLE - ", bub);
             return (
-              <PWInput checkNextStep={onCheckNextStep}
-              label={bub.label} enableBack clearBox={this.handleClearBox} />);
+              <PWInput
+                key={bub.stepId}
+                onLogin={onBubbleClick}
+                nextStepId={bub.nextStepId}
+                label={bub.label} enableBack clearBox={this.handleClearBox} />);
           }
           if (bub.bubType === CBUB.CARDS_BUBBLE) {
             console.log("CARDS_BUBBLE - ", bub);
@@ -80,17 +85,11 @@ class Chatbox extends React.Component {
           }
           return null;
         })}
-        {/*TEST BUTTON */}
-        <Button onClick={() => onBubbleClick(null, cardsBub10)} type={CBUB.CARDS_BUBBLE}>Add Bubble(TEST)</Button>
+        {/* TEST BUTTON
+        <Button onClick={() => onBubbleClick(null, cardsBub10)} type={CBUB.CARDS_BUBBLE}>Add Bubble(TEST)</Button> */}
       </section>);
   }
 }
-// <BtnGroupBubble
-//     key={bub.stepId}
-//     options={bub.options}
-//     onBtnClick={() => onBubbleClick()}
-//     label="Choose an option"
-//   />
 
 Chatbox.propTypes = {
   allBubbles: PropTypes.arrayOf(

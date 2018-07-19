@@ -5,7 +5,7 @@ import imgDownload from '../res/DownloadCV.svg';
 import '../styles/Chatbox.css';
 
 const fadeTimer = 500; // ms
-const moveRightVal = [{ transform: "translate(196%)" }, { transform: "translate(76%)" }];
+const moveRightVal = [{ transform: "translate(calc((75vw - 2.4rem) * .5))" }, { transform: "translate(calc((75vw - 2.4rem) * .15))" }, { transform: "translate(calc((75vw - 2.4rem) * -.4))" }];
 
 class BtnAnimeBubble extends React.Component {
   constructor(props) {
@@ -41,9 +41,8 @@ class BtnAnimeBubble extends React.Component {
   //   console.log("activeIndex: ", this.state.activeIndex);
   // }
 
-  btnToTextBub(idx) {
+  btnToTextBub(idx, isMoveLeft) {
     const { options } = this.props;
-    // console.log("Click btn idx: ", idx);
 
     this.setState(prevState => ({
       activeIndex: prevState.activeIndex.filter(index => index === idx)
@@ -54,7 +53,7 @@ class BtnAnimeBubble extends React.Component {
         // console.log("Button Options -> ", index, option);
         this.setState({
           showLabel: false,
-          animeStyle: moveRightVal[idx]
+          animeStyle: isMoveLeft ? moveRightVal[2] : moveRightVal[idx]
         });
         return null;
       })
@@ -78,15 +77,18 @@ class BtnAnimeBubble extends React.Component {
                     <Grid.Column width={6}
                       largeScreen={5}
                       className={activeIndex.indexOf(idx) !== -1 ? "" : "hiddenAnime"} id={`btn-column-${item.opId}`} key={item.opId} textAlign="center">
-                      <Button primary value={item.opVal}
+                      <Button primary
+                        className={item.opLink ? "roundBtn" : null}
+                        value={item.opVal}
                         key={item.opId + 2}
                         style={animeStyle}
                         onClick={() => {
+                          const isMoveLeft = item.opLink;
                           onBtnClick(item.nextStepId);
                           checkNextStep(item.requestClick, item.nextStepId);
-                          this.btnToTextBub(idx);
+                          this.btnToTextBub(idx, isMoveLeft);
                         }}>
-                        {item.opLink ? (<Image as="a" src={imgDownload} target="_blank" href={item.opLink} />) : item.opText }
+                        {item.opLink ? (<Image as="a" src={imgDownload} target="_blank" href={item.opLink} download />) : item.opText }
                       </Button>
                     </Grid.Column>))}
               </Grid.Row>

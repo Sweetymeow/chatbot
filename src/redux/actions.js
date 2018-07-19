@@ -43,4 +43,14 @@ const goNextAuto = (nextId, isNeedClick) => ({
   nextId: isNeedClick ? nextId : null
 });
 
-export { getNewBubble, nextStep, removeBubble, downloadCV, openNewTab, fetchRequest, goNextAuto };
+const clickBtnInGroup = (idx) => ({
+  type: C.CHANGE_OPTION,
+  idx
+});
+
+const getActiveIndexArray = (groupLength) => ({
+  type: C.CHANGE_OPTION,
+  groupLength
+});
+
+export { getNewBubble, nextStep, removeBubble, downloadCV, openNewTab, fetchRequest, goNextAuto, clickBtnInGroup, getActiveIndexArray };

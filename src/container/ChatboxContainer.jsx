@@ -7,19 +7,20 @@ import Chatbox from '../comps/Chatbox';
 //指定如何把当前 Redux store state 映射到展示组件的 props 中
 const mapStateToProps = state => ({
   // todos: getVisibleTodos(state.todos, state.visibilityFilter)
-  allBubbles: state.allBubbles
+  allBubbles: state.allBubbles,
+  currentStep: state.step
 }); //更新 state 中的 bubble
 
 //接收 dispatch() 方法, 并返回期望注入到展示组件的 props 中的回调方法dispatch()
 const mapDispatchToProps = dispatch => ({
   onBubbleClick: (nextID, bubInfo) => {
-    console.log("Button Click - ID: ", nextID, getNewBubble(nextID, bubInfo));
+    // console.log("Button Click - ID: ", nextID, getNewBubble(nextID, bubInfo));
     //toggleTodo(id) 返回 使用该 id的 "TOGGLE_TODO" 的 action
     dispatch(nextID ? nextStep(nextID) : nextStep(null, bubInfo.stepId));
     dispatch(getNewBubble(nextID, bubInfo));
   },
   onCheckNextStep: (isGoNextStep, nextStepId) => {
-    console.log(`##  ${isGoNextStep} checkNextStep -> ${nextStepId}`);
+    // console.log(`##  ${isGoNextStep} checkNextStep -> ${nextStepId}`);
     if (isGoNextStep) {
       dispatch(nextStep(nextStepId));
       dispatch(getNewBubble(nextStepId));

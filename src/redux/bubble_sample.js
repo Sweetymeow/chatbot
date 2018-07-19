@@ -63,7 +63,7 @@ const textBub4 = {
   bubType: "TEXT_BUBBLE",
   nextStepId: 6,
   isGoNextAuto: true,
-  delayTimer: 2000,
+  delayTimer: 500,
   options: [],
   bubContent: {
     text: "Nice to e-meet you! 😃 Here is my resume.",
@@ -91,7 +91,7 @@ const btnBub6 = {
   bubType: "BUTTONGROUP_BUBBLE",
   isGoNextAuto: true,
   nextStepId: 7,
-  delayTimer: 1000,
+  delayTimer: 2000,
   options: [{
     opId: 0,
     opText: "Download CV",

@@ -23,7 +23,7 @@ const Footerlink = () => {
         </Grid.Row>
       </Grid>
       <div className="copyright-des">
-        <p>Copyright © 2018 Longjuan. All right reserved.</p>
+        <p>Copyright © 2018 Longjuan. All right reserved. <a href="https://chatlolw.firebaseapp.com/index.html">TEST</a></p>
         <p>Special thank you to Xin Wen for the depevelopment of home page. </p>
       </div>
     </section>

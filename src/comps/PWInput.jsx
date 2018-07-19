@@ -57,15 +57,21 @@ class PWInput extends React.Component {
   }
 
   handleSubmit() {
-    console.log(`PW: ${this.state.password}`);
+    console.log(`SUBMIT BTN PW: ${this.state.password}`);
     // const itemsRef = firebase.database().ref('items');
     this.loginFirebaseAccount();
   }
 
-  handleEnterPress() {
-    console.log(`ENTER PRESS - PW: ${this.state.password}`);
-    // const itemsRef = firebase.database().ref('items');
-    this.loginFirebaseAccount();
+  handleEnterPress(event) {
+    // event.preventDefault();
+    // Number 13 is the "Enter" key on the keyboard
+    console.log("Current event.keyCode = ", event.keyCode);
+    if (event.keyCode === 13) {
+      console.log(`ENTER PRESS - PW: ${this.state.password}`);
+      event.preventDefault();
+      // Trigger the button element with a click
+      this.loginFirebaseAccount();
+    }
   }
 
   closeAlert() {
@@ -108,7 +114,8 @@ class PWInput extends React.Component {
   }
 
   createFirebaseAccount() {
-    firebase.auth().createUserWithEmailAndPassword(this.state.defaultEmail, this.state.password)
+    const { defaultEmail, password } = this.state;
+    firebase.auth().createUserWithEmailAndPassword(defaultEmail, password)
       .catch((error) => {
         // Handle Errors here.
         const errorCode = error.code;
@@ -119,11 +126,13 @@ class PWInput extends React.Component {
   }
 
   loginFirebaseAccount() {
+    const { onLogin, nextStepId } = this.props;
     firebase.auth()
       .signInWithEmailAndPassword(this.state.defaultEmail, this.state.password)
       .then( msg => {
-        console.log(msg);
+        console.log("Success Log in - ", msg);
         // window.open('https://www.google.com', '_blank');
+        onLogin(nextStepId);
       })
       .catch(error => { // Handle Errors here.
         this.setState({
@@ -146,8 +155,9 @@ class PWInput extends React.Component {
               <p className="input-label">{label}</p>
             </Form.Group>
             <Form.Input icon className="input-password" ref={this.handleRef} size="big" focus placeholder="Password...">
-               <input type="password" onChange={this.handlePWChange} value={password} />
-               <Icon circular color="teal" name="arrow right" link onClick={this.handleSubmit} onKeyPress={this.handleEnterPress} />
+               <input type="password" onChange={this.handlePWChange} value={password} onKeyPress={this.handleEnterPress} />
+               {/*<input type="password" onChange={this.handlePWChange} value={password} onKeyPress={this.handleEnterPress} />*/}
+               <Icon circular color="teal" name="arrow right" link onClick={this.handleSubmit} />
             </Form.Input>
             <Button className="input-email-link borderless-btn" onClick={this.showForm} content="Request the Password" />
           </Form>
@@ -173,7 +183,9 @@ class PWInput extends React.Component {
 
 PWInput.propTypes = {
   enableBack: PropTypes.bool,
-  label: PropTypes.string
+  label: PropTypes.string,
+  nextStepId: PropTypes.number,
+  onLogin: PropTypes.func
 };
 
 export default PWInput;

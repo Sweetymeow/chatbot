@@ -10,11 +10,16 @@ export const step = (state = 0, action) => {
     default:
       return state;
   }
-}; //(action.type === C.NEXT_STEP) ? parseInt(action.payload, 0) + 1 : state
+};
 
-//export const products = (state = null, action) =>
-//(action.type === C.ADD_ITEM) ? [...state, action.payload] : state;
-//return typeof state === "object" ? state.push(action.payload) : action.payload;
+export const boxHegith = (state = 0, action) => {
+  switch (action.type) {
+    case C.UPDATE_BOX_HEIGHT:
+      return action.step ? action.step : state + 1;
+    default:
+      return state;
+  }
+};
 
 export const error = (state = null, action) => {
   switch (action.type) {
@@ -38,12 +43,18 @@ export const fetching = (state = null, action) => {
   }
 };
 
-export const suggestions = (state = [], action) => {
+export const activeIndex = (state = [], action) => {
+  const newActiveIdx = [];
+  if (state.length < 1) {
+    for (let i = 0; i < action.groupLength; i++) {
+      newActiveIdx.push(i);
+    }
+  }
   switch (action.type) {
-    case C.CLEAR_SUGGESTIONS:
-      return [];
-    case C.CHANGE_SUGGESTIONS:
-      return action.payload;
+    case C.INIT_INDEXARRAY:
+      return newActiveIdx; //true
+    case C.CHANGE_OPTION:
+      return state.activeIndex.filter(index => index === action.idx); //true
     default:
       return state;
   }
@@ -55,8 +66,6 @@ export const allBubbles = (state = [], action) => {
     case C.INIT_BUBBLE:
       return [...state.allBubbles];
     case C.ADD_BUBBLE:
-      // return hasProduct ? state : [...state, action.payload];
-      // console.log(`NEW Bubble ${action.nextId} - `, action.bubble);
       return [...state, action.bubble];
     case C.BACK_TO_LAST_BUBBLE:
       return state.slice(0, state.length);
@@ -75,7 +84,6 @@ export default combineReducers({
   step,
   error,
   userInfo: combineReducers({
-    fetching,
-    suggestions
+    fetching
   })
 });

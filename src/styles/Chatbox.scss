@@ -91,6 +91,10 @@
     .btn-group{
       width: 100%;
       margin: $mini-pw 0;
+      text-align: center;
+      .row.column{
+        padding: 0;
+      }
       .ui.primary.button{
         background-color: $user-bub-color;
         border-radius: 1.4rem;
@@ -101,12 +105,12 @@
           background-color: darken( $user-bub-color, 10% );
         }
       }
-      .column.row{
-        .column{
-          // &:first-child{
-          //   opacity: 0;
-          // }
-        }
+      .ui.primary.button.roundBtn{
+        margin: 0 auto;
+        padding: $text-pw;
+        width: $download-btn;
+        height: $download-btn;
+        border-radius: $download-radius;
       }
       .button.ui{
         transition: all 1s ease-out;

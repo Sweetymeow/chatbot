@@ -60,7 +60,10 @@
       font-size: 0.8rem; }
     .chatbox-container .btn-container .btn-group {
       width: 100%;
-      margin: 0.6rem 0; }
+      margin: 0.6rem 0;
+      text-align: center; }
+      .chatbox-container .btn-container .btn-group .row.column {
+        padding: 0; }
       .chatbox-container .btn-container .btn-group .ui.primary.button {
         background-color: #1fdab0;
         border-radius: 1.4rem;
@@ -68,6 +71,12 @@
         box-shadow: 0 0 6px 1px rgba(74, 74, 74, 0.3); }
         .chatbox-container .btn-container .btn-group .ui.primary.button:hover {
           background-color: #19ad8c; }
+      .chatbox-container .btn-container .btn-group .ui.primary.button.roundBtn {
+        margin: 0 auto;
+        padding: 0.2rem;
+        width: 4rem;
+        height: 4rem;
+        border-radius: 2rem; }
       .chatbox-container .btn-container .btn-group .button.ui {
         transition: all 1s ease-out; }
     .chatbox-container .btn-container .bub-fullwidth .ui.button.text-bubble.right-bubble {

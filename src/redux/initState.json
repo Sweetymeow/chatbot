@@ -37,7 +37,7 @@
     "bubType": "BUTTONGROUP_BUBBLE",
     "requestClick": true,
     "nextStepId": 4,
-    "request": "123qwe",
+    "label": "Choose an option",
     "delayTimer": 1500,
     "options": [{
       "opId": 0,
