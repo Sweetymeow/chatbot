@@ -97,7 +97,7 @@ const btnBub6 = {
     opText: "Download CV",
     opVal: "Download",
     opImage: "../res/DOWNLOAD_CV.svg",
-    opLink: "https://drive.google.com/file/d/0BzsBT6AUXTeeczZsc05tZUtkRU0/view?usp=sharing",
+    opLink: "/static/media/bg_c1.b34cce03.svg",
     nextStepId: 7
   }],
   bubContent: {}

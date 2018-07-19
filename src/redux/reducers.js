@@ -60,6 +60,15 @@ export const activeIndex = (state = [], action) => {
   }
 };
 
+export const btnGroupVisibile = (state = false, action) => {
+  switch (action.type) {
+    case C.TOGGLE_VISIBLE:
+      return !action.visible; //true
+    default:
+      return state;
+  }
+};
+
 export const allBubbles = (state = [], action) => {
   //let hasProduct = state.some( prod => prod.step_id === action.payload.step_id );
   switch (action.type) {
@@ -83,6 +92,8 @@ export default combineReducers({
   allBubbles,
   step,
   error,
+  activeIndex,
+  btnGroupVisibile,
   userInfo: combineReducers({
     fetching
   })

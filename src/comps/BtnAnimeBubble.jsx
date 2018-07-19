@@ -95,7 +95,7 @@ class BtnAnimeBubble extends React.Component {
             </Grid>
             {/*<Icon name='download' /> Facebook
             {item.opText}*/}
-          {/*<div className="bub-fullwidth init-bubposition">
+            {/*<div className="bub-fullwidth init-bubposition">
             <Button className="text-bubble right-bubble">
               {options[0].opText}
             </Button>

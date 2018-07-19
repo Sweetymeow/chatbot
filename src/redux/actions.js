@@ -43,14 +43,22 @@ const goNextAuto = (nextId, isNeedClick) => ({
   nextId: isNeedClick ? nextId : null
 });
 
+/*-------- action for button group --------*/
+
+const getActiveIndexArray = (groupLength) => ({
+  type: C.INIT_INDEXARRAY,
+  groupLength
+});
+
 const clickBtnInGroup = (idx) => ({
   type: C.CHANGE_OPTION,
   idx
 });
 
-const getActiveIndexArray = (groupLength) => ({
+
+const toggleVisible = (visible) => ({
   type: C.CHANGE_OPTION,
-  groupLength
+  visible
 });
 
-export { getNewBubble, nextStep, removeBubble, downloadCV, openNewTab, fetchRequest, goNextAuto, clickBtnInGroup, getActiveIndexArray };
+export { getNewBubble, nextStep, removeBubble, downloadCV, openNewTab, fetchRequest, goNextAuto, clickBtnInGroup, getActiveIndexArray, toggleVisible };

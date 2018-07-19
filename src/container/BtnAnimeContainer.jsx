@@ -1,7 +1,7 @@
 // import React from 'react';
 import { connect } from 'react-redux';
 // import C from "../redux/constants";
-import { clickBtnInGroup } from "../redux/actions";
+import { clickBtnInGroup, getActiveIndexArray, toggleVisible } from "../redux/actions";
 import BtnAnimeBubble from '../comps/BtnAnimeBubble';
 
 //指定如何把当前 Redux store state 映射到展示组件的 props 中
@@ -13,6 +13,9 @@ const mapStateToProps = state => ({
 
 //接收 dispatch() 方法, 并返回期望注入到展示组件的 props 中的回调方法dispatch()
 const mapDispatchToProps = dispatch => ({
+  initCompVisible: (groupLength) => {
+    dispatch(clickBtnInGroup(groupLength));
+  },
   btnToTextBub: (idx, isMoveLeft) => {
     // dispatch(nextID ? nextStep(nextID) : nextStep(null, bubInfo.stepId));
     // dispatch(getNewBubble(nextID, bubInfo));
