@@ -14,7 +14,6 @@ const mapStateToProps = state => ({
 //接收 dispatch() 方法, 并返回期望注入到展示组件的 props 中的回调方法dispatch()
 const mapDispatchToProps = dispatch => ({
   onBubbleClick: (nextID, bubInfo) => {
-    // console.log("Button Click - ID: ", nextID, getNewBubble(nextID, bubInfo));
     //toggleTodo(id) 返回 使用该 id的 "TOGGLE_TODO" 的 action
     dispatch(nextID ? nextStep(nextID) : nextStep(null, bubInfo.stepId));
     dispatch(getNewBubble(nextID, bubInfo));

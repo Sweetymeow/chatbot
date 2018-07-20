@@ -4,7 +4,7 @@ import { C } from './constants';
 export const step = (state = 0, action) => {
   switch (action.type) {
     case C.INIT_STEP:
-      return 0; //return [...state, action.payload]; //return new array with
+      return 3; //return [...state, action.payload]; //return new array with
     case C.NEXT_STEP:
       return action.step ? action.step : state + 1;
     default:
@@ -44,30 +44,21 @@ export const fetching = (state = null, action) => {
 };
 
 export const activeIndex = (state = [], action) => {
-  const newActiveIdx = [];
-  if (state.length < 1) {
-    for (let i = 0; i < action.groupLength; i++) {
-      newActiveIdx.push(i);
-    }
-  }
   switch (action.type) {
     case C.INIT_INDEXARRAY:
-      return newActiveIdx; //true
+      return []; //true
     case C.CHANGE_OPTION:
-      return state.activeIndex.filter(index => index === action.idx); //true
+      return state.filter(index => index === action.idx); //true
     default:
       return state;
   }
 };
 
-export const btnGroupVisibile = (state = false, action) => {
-  switch (action.type) {
-    case C.TOGGLE_VISIBLE:
-      return !action.visible; //true
-    default:
-      return state;
-  }
-};
+export const showBtnGroup = (state = false, action) => (action.type === C.TOGGLE_VISIBLE ? action.isVisible : state);
+
+export const showLabel = (state = false, action) => (action.type === C.TOGGLE_LABEL_VISIBLE ? action.isVisible : state);
+
+export const animeStyle = (state = {}, action) => (action.type === C.BTN_MOVE ? action.style : state);
 
 export const allBubbles = (state = [], action) => {
   //let hasProduct = state.some( prod => prod.step_id === action.payload.step_id );
@@ -93,7 +84,8 @@ export default combineReducers({
   step,
   error,
   activeIndex,
-  btnGroupVisibile,
+  showBtnGroup,
+  showLabel,
   userInfo: combineReducers({
     fetching
   })

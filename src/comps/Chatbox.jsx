@@ -10,7 +10,7 @@ import { cardsBub10 } from '../redux/bubble_sample';
 import ImgBubble from './ImgBubble';
 import TextBubble from './TextBubble';
 import BtnAnimeBubble from './BtnAnimeBubble';
-// import BtnGroupBubble from './BtnGroupBubble';
+import BtnAnimeContainer from '../container/BtnAnimeContainer';
 import PWInput from './PWInput';
 import CardsBubble from './CardsBubble';
 //Image
@@ -22,7 +22,7 @@ class Chatbox extends React.Component {
     this.getTextArr = this.getTextArr.bind(this);
   }
 
-  // componentDidMount() {}
+  // componentDidMount() { }
 
   getTextArr(text) {
     return text.split("$$");
@@ -56,16 +56,26 @@ class Chatbox extends React.Component {
           if (bub.bubType === CBUB.BUTTONGROUP_BUBBLE) {
             // console.log("BUTTONGROUP_BUBBLE - ", bub.options);
             return (
-              <BtnAnimeBubble
+              <BtnAnimeContainer
                 key={bub.stepId}
                 delayTimer={bub.delayTimer || 600}
                 options={bub.options}
+                currentBub={bub}
                 onBtnClick={onBubbleClick}
-                isGoNextStep={bub.isGoNextAuto}
                 nextStepId={bub.nextStepId}
                 checkNextStep={onCheckNextStep}
                 label={bub.label}
               />);
+            // <BtnAnimeBubble
+            //   key={bub.stepId}
+            //   delayTimer={bub.delayTimer || 600}
+            //   options={bub.options}
+            //   onBtnClick={onBubbleClick}
+            //   isGoNextStep={bub.isGoNextAuto}
+            //   nextStepId={bub.nextStepId}
+            //   checkNextStep={onCheckNextStep}
+            //   label={bub.label}
+            // />);
           }
           if (bub.bubType === CBUB.INPUTPW_BUBBLE) {
             // console.log("INPUTPW_BUBBLE - ", bub);

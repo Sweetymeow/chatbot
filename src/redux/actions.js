@@ -3,6 +3,8 @@ import { imgBub0, textBub1, textBub2, btnBub3, textBub4, textBub5, btnBub6, text
 
 const bubList = [imgBub0, textBub1, textBub2, btnBub3, textBub4, textBub5, btnBub6, textBub7, inputBub8, textBub9, cardsBub10, textBub11, btnBub12];
 
+const moveRightVal = [{ transform: "translate(calc((75vw - 2.4rem) * .5))" }, { transform: "translate(calc((75vw - 2.4rem) * .15))" }, { transform: "translate(calc((75vw - 2.4rem) * -.4))" }];
+
 const removeBubble = bubId => ({
   type: C.REMOVE_BUBBLE,
   bubId
@@ -55,10 +57,19 @@ const clickBtnInGroup = (idx) => ({
   idx
 });
 
-
-const toggleVisible = (visible) => ({
-  type: C.CHANGE_OPTION,
-  visible
+const getAnimeStyle = (styleIdx) => ({
+  type: C.BTN_MOVE,
+  style: moveRightVal[styleIdx]
 });
 
-export { getNewBubble, nextStep, removeBubble, downloadCV, openNewTab, fetchRequest, goNextAuto, clickBtnInGroup, getActiveIndexArray, toggleVisible };
+const toggleVisible = (isVisible) => ({
+  type: C.TOGGLE_VISIBLE,
+  isVisible
+});
+
+const toggleLabelVisible = (isVisible) => ({
+  type: C.TOGGLE_LABEL_VISIBLE,
+  isVisible
+});
+
+export { getNewBubble, nextStep, removeBubble, downloadCV, openNewTab, fetchRequest, goNextAuto, clickBtnInGroup, getActiveIndexArray, toggleVisible, toggleLabelVisible, getAnimeStyle };
