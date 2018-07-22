@@ -5,6 +5,14 @@ const bubList = [imgBub0, textBub1, textBub2, btnBub3, textBub4, textBub5, btnBu
 
 const moveRightVal = [{ transform: "translate(calc((75vw - 2.4rem) * .5))" }, { transform: "translate(calc((75vw - 2.4rem) * .15))" }, { transform: "translate(calc((75vw - 2.4rem) * -.4))" }];
 
+const initActiveIndex = groupLength => {
+  const newActiveIdx = [];
+  for (let i = 0; i < groupLength; i++) {
+    newActiveIdx.push(i);
+  }
+  return newActiveIdx;
+};
+
 const removeBubble = bubId => ({
   type: C.REMOVE_BUBBLE,
   bubId
@@ -45,11 +53,16 @@ const goNextAuto = (nextId, isNeedClick) => ({
   nextId: isNeedClick ? nextId : null
 });
 
+const updateBoxHeight = height => ({
+  type: C.UPDATE_BOX_HEIGHT,
+  height
+});
+
 /*-------- action for button group --------*/
 
 const getActiveIndexArray = (groupLength) => ({
   type: C.INIT_INDEXARRAY,
-  groupLength
+  idxArray: initActiveIndex(groupLength)
 });
 
 const clickBtnInGroup = (idx) => ({
@@ -72,4 +85,4 @@ const toggleLabelVisible = (isVisible) => ({
   isVisible
 });
 
-export { getNewBubble, nextStep, removeBubble, downloadCV, openNewTab, fetchRequest, goNextAuto, clickBtnInGroup, getActiveIndexArray, toggleVisible, toggleLabelVisible, getAnimeStyle };
+export { getNewBubble, nextStep, removeBubble, downloadCV, openNewTab, fetchRequest, goNextAuto, clickBtnInGroup, getActiveIndexArray, toggleVisible, toggleLabelVisible, getAnimeStyle, updateBoxHeight };

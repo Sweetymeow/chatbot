@@ -10,7 +10,8 @@ const ImgBubble = (props) => {
        <Image className="left-bubble" src={imgSrc} size="tiny" avatar={imgName} />
     </div>
   );
-}
+};
+
 ImgBubble.propTypes = {
   imgSrc: PropTypes.string.isRequired,
   imgName: PropTypes.string

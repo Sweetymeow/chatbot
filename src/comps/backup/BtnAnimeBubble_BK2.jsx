@@ -13,27 +13,16 @@ class BtnAnimeBubble extends React.Component {
     // this.myRef = React.createRef();
     this.btnToTextBub = this.btnToTextBub.bind(this);
     this.state = {
-      showBtnGroup: false,
-      activeIndex: [],
-      showLabel: true
+      animeStyle: {}
     };
   }
 
   componentDidMount() {
-    const { delayTimer } = this.props;
-    const colLength = this.props.options.length;
-    const newActiveIdx = [];
-    for (let i = 0; i < colLength; i++) {
-      newActiveIdx.push(i);
-    }
-    this.setState({
-      activeIndex: newActiveIdx,
-      animeStyle: {}
-    });
+    console.log("Current Bubble Props: ", this.props );
+    const { delayTimer, toggleVisible, initCompVisible, options } = this.props;
+    initCompVisible(options.length);
     setTimeout(() => {
-      this.setState({
-        showBtnGroup: true
-      });
+      toggleVisible(true);
     }, delayTimer);
   }
 
@@ -42,14 +31,14 @@ class BtnAnimeBubble extends React.Component {
   // }
 
   btnToTextBub(idx, isMoveLeft) {
-    const { options } = this.props;
+    const { options, activeIndex } = this.props;
 
     this.setState(prevState => ({
       activeIndex: prevState.activeIndex.filter(index => index === idx)
     }));
 
     setTimeout( () => {
-      options.map((option, index) => {
+      options.map(() => {
         // console.log("Button Options -> ", index, option);
         this.setState({
           showLabel: false,
@@ -61,8 +50,8 @@ class BtnAnimeBubble extends React.Component {
   }
 
   render() {
-    const { activeIndex, showLabel, animeStyle, showBtnGroup } = this.state;
-    const { options, onBtnClick, label, checkNextStep } = this.props;
+    // const { animeStyle } = this.state;
+    const { options, onBtnClick, label, checkNextStep, activeIndex, showBtnGroup, btnToTextBub, showLabel, toggleVisible } = this.props;
     const btnColLength = options.length;
     return (
       <Transition visible={showBtnGroup} animation="fade down" duration={1000}>
@@ -76,30 +65,24 @@ class BtnAnimeBubble extends React.Component {
                 {options.map((item, idx) => (
                     <Grid.Column width={6}
                       largeScreen={5}
-                      className={activeIndex.indexOf(idx) !== -1 ? "" : "hiddenAnime"} id={`btn-column-${item.opId}`} key={item.opId} textAlign="center">
+                      className={activeIndex.indexOf(idx) >= 0 ? "" : "hiddenAnime"} id={`btn-column-${item.opId}`} key={item.opId} textAlign="center">
                       <Button primary
                         className={item.opLink ? "roundBtn" : null}
                         value={item.opVal}
                         key={item.opId + 2}
-                        style={animeStyle}
                         onClick={() => {
-                          const isMoveLeft = item.opLink;
+                          const isStayButton = item.opLink;
+                          toggleVisible(false);
                           onBtnClick(item.nextStepId);
                           checkNextStep(item.requestClick, item.nextStepId);
-                          this.btnToTextBub(idx, isMoveLeft);
+                          // this.btnToTextBub(idx, isMoveLeft);
+                          btnToTextBub(idx, isStayButton);
                         }}>
                         {item.opLink ? (<Image as="a" src={imgDownload} target="_blank" href={item.opLink} download />) : item.opText }
                       </Button>
                     </Grid.Column>))}
               </Grid.Row>
             </Grid>
-            {/*<Icon name='download' /> Facebook
-            {item.opText}*/}
-            {/*<div className="bub-fullwidth init-bubposition">
-            <Button className="text-bubble right-bubble">
-              {options[0].opText}
-            </Button>
-          </div>*/}
         </div>
       </Transition>
     );
@@ -107,6 +90,7 @@ class BtnAnimeBubble extends React.Component {
 }
 
 BtnAnimeBubble.propTypes = {
+  currentBubble: PropTypes.object,
   options: PropTypes.arrayOf(
     PropTypes.shape({
       opId: PropTypes.number,
@@ -114,7 +98,13 @@ BtnAnimeBubble.propTypes = {
       opVal: PropTypes.string
     })
   ),
+  activeIndex: PropTypes.array,
+  showLabel: PropTypes.bool,
+  showBtnGroup: PropTypes.bool,
   delayTimer: PropTypes.number,
+  btnToTextBub: PropTypes.func,
+  toggleVisible: PropTypes.func,
+  initCompVisible: PropTypes.func,
   onBtnClick: PropTypes.func,
   checkNextStep: PropTypes.func,
   label: PropTypes.string

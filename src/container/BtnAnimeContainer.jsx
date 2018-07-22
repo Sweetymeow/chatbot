@@ -1,30 +1,32 @@
 // import React from 'react';
 import { connect } from 'react-redux';
 // import C from "../redux/constants";
-import { clickBtnInGroup, toggleVisible, toggleLabelVisible, getAnimeStyle } from "../redux/actions";
+import { getActiveIndexArray, clickBtnInGroup, toggleVisible, toggleLabelVisible } from "../redux/actions";
 import BtnAnimeBubble from '../comps/BtnAnimeBubble';
 
-const getActiveIndexArray = groupLength => {
-  const newActiveIdx = [];
-  for (let i = 0; i < groupLength; i++) {
-    newActiveIdx.push(i);
-  }
-  return newActiveIdx;
-}
+// const initActiveIndex = groupLength => {
+//   const newActiveIdx = [];
+//   for (let i = 0; i < groupLength; i++) {
+//     newActiveIdx.push(i);
+//   }
+//   console.log(newActiveIdx);
+//   return newActiveIdx;
+// };
 
 //指定如何把当前 Redux store state 映射到展示组件的 props 中
 const mapStateToProps = (state, ownProps) => ({
   allBubbles: state.allBubbles,
   showBtnGroup: state.showBtnGroup,
   animeStyle: state.animeStyle,
-  activeIndex: getActiveIndexArray(ownProps.options.length),
+  activeIndex: state.activeIndex,
   showLabel: state.showLabel
 }); //更新 state 中的 bubble
 
 //接收 dispatch() 方法, 并返回期望注入到展示组件的 props 中的回调方法dispatch()
 const mapDispatchToProps = dispatch => ({
   initCompVisible: (groupLength) => {
-    dispatch(clickBtnInGroup(groupLength));
+    dispatch(getActiveIndexArray(groupLength));
+    // dispatch(clickBtnInGroup(groupLength));
   },
   toggleVisible: (isVisible) => {
     dispatch(toggleVisible(isVisible));
@@ -32,10 +34,9 @@ const mapDispatchToProps = dispatch => ({
   toggleLabelVisible: (isVisible) => {
     dispatch(toggleLabelVisible(isVisible));
   },
-  btnToTextBub: (idx, isMoveLeft) => {
-    console.log("btnClick", clickBtnInGroup(idx));
+  btnToTextBub: (idx) => {
     dispatch(clickBtnInGroup(idx));
-    dispatch(getAnimeStyle(idx));
+    // dispatch(getAnimeStyle(isStayButton ? 2 : idx));
     dispatch(toggleLabelVisible(false));
     // dispatch(getNewBubble(nextID, bubInfo));
   }

@@ -12,14 +12,7 @@ export const step = (state = 0, action) => {
   }
 };
 
-export const boxHegith = (state = 0, action) => {
-  switch (action.type) {
-    case C.UPDATE_BOX_HEIGHT:
-      return action.step ? action.step : state + 1;
-    default:
-      return state;
-  }
-};
+export const boxHeight = (state = 0, action) => (action.type === C.UPDATE_BOX_HEIGHT ? action.height : state);
 
 export const error = (state = null, action) => {
   switch (action.type) {
@@ -46,7 +39,7 @@ export const fetching = (state = null, action) => {
 export const activeIndex = (state = [], action) => {
   switch (action.type) {
     case C.INIT_INDEXARRAY:
-      return []; //true
+      return action.idxArray; //true
     case C.CHANGE_OPTION:
       return state.filter(index => index === action.idx); //true
     default:
@@ -79,13 +72,13 @@ export const allBubbles = (state = [], action) => {
 };
 
 export default combineReducers({
-  // newBubble,
   allBubbles,
   step,
   error,
-  activeIndex,
-  showBtnGroup,
-  showLabel,
+  // activeIndex,
+  // showBtnGroup,
+  // showLabel,
+  boxHeight,
   userInfo: combineReducers({
     fetching
   })

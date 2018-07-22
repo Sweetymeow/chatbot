@@ -1,22 +1,30 @@
 // import React from 'react';
 import { connect } from 'react-redux';
 // import C from "../redux/constants";
-import { getNewBubble, downloadCV, openNewTab, nextStep } from "../redux/actions";
+import { getNewBubble, downloadCV, openNewTab, nextStep, updateBoxHeight } from "../redux/actions";
 import Chatbox from '../comps/Chatbox';
 
 //指定如何把当前 Redux store state 映射到展示组件的 props 中
 const mapStateToProps = state => ({
   // todos: getVisibleTodos(state.todos, state.visibilityFilter)
   allBubbles: state.allBubbles,
-  currentStep: state.step
+  currentStep: state.step,
+  boxHeight: state.boxHeight
 }); //更新 state 中的 bubble
 
 //接收 dispatch() 方法, 并返回期望注入到展示组件的 props 中的回调方法dispatch()
 const mapDispatchToProps = dispatch => ({
-  onBubbleClick: (nextID, bubInfo) => {
+  updateBoxHeight: height => {
+    if (height) {
+      dispatch(updateBoxHeight(height));
+    }
+  },
+  onBubbleClick: (nextID, bubInfo, height) => {
     //toggleTodo(id) 返回 使用该 id的 "TOGGLE_TODO" 的 action
     dispatch(nextID ? nextStep(nextID) : nextStep(null, bubInfo.stepId));
     dispatch(getNewBubble(nextID, bubInfo));
+    console.log("Current Box Height: ", height);
+    // dispatch(updateBoxHeight(height));
   },
   onCheckNextStep: (isGoNextStep, nextStepId) => {
     // console.log(`##  ${isGoNextStep} checkNextStep -> ${nextStepId}`);
@@ -27,11 +35,9 @@ const mapDispatchToProps = dispatch => ({
     }
   },
   onCardClick: link => {
-    //toggleTodo(id) 返回 使用该 id的 "TOGGLE_TODO" 的 action
     dispatch(openNewTab(link));
   },
   onDownloadBtnClick: link => {
-    //toggleTodo(id) 返回 使用该 id的 "TOGGLE_TODO" 的 action
     dispatch(downloadCV(link));
   }
 });
