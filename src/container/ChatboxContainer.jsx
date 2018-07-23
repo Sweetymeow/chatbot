@@ -1,7 +1,7 @@
 // import React from 'react';
 import { connect } from 'react-redux';
 // import C from "../redux/constants";
-import { getNewBubble, downloadCV, openNewTab, nextStep, updateBoxHeight, updateContainerHeight } from "../redux/actions";
+import { getNewBubble, downloadCV, openNewTab, nextStep, updateBoxHeight, updateContainerHeight, updateScrollTop } from "../redux/actions";
 import Chatbox from '../comps/Chatbox';
 
 //指定如何把当前 Redux store state 映射到展示组件的 props 中
@@ -9,7 +9,8 @@ const mapStateToProps = state => ({
   allBubbles: state.allBubbles,
   currentStep: state.step,
   boxHeight: state.boxHeight,
-  containerHeight: state.containerHeight
+  containerHeight: state.containerHeight,
+  scrollTop: state.scrollTop
 }); //更新 state 中的 bubble
 
 //接收 dispatch() 方法, 并返回期望注入到展示组件的 props 中的回调方法dispatch()
@@ -22,6 +23,11 @@ const mapDispatchToProps = dispatch => ({
   getBoxHeight: height => {
     if (height) {
       dispatch(updateBoxHeight(height));
+    }
+  },
+  getScrollTop: height => {
+    if (height) {
+      dispatch(updateScrollTop(height));
     }
   },
   onBubbleClick: (nextID, bubInfo) => {

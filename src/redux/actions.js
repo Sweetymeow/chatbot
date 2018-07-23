@@ -63,6 +63,11 @@ const updateContainerHeight = height => ({
   height
 });
 
+const updateScrollTop = height => ({
+  type: C.UPDATE_SCROLLTOP,
+  height
+});
+
 /*-------- action for button group --------*/
 
 const getActiveIndexArray = (groupLength) => ({
@@ -90,4 +95,4 @@ const toggleLabelVisible = (isVisible) => ({
   isVisible
 });
 
-export { getNewBubble, nextStep, removeBubble, downloadCV, openNewTab, fetchRequest, goNextAuto, clickBtnInGroup, getActiveIndexArray, toggleVisible, toggleLabelVisible, getAnimeStyle, updateBoxHeight, updateContainerHeight };
+export { getNewBubble, nextStep, removeBubble, downloadCV, openNewTab, fetchRequest, goNextAuto, clickBtnInGroup, getActiveIndexArray, toggleVisible, toggleLabelVisible, getAnimeStyle, updateBoxHeight, updateContainerHeight, updateScrollTop };

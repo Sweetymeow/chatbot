@@ -4,7 +4,8 @@ import { Grid, Button, Transition, Image } from 'semantic-ui-react';
 import imgDownload from '../res/DownloadCV.svg';
 import '../styles/Chatbox.css';
 
-const fadeTimer = 500; // ms
+const labelFadeTimer = 400; // ms
+const fadeTimer = 600; // ms
 const moveRightVal = [{ transform: "translate(calc((75vw - 2.4rem) * .5))" }, { transform: "translate(calc((75vw - 2.4rem) * .15))" }, { transform: "translate(calc((75vw - 2.4rem) * -.4))" }];
 
 class BtnAnimeBubble extends React.Component {
@@ -37,41 +38,39 @@ class BtnAnimeBubble extends React.Component {
     }, delayTimer);
   }
 
-  // componentDidUpdate() {
-  //   console.log("activeIndex: ", this.state.activeIndex);
-  // }
-
   btnToTextBub(idx, isMoveLeft) {
-    const { options } = this.props;
+    // const { options } = this.props;
 
-    this.setState(prevState => ({
-      activeIndex: prevState.activeIndex.filter(index => index === idx)
-    }));
+    setTimeout(() => {
+      this.setState(prevState => ({
+        activeIndex: prevState.activeIndex.filter(index => index === idx),
+        showLabel: false
+      }));
 
-    setTimeout( () => {
-      options.map((option, index) => {
-        // console.log("Button Options -> ", index, option);
+      setTimeout( () => {
         this.setState({
-          showLabel: false,
           animeStyle: isMoveLeft ? moveRightVal[2] : moveRightVal[idx]
         });
-        return null;
-      })
-    }, fadeTimer);
+      }, fadeTimer);
+    }, labelFadeTimer);
   }
 
   render() {
     const { activeIndex, showLabel, animeStyle, showBtnGroup } = this.state;
-    const { options, onBtnClick, label, checkNextStep, containerHeight } = this.props;
+    const { id, options, onBtnClick, label, checkNextStep, containerHeight, parentRect, getScrollTop, scrollTop } = this.props;
     const btnColLength = options.length;
+    let eleRect = {};
     return (
       <Transition visible={showBtnGroup} animation="fade down" duration={1000}>
-        <div className="btn-container">
+        <div className="btn-container" id={id}
+          ref={ele => {
+            eleRect = ele || null;
+          }}>
           {/*<div className="bub-60wid-center">*/}
-           <Transition visible={showLabel} animation="fade" duration={500}>
+           <Transition visible={showLabel} animation="fade up" duration={labelFadeTimer}>
              <p className="btn-group-label">{label}</p>
            </Transition>
-            <Grid className="btn-group">
+           <Grid className="btn-group">
               <Grid.Row centered columns={btnColLength} stretched>
                 {options.map((item, idx) => (
                     <Grid.Column width={6}
@@ -83,6 +82,11 @@ class BtnAnimeBubble extends React.Component {
                         key={item.opId + 2}
                         style={animeStyle}
                         onClick={() => {
+                          const moveDist = eleRect.getBoundingClientRect().top - parentRect.top;
+                          console.log("@@ Parent Rect Top: ", parentRect);
+                          console.log("@@ ELE Rect Top: ", eleRect.getBoundingClientRect().top);
+                          console.log("@@ Move Dist: ", moveDist);
+                          getScrollTop(moveDist);
                           const isMoveLeft = item.opLink;
                           onBtnClick(item.nextStepId, null, containerHeight);
                           checkNextStep(item.requestClick, item.nextStepId);
@@ -92,7 +96,7 @@ class BtnAnimeBubble extends React.Component {
                       </Button>
                     </Grid.Column>))}
               </Grid.Row>
-            </Grid>
+           </Grid>
         </div>
       </Transition>
     );
@@ -107,11 +111,14 @@ BtnAnimeBubble.propTypes = {
       opVal: PropTypes.string
     })
   ),
+  scrollTop: PropTypes.number,
   containerHeight: PropTypes.number,
+  parentRect: PropTypes.object,
   delayTimer: PropTypes.number,
-  chatboxRef: PropTypes.object,
   onBtnClick: PropTypes.func,
+  getScrollTop: PropTypes.func,
   checkNextStep: PropTypes.func,
+  id: PropTypes.string,
   label: PropTypes.string
 };
 

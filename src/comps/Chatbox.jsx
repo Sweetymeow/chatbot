@@ -17,40 +17,55 @@ class Chatbox extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      holderHeight: 200
+      holderHeight: 200,
+      element: null,
+      container: null
     };
     this.getTextArr = this.getTextArr.bind(this);
   }
 
   // componentDidMount() {  }
-  // componentDidUpdate() {  }
+  componentDidUpdate() {
+    const { scrollTop } = this.props;
+    // console.log("Ele State - TOP: ", this.state.element.getBoundingClientRect().top);
+    setTimeout(() => {
+      this.state.container.scrollTop = scrollTop;
+    }, 3000);
+  }
 
   getTextArr(text) {
     return text.split("$$");
   }
 
   render() {
-    const { allBubbles, onBubbleClick, onCheckNextStep, getBoxHeight, getContainerHeight } = this.props;
-    const { holderHeight } = this.state;
+    const { allBubbles, onBubbleClick, onCheckNextStep, getBoxHeight, getContainerHeight, containerHeight, getScrollTop } = this.props;
+    const { holderHeight, element, container } = this.state;
     let eleHeight = 0;
+    // let parentRef = null;
     return (
       <section className="chatbox-container" ref={ele => {
         getContainerHeight(ele ? ele.offsetHeight : 0);
-      }}>
-        <div ref={ele => {
+        if (!container && ele) {
+          this.setState({
+            container: ele
+          });
+        }
+      }} id="chatbox-outer">
+        <div id="chatbox-inner" ref={ele => {
           eleHeight = ele ? ele.offsetHeight : 0;
-          // if (!this.state.chatbox && ele) {
-          //   this.setState({
-          //     chatbox: ele
-          //   });
-          // }
           getBoxHeight(eleHeight);
+          if (!element && ele) {
+            this.setState({
+              element: ele
+            });
+          }
         }}>
         {/*<CardsBubble bubInfo={bubInfo[0].options} />*/}
           {allBubbles.map((bub, idx) => {
             if (bub.bubType === CBUB.TEXT_BUBBLE) {
               return (
-                <TextBubble key={bub.stepId}
+                <TextBubble id={`bubble-${bub.stepId}`}
+                  key={bub.stepId}
                   delayTimer={bub.delayTimer || 600 * idx}
                   isGoNextStep={bub.isGoNextAuto}
                   nextStepId={bub.nextStepId}
@@ -58,7 +73,8 @@ class Chatbox extends React.Component {
                   text={this.getTextArr(bub.bubContent.text)} speaker="bot" />);
             }
             if (bub.bubType === CBUB.IMAGE_BUBBLE) {
-              return ( <ImgBubble key={bub.stepId}
+              return ( <ImgBubble id={`bubble-${bub.stepId}`}
+                key={bub.stepId}
                 delayTimer={bub.delayTimer || 600}
                 checkNextStep={onCheckNextStep}
                 imgSrc={Gopher} />
@@ -72,6 +88,7 @@ class Chatbox extends React.Component {
               //   nextStepId={bub.nextStepId}  checkNextStep={onCheckNextStep}
               //   label={bub.label} />);
               <BtnAnimeBubble
+                id={`bubble-${bub.stepId}`}
                 key={bub.stepId}
                 delayTimer={bub.delayTimer || 600}
                 options={bub.options}
@@ -79,14 +96,16 @@ class Chatbox extends React.Component {
                 isGoNextStep={bub.isGoNextAuto}
                 nextStepId={bub.nextStepId}
                 checkNextStep={onCheckNextStep}
+                getScrollTop={getScrollTop}
+                parentRect={element ? element.getBoundingClientRect() : null}
                 label={bub.label}
               />);
             }
             if (bub.bubType === CBUB.INPUTPW_BUBBLE) {
               // console.log("INPUTPW_BUBBLE - ", bub);
               return (
-                <PWInput
-                  key={bub.stepId}
+                <PWInput key={bub.stepId}
+                  id={`bubble-${bub.stepId}`}
                   onLogin={onBubbleClick}
                   nextStepId={bub.nextStepId}
                   label={bub.label} enableBack clearBox={this.handleClearBox} />);
@@ -94,6 +113,7 @@ class Chatbox extends React.Component {
             if (bub.bubType === CBUB.CARDS_BUBBLE) {
               return (
                 <CardsBubble key={bub.stepId}
+                  id={`bubble-${bub.stepId}`}
                   checkNextStep={onCheckNextStep}
                   bubInfo={bub.options} />);
             }
@@ -101,15 +121,15 @@ class Chatbox extends React.Component {
           })
         }
         </div>
-        <div className="heightHolder" style={{ height: `${holderHeight}px` }}>..</div>
+        <div className="heightHolder" style={{ height: `${Math.floor(containerHeight / 2)}px` }}>..</div>
       </section>);
   }
 }
 
 Chatbox.propTypes = {
+  getScrollTop: PropTypes.func,
   getBoxHeight: PropTypes.func,
   getContainerHeight: PropTypes.func,
-  onBoxExpand: PropTypes.func,
   allBubbles: PropTypes.arrayOf(
     PropTypes.shape({
       stepId: PropTypes.number.isRequired,
@@ -119,6 +139,8 @@ Chatbox.propTypes = {
       delayTimer: PropTypes.number
     }).isRequired
   ),
+  scrollTop: PropTypes.number,
+  containerHeight: PropTypes.number,
   onBubbleClick: PropTypes.func,
   onCheckNextStep: PropTypes.func
 };

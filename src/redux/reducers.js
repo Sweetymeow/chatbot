@@ -12,6 +12,8 @@ export const step = (state = 0, action) => {
   }
 };
 
+export const scrollTop = (state = 0, action) => (action.type === C.UPDATE_SCROLLTOP ? action.height : state);
+
 export const containerHeight = (state = 0, action) => (action.type === C.UPDATE_CONTAINER_HEIGHT ? action.height : state);
 
 export const boxHeight = (state = 0, action) => (action.type === C.UPDATE_BOX_HEIGHT ? action.height : state);
@@ -81,6 +83,7 @@ export default combineReducers({
   // showBtnGroup,
   // showLabel,
   boxHeight,
+  scrollTop,
   containerHeight,
   userInfo: combineReducers({
     fetching
