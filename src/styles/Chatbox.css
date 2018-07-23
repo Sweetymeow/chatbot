@@ -15,7 +15,8 @@
   /*------------   Button Animation   ------------*/
   /*------------   cards container   ------------*/
   /*------------   general bubble styles  ------------*/
-  /*------------   general bubble styles  ------------*/ }
+  /*------------   general bubble styles  ------------*/
+  /*------------   general styles  ------------*/ }
   .chatbox-container .bub-fullwidth:after {
     content: "";
     clear: both;
@@ -186,3 +187,5 @@ iteration-count | direction | fill-mode | play-state | name */
     float: right; }
   .chatbox-container .borderless-btn {
     border: none; }
+  .chatbox-container .heightHolder {
+    opacity: 0; }

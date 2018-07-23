@@ -12,6 +12,8 @@ export const step = (state = 0, action) => {
   }
 };
 
+export const containerHeight = (state = 0, action) => (action.type === C.UPDATE_CONTAINER_HEIGHT ? action.height : state);
+
 export const boxHeight = (state = 0, action) => (action.type === C.UPDATE_BOX_HEIGHT ? action.height : state);
 
 export const error = (state = null, action) => {
@@ -79,6 +81,7 @@ export default combineReducers({
   // showBtnGroup,
   // showLabel,
   boxHeight,
+  containerHeight,
   userInfo: combineReducers({
     fetching
   })

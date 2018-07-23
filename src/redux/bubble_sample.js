@@ -89,7 +89,7 @@ const btnBub6 = {
   stepId: 6,
   label: "",
   bubType: "BUTTONGROUP_BUBBLE",
-  isGoNextAuto: true,
+  isGoNextAuto: false,
   nextStepId: 7,
   delayTimer: 2000,
   options: [{

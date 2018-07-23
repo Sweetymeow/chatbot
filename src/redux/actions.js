@@ -3,7 +3,7 @@ import { imgBub0, textBub1, textBub2, btnBub3, textBub4, textBub5, btnBub6, text
 
 const bubList = [imgBub0, textBub1, textBub2, btnBub3, textBub4, textBub5, btnBub6, textBub7, inputBub8, textBub9, cardsBub10, textBub11, btnBub12];
 
-const moveRightVal = [{ transform: "translate(calc((75vw - 2.4rem) * .5))" }, { transform: "translate(calc((75vw - 2.4rem) * .15))" }, { transform: "translate(calc((75vw - 2.4rem) * -.4))" }];
+const moveRightVal = [{ transform: "translate(calc((75vw - 2.4rem) * .5))" }, { transform: "translate(calc((75vw - 2.4rem) * .15))" }, { transform: "translate(calc((75vw - 2.4rem) * .55))" }];
 
 const initActiveIndex = groupLength => {
   const newActiveIdx = [];
@@ -58,6 +58,11 @@ const updateBoxHeight = height => ({
   height
 });
 
+const updateContainerHeight = height => ({
+  type: C.UPDATE_CONTAINER_HEIGHT,
+  height
+});
+
 /*-------- action for button group --------*/
 
 const getActiveIndexArray = (groupLength) => ({
@@ -85,4 +90,4 @@ const toggleLabelVisible = (isVisible) => ({
   isVisible
 });
 
-export { getNewBubble, nextStep, removeBubble, downloadCV, openNewTab, fetchRequest, goNextAuto, clickBtnInGroup, getActiveIndexArray, toggleVisible, toggleLabelVisible, getAnimeStyle, updateBoxHeight };
+export { getNewBubble, nextStep, removeBubble, downloadCV, openNewTab, fetchRequest, goNextAuto, clickBtnInGroup, getActiveIndexArray, toggleVisible, toggleLabelVisible, getAnimeStyle, updateBoxHeight, updateContainerHeight };

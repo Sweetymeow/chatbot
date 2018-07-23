@@ -84,7 +84,6 @@ class BtnAnimeBubble extends React.Component {
                         style={animeStyle}
                         onClick={() => {
                           const isMoveLeft = item.opLink;
-                          console.log("BoxHeight: ", containerHeight);
                           onBtnClick(item.nextStepId, null, containerHeight);
                           checkNextStep(item.requestClick, item.nextStepId);
                           this.btnToTextBub(idx, isMoveLeft);
@@ -110,6 +109,7 @@ BtnAnimeBubble.propTypes = {
   ),
   containerHeight: PropTypes.number,
   delayTimer: PropTypes.number,
+  chatboxRef: PropTypes.object,
   onBtnClick: PropTypes.func,
   checkNextStep: PropTypes.func,
   label: PropTypes.string

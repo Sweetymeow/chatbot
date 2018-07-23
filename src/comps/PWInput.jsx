@@ -40,13 +40,16 @@ class PWInput extends React.Component {
     // get Reference to the database service
     // const defaultDatabase = firebase.database();
     this.setState({
-      fbDatabase: firebase.database()
+      fbDatabase: firebase.database(),
+      inputRef: null
     })
     // const user = firebase.auth().currentUser;
   }
 
   handleRef(c) {
-    this.state.inputRef = c;
+    this.setState({
+      inputRef: c
+    })
   }
 
   handlePWChange(event) {
