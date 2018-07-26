@@ -9,7 +9,6 @@ class PWInput extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      inputRef: null,
       defaultEmail: "default@gmail.com",
       password: "",
       openAlert: false,
@@ -34,6 +33,7 @@ class PWInput extends React.Component {
     this.handleAlertDismiss = this.handleAlertDismiss.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleEmailRequestSubmit = this.handleEmailRequestSubmit.bind(this);
+    // this.submitPWRequest = this.submitPWRequest.bind(this);
   }
 
   componentDidMount() {
@@ -53,7 +53,6 @@ class PWInput extends React.Component {
   }
 
   handlePWChange(event) {
-    // console.log(event.target.value);
     this.setState({
       password: event.target.value
     })
@@ -68,13 +67,17 @@ class PWInput extends React.Component {
   handleEnterPress(event) {
     // event.preventDefault();
     // Number 13 is the "Enter" key on the keyboard
-    console.log("Current event.keyCode = ", event.keyCode);
-    if (event.keyCode === 13) {
+    if (event.key === "Enter") {
       console.log(`ENTER PRESS - PW: ${this.state.password}`);
       event.preventDefault();
       // Trigger the button element with a click
       this.loginFirebaseAccount();
     }
+    // else {
+    //   this.setState({
+    //     password: event.target.value
+    //   })
+    // }
   }
 
   closeAlert() {
@@ -100,13 +103,20 @@ class PWInput extends React.Component {
   }
 
   handleEmailRequestSubmit() {
+    const { userMessage, userEmail } = this.state;
     if (this.state.userEmail.indexOf("@") < 0 || this.state.userEmail.indexOf(".com") < 0) {
       console.log("EMAIL FORMAT ERROR");
       this.setState({
         showEmailAlert: true
       })
     }
-    console.log("Email Request Submit:", this.state.userEmail, this.state.userMessage);
+
+    const userId = firebase.auth().currentUser.uid || "test12345";
+    firebase.database().ref(`users/${userId}`).set({
+      userId,
+      email: userEmail,
+      context: userMessage
+    });
   }
 
   handleAlertDismiss() {
@@ -157,8 +167,9 @@ class PWInput extends React.Component {
                 : null}
               <p className="input-label">{label}</p>
             </Form.Group>
-            <Form.Input icon className="input-password" ref={this.handleRef} size="big" focus placeholder="Password...">
-               <input type="password" onChange={this.handlePWChange} value={password} onKeyPress={this.handleEnterPress} />
+            <Form.Input icon className="input-password" ref={this.handleRef} size="big" focus placeholder="Password..." >
+               <input type="password" value={password}
+                  onChange={this.handlePWChange} onKeyPress={this.handleEnterPress} />
                {/*<input type="password" onChange={this.handlePWChange} value={password} onKeyPress={this.handleEnterPress} />*/}
                <Icon circular color="teal" name="arrow right" link onClick={this.handleSubmit} />
             </Form.Input>
@@ -169,13 +180,22 @@ class PWInput extends React.Component {
         {/*<!----------   Form to get password by send email  ----------> */}
         <Transition visible={isFormVisible} animation="slide up" duration={500}>
           <Form className="input-request-form" onSubmit={this.handleEmailRequestSubmit} >
-            <Form.Input className="form-input" id="form-email" label="Email Address" placeholder="Your email address" error={showEmailAlert} name="userEmail" value={userEmail} onChange={this.handleInputChange} />
-            <Message error header="Wrong Email Format" visible={showEmailAlert}
+            <Form.Input className="form-input" id="form-email" label="Email Address" placeholder="Your email address"
+              name="userEmail"
+              value={userEmail} error={showEmailAlert}
+              onChange={this.handleInputChange}
+              onKeyPress={this.handleEnterPress} />
+            <Message error header="Wrong Email Format"
+              visible={showEmailAlert}
               onDismiss={this.handleAlertDismiss} content="Provide valid e-mail address to get reply." />
-            <Form.Field className="form-input" id="form-message" control={TextArea}
-              name="userMessage" value={userMessage} onChange={this.handleInputChange}
+            <Form.Field className="form-input" id="form-message"
+              control={TextArea}
+              name="userMessage"
+              value={userMessage}
+              onChange={this.handleInputChange}
+              onKeyPress={this.handleEnterPress}
               label="Email Content" placeholder="You need to mention at least your full name, company, and your purpose here. Thank you! :)" />
-            <Button>Submit Password Request</Button>
+            <Button type="submit">Submit Password Request</Button>
           </Form>
         </Transition>
       </section>

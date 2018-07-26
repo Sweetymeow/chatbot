@@ -31,6 +31,8 @@ export const error = (state = null, action) => {
 
 export const fetching = (state = null, action) => {
   switch (action.type) {
+    case C.DEFAULT_USER_EMAIL:
+      return action.payload || "default@gmail.com"; //true
     case C.FETCH_USER_PW:
       return action.payload; //true
     case C.CANCEL_FETCHING:

@@ -34,7 +34,6 @@ const mapDispatchToProps = dispatch => ({
     //toggleTodo(id) 返回 使用该 id的 "TOGGLE_TODO" 的 action
     dispatch(nextID ? nextStep(nextID) : nextStep(null, bubInfo.stepId));
     dispatch(getNewBubble(nextID, bubInfo));
-    // dispatch(updateBoxHeight(height));
   },
   onCheckNextStep: (isGoNextStep, nextStepId) => {
     if (isGoNextStep) {
