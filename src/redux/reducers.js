@@ -28,11 +28,11 @@ export const error = (state = null, action) => {
       return state;
   }
 };
+export const getUserEmail = (state = "default@gmail.com", action) => (action.type === C.DEFAULT_USER_EMAIL ? action.defaultEmail : state);
+// RECEIVE_DATA
 
 export const fetching = (state = null, action) => {
   switch (action.type) {
-    case C.DEFAULT_USER_EMAIL:
-      return action.payload || "default@gmail.com"; //true
     case C.FETCH_USER_PW:
       return action.payload; //true
     case C.CANCEL_FETCHING:
@@ -81,13 +81,11 @@ export default combineReducers({
   allBubbles,
   step,
   error,
-  // activeIndex,
-  // showBtnGroup,
-  // showLabel,
   boxHeight,
   scrollTop,
   containerHeight,
   userInfo: combineReducers({
+    getUserEmail,
     fetching
   })
 });

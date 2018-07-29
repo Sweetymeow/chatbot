@@ -1,7 +1,10 @@
-import { C } from './constants';
+import fetch from 'cross-fetch';
+import { C, TESTC } from './constants';
 import { imgBub0, textBub1, textBub2, btnBub3, textBub4, textBub5, btnBub6, textBub7, inputBub8, textBub9, cardsBub10, textBub11, btnBub12 } from './bubble_sample';
 
 const bubList = [imgBub0, textBub1, textBub2, btnBub3, textBub4, textBub5, btnBub6, textBub7, inputBub8, textBub9, cardsBub10, textBub11, btnBub12];
+
+const getWeatherUrl = city => `https://samples.openweathermap.org/data/2.5/forecast?q=${city},USA&appid=50fb41fcba931b8c18c627d47ea8494d`;
 
 const moveRightVal = [{ transform: "translate(calc((75vw - 2.4rem) * .5))" }, { transform: "translate(calc((75vw - 2.4rem) * .15))" }, { transform: "translate(calc((75vw - 2.4rem) * .55))" }];
 
@@ -46,6 +49,12 @@ const fetchRequest = (url, status, res) => ({
   status: status || null,
   error: status === "error" ? res : null,
   response: status === "success" ? res : null
+});
+
+const getFiredata = (json) => ({
+  type: C.FETCH_USER_PW,
+  posts: json.data.children.map(child => child.data),
+  receivedAt: Date.now()
 });
 
 const goNextAuto = (nextId, isNeedClick) => ({
@@ -95,4 +104,42 @@ const toggleLabelVisible = (isVisible) => ({
   isVisible
 });
 
-export { getNewBubble, nextStep, removeBubble, downloadCV, openNewTab, fetchRequest, goNextAuto, clickBtnInGroup, getActiveIndexArray, toggleVisible, toggleLabelVisible, getAnimeStyle, updateBoxHeight, updateContainerHeight, updateScrollTop };
+/*-------- action for button group --------*/
+
+const requestBubbles = (url) => ({
+  type: TESTC.REQUEST_BUBS,
+  url
+});
+
+const receiveBubbles = (url, json) => ({
+  type: TESTC.RECEIVE_BUBS,
+  url,
+  posts: json.data.children.map(res => res.data),
+  receivedAt: Date.now()
+});
+
+// 来看一下我们写的第一个 thunk action 创建函数！
+// 使用方法： store.dispatch(fetchPosts('reactjs'))
+const fetchWeather = (city) => {
+  // Thunk middleware 知道如何处理函数。
+  // 这里把 dispatch 方法通过参数的形式传给函数，以此来让它自己也能 dispatch action
+  return (dispatch) => {
+    // 首次 dispatch：更新应用的 state 来通知API 请求发起了。
+    dispatch(requestBubbles(city));
+
+    // thunk middleware 调用的函数可以有返回值，它会被当作 dispatch 方法的返回值传递。
+    return fetch(getWeatherUrl(city))
+      .then(
+        response => response.json(),
+        error => {
+          console.log('An error occurred.', error);
+        }
+      )
+      // 不要使用 catch，因为会捕获
+      // 在 dispatch 和渲染中出现的任何错误，导致 'Unexpected batch number' 错误。
+      .then(json => dispatch(receiveBubbles(city, json)));
+  };
+  // 返回一个等待处理的 promise。这并不是 redux middleware 所必须的
+};
+
+export { getNewBubble, nextStep, removeBubble, downloadCV, openNewTab, fetchRequest, getFiredata, goNextAuto, clickBtnInGroup, getActiveIndexArray, toggleVisible, toggleLabelVisible, getAnimeStyle, updateBoxHeight, updateContainerHeight, updateScrollTop, requestBubbles, receiveBubbles, fetchWeather };

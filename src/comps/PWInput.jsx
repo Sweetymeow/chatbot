@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Icon, Confirm, Form, Button, TextArea, Message, Transition } from 'semantic-ui-react';
 import '../styles/Chatbox.css';
 import firebase from '../firebase';
-// import signinError from '../res/signinError';
 
 class PWInput extends React.Component {
   constructor(props) {
@@ -42,8 +41,14 @@ class PWInput extends React.Component {
     this.setState({
       fbDatabase: firebase.database(),
       inputRef: null
-    })
-    // const user = firebase.auth().currentUser;
+    });
+
+    const userId = firebase.auth().currentUser.uid;
+    firebase.database().ref(`/allBubbles`)
+      .once('value').then(snapshot => {
+        console.log("Firebase database:", snapshot.val());
+        console.log("Userid: ", userId);
+      });
   }
 
   handleRef(c) {
@@ -60,7 +65,6 @@ class PWInput extends React.Component {
 
   handleSubmit() {
     console.log(`SUBMIT BTN PW: ${this.state.password}`);
-    // const itemsRef = firebase.database().ref('items');
     this.loginFirebaseAccount();
   }
 
@@ -73,11 +77,6 @@ class PWInput extends React.Component {
       // Trigger the button element with a click
       this.loginFirebaseAccount();
     }
-    // else {
-    //   this.setState({
-    //     password: event.target.value
-    //   })
-    // }
   }
 
   closeAlert() {
@@ -104,7 +103,7 @@ class PWInput extends React.Component {
 
   handleEmailRequestSubmit() {
     const { userMessage, userEmail } = this.state;
-    if (this.state.userEmail.indexOf("@") < 0 || this.state.userEmail.indexOf(".com") < 0) {
+    if (userEmail.indexOf("@") < 0 || userEmail.indexOf(".com") < 0) {
       console.log("EMAIL FORMAT ERROR");
       this.setState({
         showEmailAlert: true

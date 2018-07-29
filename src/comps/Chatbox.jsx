@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import '../styles/Chatbox.css';
 import { CBUB } from '../redux/constants';
+// import firebase from '../firebase';
 
 //Bubble Comps
 import ImgBubble from './ImgBubble';
@@ -24,7 +25,8 @@ class Chatbox extends React.Component {
     this.getTextArr = this.getTextArr.bind(this);
   }
 
-  // componentDidMount() {  }
+  componentDidMount() { }
+
   componentDidUpdate() {
     const { scrollTop } = this.props;
     // console.log("Ele State - TOP: ", this.state.element.getBoundingClientRect().top);
