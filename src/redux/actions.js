@@ -114,32 +114,52 @@ const requestBubbles = (url) => ({
 const receiveBubbles = (url, json) => ({
   type: TESTC.RECEIVE_BUBS,
   url,
-  posts: json.data.children.map(res => res.data),
+  weather: json,
+  // posts: json.data.children.map(res => res.data),
   receivedAt: Date.now()
 });
 
 // 来看一下我们写的第一个 thunk action 创建函数！
 // 使用方法： store.dispatch(fetchPosts('reactjs'))
-const fetchWeather = (city) => {
-  // Thunk middleware 知道如何处理函数。
-  // 这里把 dispatch 方法通过参数的形式传给函数，以此来让它自己也能 dispatch action
-  return (dispatch) => {
-    // 首次 dispatch：更新应用的 state 来通知API 请求发起了。
-    dispatch(requestBubbles(city));
+const fetchWeather = (city) => dispatch => {
+  // 首次 dispatch：更新应用的 state 来通知API 请求发起了。
+  dispatch(requestBubbles(city));
 
-    // thunk middleware 调用的函数可以有返回值，它会被当作 dispatch 方法的返回值传递。
-    return fetch(getWeatherUrl(city))
-      .then(
-        response => response.json(),
-        error => {
-          console.log('An error occurred.', error);
-        }
-      )
-      // 不要使用 catch，因为会捕获
-      // 在 dispatch 和渲染中出现的任何错误，导致 'Unexpected batch number' 错误。
-      .then(json => dispatch(receiveBubbles(city, json)));
-  };
-  // 返回一个等待处理的 promise。这并不是 redux middleware 所必须的
+  // thunk middleware 调用的函数可以有返回值，它会被当作 dispatch 方法的返回值传递。
+  return fetch(getWeatherUrl(city))
+    .then(
+      response => response.json(),
+      error => {
+        console.log('An error occurred.', error);
+      }
+    )
+    // 不要使用 catch，因为会捕获
+    // 在 dispatch 和渲染中出现的任何错误，导致 'Unexpected batch number' 错误。
+    .then(json => dispatch(receiveBubbles(city, json)));
 };
+// 返回一个等待处理的 promise。这并不是 redux middleware 所必须的
 
-export { getNewBubble, nextStep, removeBubble, downloadCV, openNewTab, fetchRequest, getFiredata, goNextAuto, clickBtnInGroup, getActiveIndexArray, toggleVisible, toggleLabelVisible, getAnimeStyle, updateBoxHeight, updateContainerHeight, updateScrollTop, requestBubbles, receiveBubbles, fetchWeather };
+const shouldFetchPosts = (state, city) => {
+  const posts = state.postsBySubreddit[city];
+  if (!posts) {
+    return true
+  }
+  if (posts.isFetching) {
+    return false
+  }
+  return posts.didInvalidate;
+}
+
+// 注意这个函数也接收了 getState() 方法, 它让你选择接下来 dispatch 什么。
+// 当缓存的值是可用时，减少网络请求很有用。
+const fetchPostsIfNeeded = (city) => (dispatch, getState) => {
+  return dispatch(fetchWeather(city));
+  // if (shouldFetchPosts(getState(), city)) { // 在 thunk 里 dispatch 另一个 thunk！
+  //   return dispatch(fetchWeather(city))
+  // }
+  // // 告诉调用代码不需要再等待。
+  // return Promise.resolve();
+}
+
+
+export { getNewBubble, nextStep, removeBubble, downloadCV, openNewTab, fetchRequest, getFiredata, goNextAuto, clickBtnInGroup, getActiveIndexArray, toggleVisible, toggleLabelVisible, getAnimeStyle, updateBoxHeight, updateContainerHeight, updateScrollTop, requestBubbles, receiveBubbles, fetchWeather, fetchPostsIfNeeded };
