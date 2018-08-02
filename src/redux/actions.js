@@ -1,12 +1,15 @@
 import fetch from 'cross-fetch';
 import { C, TESTC } from './constants';
 import { imgBub0, textBub1, textBub2, btnBub3, textBub4, textBub5, btnBub6, textBub7, inputBub8, textBub9, cardsBub10, textBub11, btnBub12 } from './bubble_sample';
+import firebase from '../firebase';
 
 const bubList = [imgBub0, textBub1, textBub2, btnBub3, textBub4, textBub5, btnBub6, textBub7, inputBub8, textBub9, cardsBub10, textBub11, btnBub12];
 
 const getWeatherUrl = city => `https://samples.openweathermap.org/data/2.5/forecast?q=${city},USA&appid=50fb41fcba931b8c18c627d47ea8494d`;
 
 const moveRightVal = [{ transform: "translate(calc((75vw - 2.4rem) * .5))" }, { transform: "translate(calc((75vw - 2.4rem) * .15))" }, { transform: "translate(calc((75vw - 2.4rem) * .55))" }];
+
+// console.log(firebase.auth().currentUser.uid);
 
 const initActiveIndex = groupLength => {
   const newActiveIdx = [];
@@ -106,6 +109,11 @@ const toggleLabelVisible = (isVisible) => ({
 
 /*-------- action for button group --------*/
 
+const getCurrentUser = () => ({
+  type: TESTC.GET_CUR_USER,
+  user: firebase.auth().currentUser.uid
+});
+
 const requestBubbles = (url) => ({
   type: TESTC.REQUEST_BUBS,
   url
@@ -132,8 +140,7 @@ const fetchWeather = (city) => dispatch => {
       error => {
         console.log('An error occurred.', error);
       }
-    )
-    // 不要使用 catch，因为会捕获
+    )// 不要使用 catch，因为会捕获
     // 在 dispatch 和渲染中出现的任何错误，导致 'Unexpected batch number' 错误。
     .then(json => dispatch(receiveBubbles(city, json)));
 };
@@ -162,4 +169,4 @@ const fetchPostsIfNeeded = (city) => (dispatch, getState) => {
 }
 
 
-export { getNewBubble, nextStep, removeBubble, downloadCV, openNewTab, fetchRequest, getFiredata, goNextAuto, clickBtnInGroup, getActiveIndexArray, toggleVisible, toggleLabelVisible, getAnimeStyle, updateBoxHeight, updateContainerHeight, updateScrollTop, requestBubbles, receiveBubbles, fetchWeather, fetchPostsIfNeeded };
+export { getNewBubble, nextStep, removeBubble, downloadCV, openNewTab, fetchRequest, getFiredata, goNextAuto, clickBtnInGroup, getActiveIndexArray, toggleVisible, toggleLabelVisible, getAnimeStyle, updateBoxHeight, updateContainerHeight, updateScrollTop, requestBubbles, receiveBubbles, fetchWeather, fetchPostsIfNeeded, getCurrentUser };

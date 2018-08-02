@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { C } from './constants';
+import { C, TESTC } from './constants';
 
 export const step = (state = 0, action) => {
   switch (action.type) {
@@ -18,18 +18,21 @@ export const containerHeight = (state = 0, action) => (action.type === C.UPDATE_
 
 export const boxHeight = (state = 0, action) => (action.type === C.UPDATE_BOX_HEIGHT ? action.height : state);
 
-export const error = (state = null, action) => {
-  switch (action.type) {
-    case C.ADD_ERROR:
-      return [...state, action.payload]; //return new array with
-    case C.CLEAR_ERROR:
-      return state.filter(errorMsg => errorMsg !== action.payload);
-    default:
-      return state;
-  }
-};
+// export const error = (state = null, action) => {
+//   switch (action.type) {
+//     case C.ADD_ERROR:
+//       return [...state, action.payload]; //return new array with
+//     case C.CLEAR_ERROR:
+//       return state.filter(errorMsg => errorMsg !== action.payload);
+//     default:
+//       return state;
+//   }
+// };
+
 export const getUserEmail = (state = "default@gmail.com", action) => (action.type === C.DEFAULT_USER_EMAIL ? action.defaultEmail : state);
 // RECEIVE_DATA
+
+export const getCurrentUser = (state = "", action) => (action.type === TESTC.GET_CUR_USER ? action.user : state);
 
 export const fetching = (state = null, action) => {
   switch (action.type) {
@@ -41,6 +44,12 @@ export const fetching = (state = null, action) => {
       return state;
   }
 };
+
+export const weather = (state = {}, action) => (action.type === TESTC.RECEIVE_BUBS ? {
+  ...action.weather,
+  city: action.url,
+  receivedAt: action.receivedAt
+} : state);
 
 export const activeIndex = (state = [], action) => {
   switch (action.type) {
@@ -80,12 +89,14 @@ export const allBubbles = (state = [], action) => {
 export default combineReducers({
   allBubbles,
   step,
-  error,
+  // error,
   boxHeight,
   scrollTop,
   containerHeight,
   userInfo: combineReducers({
     getUserEmail,
-    fetching
+    fetching,
+    weather,
+    getCurrentUser
   })
 });

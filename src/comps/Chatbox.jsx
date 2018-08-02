@@ -25,12 +25,15 @@ class Chatbox extends React.Component {
     this.getTextArr = this.getTextArr.bind(this);
   }
 
-  componentDidMount() { }
+  componentWillMount() {
+    this.props.onInit();
+  }
 
   componentDidUpdate() {
     const { scrollTop } = this.props;
     // console.log("Ele State - TOP: ", this.state.element.getBoundingClientRect().top);
     setTimeout(() => {
+      console.log(`@@@UPDATE SCROLL TOP @@@ - ${scrollTop}`);
       this.state.container.scrollTop = scrollTop;
     }, 3000);
   }
@@ -143,6 +146,7 @@ Chatbox.propTypes = {
   ),
   scrollTop: PropTypes.number,
   containerHeight: PropTypes.number,
+  onInit: PropTypes.func,
   onBubbleClick: PropTypes.func,
   onCheckNextStep: PropTypes.func
 };
