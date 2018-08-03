@@ -202,7 +202,6 @@ class PWInput extends React.Component {
   }
 }
 
-
 PWInput.propTypes = {
   enableBack: PropTypes.bool,
   label: PropTypes.string,

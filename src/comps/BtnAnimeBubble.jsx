@@ -57,9 +57,10 @@ class BtnAnimeBubble extends React.Component {
 
   render() {
     const { activeIndex, showLabel, animeStyle, showBtnGroup } = this.state;
-    const { id, options, onBtnClick, label, checkNextStep, containerHeight, parentRect, getScrollTop, scrollTop } = this.props;
+    const { id, options, onBtnClick, label, checkNextStep, containerHeight, getScrollTop, scrollTop } = this.props;
     const btnColLength = options.length;
     let eleRect = {};
+    const innerBox = document.getElementById("chatbox-inner");
     return (
       <Transition visible={showBtnGroup} animation="fade down" duration={1000}>
         <div className="btn-container" id={id}
@@ -82,10 +83,11 @@ class BtnAnimeBubble extends React.Component {
                         key={item.opId + 2}
                         style={animeStyle}
                         onClick={() => {
-                          const moveDist = eleRect.getBoundingClientRect().top - parentRect.top;
-                          console.log("@@ Parent Rect Top: ", parentRect);
+                          const moveDist = eleRect.getBoundingClientRect().top - innerBox.getBoundingClientRect().top;
+
                           console.log("@@ ELE Rect Top: ", eleRect.getBoundingClientRect().top);
                           console.log("@@ Move Dist: ", moveDist);
+
                           getScrollTop(moveDist);
                           const isMoveLeft = item.opLink;
                           onBtnClick(item.nextStepId, null, containerHeight);

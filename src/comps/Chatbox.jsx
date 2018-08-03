@@ -14,6 +14,8 @@ import CardsBubble from './CardsBubble';
 //Image
 import Gopher from '../res/Gopher.png';
 
+const innerBoxId = "chatbox-inner";
+
 class Chatbox extends React.Component {
   constructor(props) {
     super(props);
@@ -27,6 +29,9 @@ class Chatbox extends React.Component {
 
   componentWillMount() {
     this.props.onInit();
+    this.setState({
+      element: document.getElementById(innerBoxId)
+    });
   }
 
   componentDidUpdate() {
@@ -36,6 +41,9 @@ class Chatbox extends React.Component {
       console.log(`@@@UPDATE SCROLL TOP @@@ - ${scrollTop}`);
       this.state.container.scrollTop = scrollTop;
     }, 3000);
+    const innerBox = document.getElementById(innerBoxId);
+    console.log("Chartbox update - ", innerBox.offsetHeight);
+    this.props.getBoxHeight(innerBox.offsetHeight);
   }
 
   getTextArr(text) {
@@ -56,15 +64,18 @@ class Chatbox extends React.Component {
           });
         }
       }} id="chatbox-outer">
-        <div id="chatbox-inner" ref={ele => {
+        <div id={innerBoxId}>
+        {/*<div id="chatbox-inner"
+          ref={ele => {
           eleHeight = ele ? ele.offsetHeight : 0;
           getBoxHeight(eleHeight);
           if (!element && ele) {
+            console.log(`chatbox-inner: ${eleHeight}`);
             this.setState({
               element: ele
             });
           }
-        }}>
+        }}>*/}
         {/*<CardsBubble bubInfo={bubInfo[0].options} />*/}
           {allBubbles.map((bub, idx) => {
             if (bub.bubType === CBUB.TEXT_BUBBLE) {
@@ -87,11 +98,7 @@ class Chatbox extends React.Component {
             }
             if (bub.bubType === CBUB.BUTTONGROUP_BUBBLE) {
               return (
-              // <BtnAnimeContainer key={bub.stepId}
-              //   delayTimer={bub.delayTimer || 600} options={bub.options}
-              //   currentBub={bub} onBtnClick={onBubbleClick}
-              //   nextStepId={bub.nextStepId}  checkNextStep={onCheckNextStep}
-              //   label={bub.label} />);
+              // parentRect={element ? element.getBoundingClientRect() : null}
               <BtnAnimeBubble
                 id={`bubble-${bub.stepId}`}
                 key={bub.stepId}
@@ -102,7 +109,6 @@ class Chatbox extends React.Component {
                 nextStepId={bub.nextStepId}
                 checkNextStep={onCheckNextStep}
                 getScrollTop={getScrollTop}
-                parentRect={element ? element.getBoundingClientRect() : null}
                 label={bub.label}
               />);
             }
