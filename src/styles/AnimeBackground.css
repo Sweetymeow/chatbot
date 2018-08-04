@@ -11,6 +11,10 @@
     height: 100%; }
     .bg-container .animeBg img {
       flex: 1 1 10%; }
+    .bg-container .animeBg #flydown {
+      animation: flydown 2s ease-in-out forwards; }
+    .bg-container .animeBg #flyup {
+      animation: flyup 2s ease-in-out forwards; }
   .bg-container .animeBg-narrow {
     position: fixed;
     display: flex;
@@ -23,6 +27,10 @@
     .bg-container .animeBg-narrow .space-hodler {
       display: flex;
       flex: 5 1 50%; }
+    .bg-container .animeBg-narrow #flyinleft {
+      animation: flyinleft 2s ease-in-out forwards; }
+    .bg-container .animeBg-narrow #flyinright {
+      animation: flyinright 2s ease-in-out forwards; }
 
 .footer-container {
   position: fixed;
@@ -42,3 +50,27 @@
     color: #9b9b9b; }
     .footer-container .copyright-des p {
       margin: 0 0 .6rem 0; }
+
+@keyframes flydown {
+  from {
+    transform: translateY(-100vh); }
+  to {
+    transform: translateY(0); } }
+
+@keyframes flyup {
+  from {
+    transform: translateY(100vh); }
+  to {
+    transform: translateY(0); } }
+
+@keyframes flyinleft {
+  from {
+    transform: translateX(-60vw); }
+  to {
+    transform: translateX(0); } }
+
+@keyframes flyinright {
+  from {
+    transform: translateX(60vw); }
+  to {
+    transform: translateX(0); } }
