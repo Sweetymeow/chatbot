@@ -88,13 +88,13 @@ html {
   /* Extra large devices (large laptops and desktops, 1200px and up) */ }
   @media only screen and (max-width: 600px) {
     html {
-      font-size: 87.5%;
+      font-size: 54.6%;
       /* 0.875 of 16px = 14px */ } }
   @media only screen and (min-width: 768px) {
     html {
-      font-size: 100%;
+      font-size: 62.5%;
       /*  16px */ } }
   @media only screen and (min-width: 1200px) {
     html {
-      font-size: 112.5%;
+      font-size: 70.5%;
       /* 1.125 of 16px = 18px */ } }
