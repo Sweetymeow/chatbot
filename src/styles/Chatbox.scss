@@ -272,3 +272,13 @@ iteration-count | direction | fill-mode | play-state | name */
     opacity: 0;
   }
 }
+
+#chatbox-outer{
+  opacity: 0;
+  // animation: fadein 2s ease-in-out 2s forwards;
+}
+
+@include keyframes(fadein) {
+  from {  opacity: 0; }
+  to {  opacity: 1; }
+}

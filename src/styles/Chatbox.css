@@ -1,3 +1,9 @@
+@keyframes fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
 .chatbox-container {
   margin: 8vh auto 22vh auto;
   padding: 1.4rem 2rem;
@@ -189,3 +195,30 @@ iteration-count | direction | fill-mode | play-state | name */
     border: none; }
   .chatbox-container .heightHolder {
     opacity: 0; }
+
+#chatbox-outer {
+  opacity: 0; }
+
+@-webkit-keyframes fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+@-moz-keyframes fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+@-o-keyframes fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+@keyframes fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }

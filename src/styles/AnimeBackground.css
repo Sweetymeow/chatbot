@@ -1,3 +1,9 @@
+@keyframes fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
 .bg-container {
   position: fixed;
   width: 100%;
@@ -37,7 +43,12 @@
   bottom: 8vh;
   left: 50%;
   width: 70vw;
-  transform: translateX(-50%); }
+  transform: translateX(-50%);
+  opacity: 0;
+  -webkit-animation: fadein 2s ease-in-out 2s forwards;
+  -moz-animation: fadein 2s ease-in-out 2s forwards;
+  -o-animation: fadein 2s ease-in-out 2s forwards;
+  animation: fadein 2s ease-in-out 2s forwards; }
   .footer-container .social-link {
     color: #3f3a3a;
     font-family: "SF Display", Helvetica, sans-serif;
@@ -74,3 +85,27 @@
     transform: translateX(60vw); }
   to {
     transform: translateX(0); } }
+
+@-webkit-keyframes fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+@-moz-keyframes fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+@-o-keyframes fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+@keyframes fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }

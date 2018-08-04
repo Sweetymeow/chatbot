@@ -55,6 +55,12 @@
   font-weight: 100;
   src: url("../fonts/SanFranciscoDisplay-Ultralight.otf"); }
 
+@keyframes fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
 * {
   box-sizing: border-box; }
 
