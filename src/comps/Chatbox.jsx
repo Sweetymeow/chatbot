@@ -22,7 +22,8 @@ class Chatbox extends React.Component {
     this.state = {
       holderHeight: 200,
       element: null,
-      container: null
+      container: null,
+      chatboxData: null
     };
     this.getTextArr = this.getTextArr.bind(this);
   }
@@ -32,6 +33,12 @@ class Chatbox extends React.Component {
     this.setState({
       element: document.getElementById(innerBoxId)
     });
+    setTimeout(() => {
+      console.log("### Load bubble data to chatbox comp ###");
+      this.setState({
+        chatboxData: this.props.allBubbles
+      })
+    }, 3000);
   }
 
   componentDidUpdate() {
@@ -41,6 +48,7 @@ class Chatbox extends React.Component {
       console.log(`@@@UPDATE SCROLL TOP @@@ - ${scrollTop}`);
       this.state.container.scrollTop = scrollTop;
     }, 3000);
+
     const innerBox = document.getElementById(innerBoxId);
     console.log("Chartbox update - ", innerBox.offsetHeight);
     this.props.getBoxHeight(innerBox.offsetHeight);
@@ -52,8 +60,8 @@ class Chatbox extends React.Component {
 
   render() {
     const { allBubbles, onBubbleClick, onCheckNextStep, getBoxHeight, getContainerHeight, containerHeight, getScrollTop } = this.props;
-    const { holderHeight, element, container } = this.state;
-    let eleHeight = 0;
+    const { holderHeight, element, container, chatboxData } = this.state;
+    // let eleHeight = 0;
     // let parentRef = null;
     return (
       <section className="chatbox-container" ref={ele => {
@@ -65,72 +73,62 @@ class Chatbox extends React.Component {
         }
       }} id="chatbox-outer">
         <div id={innerBoxId}>
-        {/*<div id="chatbox-inner"
-          ref={ele => {
-          eleHeight = ele ? ele.offsetHeight : 0;
-          getBoxHeight(eleHeight);
-          if (!element && ele) {
-            console.log(`chatbox-inner: ${eleHeight}`);
-            this.setState({
-              element: ele
-            });
-          }
-        }}>*/}
         {/*<CardsBubble bubInfo={bubInfo[0].options} />*/}
-          {allBubbles.map((bub, idx) => {
-            if (bub.bubType === CBUB.TEXT_BUBBLE) {
-              return (
-                <TextBubble id={`bubble-${bub.stepId}`}
-                  key={bub.stepId}
-                  delayTimer={bub.delayTimer || 600 * idx}
-                  isGoNextStep={bub.isGoNextAuto}
-                  nextStepId={bub.nextStepId}
-                  onCheckNextAuto={onCheckNextStep}
-                  text={this.getTextArr(bub.bubContent.text)} speaker="bot" />);
-            }
-            if (bub.bubType === CBUB.IMAGE_BUBBLE) {
-              return ( <ImgBubble id={`bubble-${bub.stepId}`}
+        {/*{allBubbles.map((bub, idx) => {*/}
+        {chatboxData ? chatboxData.map((bub, idx) => {
+          if (bub.bubType === CBUB.TEXT_BUBBLE) {
+            return (
+              <TextBubble id={`bubble-${bub.stepId}`}
                 key={bub.stepId}
-                delayTimer={bub.delayTimer || 600}
-                checkNextStep={onCheckNextStep}
-                imgSrc={Gopher} />
-              );
-            }
-            if (bub.bubType === CBUB.BUTTONGROUP_BUBBLE) {
-              return (
-              // parentRect={element ? element.getBoundingClientRect() : null}
-              <BtnAnimeBubble
-                id={`bubble-${bub.stepId}`}
-                key={bub.stepId}
-                delayTimer={bub.delayTimer || 600}
-                options={bub.options}
-                onBtnClick={onBubbleClick}
+                delayTimer={bub.delayTimer || 600 * idx}
                 isGoNextStep={bub.isGoNextAuto}
                 nextStepId={bub.nextStepId}
+                onCheckNextAuto={onCheckNextStep}
+                text={this.getTextArr(bub.bubContent.text)} speaker="bot" />);
+          }
+          if (bub.bubType === CBUB.IMAGE_BUBBLE) {
+            return ( <ImgBubble id={`bubble-${bub.stepId}`}
+              key={bub.stepId}
+              delayTimer={bub.delayTimer || 600}
+              checkNextStep={onCheckNextStep}
+              imgSrc={Gopher} />
+            );
+          }
+          if (bub.bubType === CBUB.BUTTONGROUP_BUBBLE) {
+            return (
+            // parentRect={element ? element.getBoundingClientRect() : null}
+            <BtnAnimeBubble
+              id={`bubble-${bub.stepId}`}
+              key={bub.stepId}
+              delayTimer={bub.delayTimer || 600}
+              options={bub.options}
+              onBtnClick={onBubbleClick}
+              isGoNextStep={bub.isGoNextAuto}
+              nextStepId={bub.nextStepId}
+              checkNextStep={onCheckNextStep}
+              getScrollTop={getScrollTop}
+              label={bub.label}
+            />);
+          }
+          if (bub.bubType === CBUB.INPUTPW_BUBBLE) {
+            // console.log("INPUTPW_BUBBLE - ", bub);
+            return (
+              <PWInput key={bub.stepId}
+                id={`bubble-${bub.stepId}`}
+                onLogin={onBubbleClick}
+                nextStepId={bub.nextStepId}
+                label={bub.label} enableBack clearBox={this.handleClearBox} />);
+          }
+          if (bub.bubType === CBUB.CARDS_BUBBLE) {
+            return (
+              <CardsBubble key={bub.stepId}
+                id={`bubble-${bub.stepId}`}
                 checkNextStep={onCheckNextStep}
-                getScrollTop={getScrollTop}
-                label={bub.label}
-              />);
-            }
-            if (bub.bubType === CBUB.INPUTPW_BUBBLE) {
-              // console.log("INPUTPW_BUBBLE - ", bub);
-              return (
-                <PWInput key={bub.stepId}
-                  id={`bubble-${bub.stepId}`}
-                  onLogin={onBubbleClick}
-                  nextStepId={bub.nextStepId}
-                  label={bub.label} enableBack clearBox={this.handleClearBox} />);
-            }
-            if (bub.bubType === CBUB.CARDS_BUBBLE) {
-              return (
-                <CardsBubble key={bub.stepId}
-                  id={`bubble-${bub.stepId}`}
-                  checkNextStep={onCheckNextStep}
-                  bubInfo={bub.options} />);
-            }
-            return null;
-          })
-        }
+                bubInfo={bub.options} />);
+          }
+          return null;
+        }) : null
+      }
         </div>
         <div className="heightHolder" style={{ height: `${Math.floor(containerHeight / 2)}px` }}>..</div>
       </section>);

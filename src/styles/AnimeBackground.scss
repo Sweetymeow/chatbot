@@ -18,10 +18,10 @@
     }
     // &:nth-child(2n+1){
     #flydown{
-      animation: flydown 2s ease-in-out forwards;
+      animation: flydown 1500ms ease-in-out forwards;
     }
     #flyup{
-      animation: flyup 2s ease-in-out forwards;
+      animation: flyup 1500ms ease-in-out forwards;
     }
 
   }
@@ -42,10 +42,10 @@
     }
 
     #flyinleft{
-      animation: flyinleft 2s ease-in-out forwards;
+      animation: flyinleft 1500ms ease-in-out forwards;
     }
     #flyinright{
-      animation: flyinright 2s ease-in-out forwards;
+      animation: flyinright 1500ms ease-in-out forwards;
     }
   }
 }
@@ -58,7 +58,7 @@
   transform: translateX(-50%);
   opacity: 0;
   // animation: fadein;
-  @include animation('fadein 2s ease-in-out 2s forwards');
+  @include animation('fadein 1000ms ease-in-out 2s forwards');
 
   .social-link{
     color: $footer-link-color;

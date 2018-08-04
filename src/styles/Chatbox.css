@@ -197,7 +197,11 @@ iteration-count | direction | fill-mode | play-state | name */
     opacity: 0; }
 
 #chatbox-outer {
-  opacity: 0; }
+  opacity: 0;
+  -webkit-animation: fadein 1000ms ease-in-out 1500ms forwards;
+  -moz-animation: fadein 1000ms ease-in-out 1500ms forwards;
+  -o-animation: fadein 1000ms ease-in-out 1500ms forwards;
+  animation: fadein 1000ms ease-in-out 1500ms forwards; }
 
 @-webkit-keyframes fadein {
   from {

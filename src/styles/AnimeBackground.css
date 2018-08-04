@@ -18,9 +18,9 @@
     .bg-container .animeBg img {
       flex: 1 1 10%; }
     .bg-container .animeBg #flydown {
-      animation: flydown 2s ease-in-out forwards; }
+      animation: flydown 1500ms ease-in-out forwards; }
     .bg-container .animeBg #flyup {
-      animation: flyup 2s ease-in-out forwards; }
+      animation: flyup 1500ms ease-in-out forwards; }
   .bg-container .animeBg-narrow {
     position: fixed;
     display: flex;
@@ -34,9 +34,9 @@
       display: flex;
       flex: 5 1 50%; }
     .bg-container .animeBg-narrow #flyinleft {
-      animation: flyinleft 2s ease-in-out forwards; }
+      animation: flyinleft 1500ms ease-in-out forwards; }
     .bg-container .animeBg-narrow #flyinright {
-      animation: flyinright 2s ease-in-out forwards; }
+      animation: flyinright 1500ms ease-in-out forwards; }
 
 .footer-container {
   position: fixed;
@@ -45,10 +45,10 @@
   width: 70vw;
   transform: translateX(-50%);
   opacity: 0;
-  -webkit-animation: fadein 2s ease-in-out 2s forwards;
-  -moz-animation: fadein 2s ease-in-out 2s forwards;
-  -o-animation: fadein 2s ease-in-out 2s forwards;
-  animation: fadein 2s ease-in-out 2s forwards; }
+  -webkit-animation: fadein 1000ms ease-in-out 2s forwards;
+  -moz-animation: fadein 1000ms ease-in-out 2s forwards;
+  -o-animation: fadein 1000ms ease-in-out 2s forwards;
+  animation: fadein 1000ms ease-in-out 2s forwards; }
   .footer-container .social-link {
     color: #3f3a3a;
     font-family: "SF Display", Helvetica, sans-serif;

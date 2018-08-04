@@ -51,9 +51,6 @@ const mapDispatchToProps = dispatch => ({
   onDownloadBtnClick: link => {
     dispatch(downloadCV(link));
   }
-  // onBoxExpand: (e, { val, ref }) => {
-  //   console.log("On Box Expand: ", e, val, ref);
-  // }
 });
 
 const ChatboxContainer = connect(

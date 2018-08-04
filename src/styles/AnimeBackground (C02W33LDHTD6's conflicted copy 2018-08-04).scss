@@ -1,0 +1,110 @@
+@import 'var';
+
+.bg-container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+
+  .animeBg {
+    position: relative;
+    display: flex;
+    height: 100%;
+
+    img {
+      flex: 1 1 10%;
+    }
+    // &:nth-child(2n+1){
+    #flydown{
+      animation: flydown 2s ease-in-out forwards;
+    }
+    #flyup{
+      animation: flyup 2s ease-in-out forwards;
+    }
+
+  }
+  .animeBg-narrow {
+    position: fixed;
+    display: flex;
+    height: 100%;
+    width: 90%;
+    margin: 0 5vw;
+    justify-content: space-around;
+
+    img {
+      flex: 1 1 10%;
+    }
+    .space-hodler {
+      display: flex;
+      flex: 5 1 50%;
+    }
+
+    #flyinleft{
+      animation: flyinleft 2s ease-in-out forwards;
+    }
+    #flyinright{
+      animation: flyinright 2s ease-in-out forwards;
+    }
+  }
+}
+
+.footer-container{
+  position: fixed;
+  bottom: 8vh;
+  left: 50%;
+  width: $chat-con-max-width;
+  transform: translateX(-50%);
+
+  .social-link{
+    color: $footer-link-color;
+    font-family: $font-stack;
+    text-decoration: underline;
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+
+  .copyright-des{
+    margin-top: 2vh;
+    text-align: center;
+    color: $footer-copyright-color;
+    p{
+      margin: 0 0 .6rem 0;
+    }
+  }
+}
+
+@keyframes flydown {
+    from {
+      transform: translateY(-100vh);
+    }
+    to {
+      transform: translateY(0);
+    }
+}
+@keyframes flyup {
+    from {
+      transform: translateY(100vh);
+    }
+    to {
+      transform:  translateY(0);
+    }
+}
+
+@keyframes flyinleft {
+    from {
+      transform: translateX(-60vw);
+    }
+    to {
+      transform: translateX(0);
+    }
+}
+@keyframes flyinright {
+    from {
+      transform: translateX(60vw);
+    }
+    to {
+      transform:  translateX(0);
+    }
+}
