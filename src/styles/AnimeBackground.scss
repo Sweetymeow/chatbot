@@ -1,4 +1,5 @@
 @import 'var';
+@import 'anime';
 
 .bg-container {
   position: fixed;
@@ -16,6 +17,7 @@
     img {
       flex: 1 1 10%;
     }
+
     // &:nth-child(2n+1){
     #flydown{
       animation: flydown 1500ms ease-in-out forwards;
@@ -48,6 +50,12 @@
       animation: flyinright 1500ms ease-in-out forwards;
     }
   }
+
+  .tablets-hidden{
+    @media #{$tablet} {
+      display: none;
+    }
+  }
 }
 
 .footer-container{
@@ -77,42 +85,4 @@
     }
   }
 
-}
-
-@keyframes flydown {
-    from {
-      transform: translateY(-100vh);
-    }
-    to {
-      transform: translateY(0);
-    }
-}
-@keyframes flyup {
-    from {
-      transform: translateY(100vh);
-    }
-    to {
-      transform:  translateY(0);
-    }
-}
-
-@keyframes flyinleft {
-    from {
-      transform: translateX(-60vw);
-    }
-    to {
-      transform: translateX(0);
-    }
-}
-@keyframes flyinright {
-    from {
-      transform: translateX(60vw);
-    }
-    to {
-      transform:  translateX(0);
-    }
-}
-@include keyframes(fadein) {
-  from {  opacity: 0; }
-  to {  opacity: 1; }
 }

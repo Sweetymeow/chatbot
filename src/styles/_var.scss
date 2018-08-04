@@ -84,3 +84,11 @@ $bub-btn-shadow: 0 0 6px 1px rgba(74, 74, 74, 0.3);
         @content;
     }
 }
+
+
+/*----------------- MEDIA QUERY -----------------*/
+
+$phone: "only screen and (max-width: 375px)";
+$tablet: "only screen and (min-width: 376px) and (max-width: 768px)";
+$sm-desk: "only screen and (min-width: 769px) and (max-width: 1200px)";
+$desktop: "only screen and (min-width: 1200px)";

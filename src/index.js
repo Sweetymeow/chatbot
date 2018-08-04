@@ -7,9 +7,8 @@ import thunkMiddleware from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import App from './App';
 
-import { fetchWeather } from "./redux/actions";
 import appReducer from "./redux/reducers";
-import initState from './redux/initState.json';
+// import initState from './redux/initState.json';
 import 'semantic-ui-css/semantic.min.css';
 import './styles/index.css';
 

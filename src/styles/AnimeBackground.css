@@ -4,64 +4,14 @@
   to {
     opacity: 1; } }
 
-.bg-container {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  z-index: -1; }
-  .bg-container .animeBg {
-    position: relative;
-    display: flex;
-    height: 100%; }
-    .bg-container .animeBg img {
-      flex: 1 1 10%; }
-    .bg-container .animeBg #flydown {
-      animation: flydown 1500ms ease-in-out forwards; }
-    .bg-container .animeBg #flyup {
-      animation: flyup 1500ms ease-in-out forwards; }
-  .bg-container .animeBg-narrow {
-    position: fixed;
-    display: flex;
-    height: 100%;
-    width: 90%;
-    margin: 0 5vw;
-    justify-content: space-around; }
-    .bg-container .animeBg-narrow img {
-      flex: 1 1 10%; }
-    .bg-container .animeBg-narrow .space-hodler {
-      display: flex;
-      flex: 5 1 50%; }
-    .bg-container .animeBg-narrow #flyinleft {
-      animation: flyinleft 1500ms ease-in-out forwards; }
-    .bg-container .animeBg-narrow #flyinright {
-      animation: flyinright 1500ms ease-in-out forwards; }
+/*----------------- MEDIA QUERY -----------------*/
+@keyframes fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
 
-.footer-container {
-  position: fixed;
-  bottom: 8vh;
-  left: 50%;
-  width: 70vw;
-  transform: translateX(-50%);
-  opacity: 0;
-  -webkit-animation: fadein 1000ms ease-in-out 2s forwards;
-  -moz-animation: fadein 1000ms ease-in-out 2s forwards;
-  -o-animation: fadein 1000ms ease-in-out 2s forwards;
-  animation: fadein 1000ms ease-in-out 2s forwards; }
-  .footer-container .social-link {
-    color: #3f3a3a;
-    font-family: "SF Display", Helvetica, sans-serif;
-    text-decoration: underline;
-    font-size: 1.2rem;
-    font-weight: 600; }
-  .footer-container .copyright-des {
-    margin-top: 2vh;
-    text-align: center;
-    color: #9b9b9b; }
-    .footer-container .copyright-des p {
-      margin: 0 0 .6rem 0; }
-
+/*----------------- MEDIA QUERY -----------------*/
 @keyframes flydown {
   from {
     transform: translateY(-100vh); }
@@ -109,3 +59,64 @@
     opacity: 0; }
   to {
     opacity: 1; } }
+
+.bg-container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1; }
+  .bg-container .animeBg {
+    position: relative;
+    display: flex;
+    height: 100%; }
+    .bg-container .animeBg img {
+      flex: 1 1 10%; }
+    .bg-container .animeBg #flydown {
+      animation: flydown 1500ms ease-in-out forwards; }
+    .bg-container .animeBg #flyup {
+      animation: flyup 1500ms ease-in-out forwards; }
+  .bg-container .animeBg-narrow {
+    position: fixed;
+    display: flex;
+    height: 100%;
+    width: 90%;
+    margin: 0 5vw;
+    justify-content: space-around; }
+    .bg-container .animeBg-narrow img {
+      flex: 1 1 10%; }
+    .bg-container .animeBg-narrow .space-hodler {
+      display: flex;
+      flex: 5 1 50%; }
+    .bg-container .animeBg-narrow #flyinleft {
+      animation: flyinleft 1500ms ease-in-out forwards; }
+    .bg-container .animeBg-narrow #flyinright {
+      animation: flyinright 1500ms ease-in-out forwards; }
+  @media only screen and (min-width: 376px) and (max-width: 768px) {
+    .bg-container .tablets-hidden {
+      display: none; } }
+
+.footer-container {
+  position: fixed;
+  bottom: 8vh;
+  left: 50%;
+  width: 70vw;
+  transform: translateX(-50%);
+  opacity: 0;
+  -webkit-animation: fadein 1000ms ease-in-out 2s forwards;
+  -moz-animation: fadein 1000ms ease-in-out 2s forwards;
+  -o-animation: fadein 1000ms ease-in-out 2s forwards;
+  animation: fadein 1000ms ease-in-out 2s forwards; }
+  .footer-container .social-link {
+    color: #3f3a3a;
+    font-family: "SF Display", Helvetica, sans-serif;
+    text-decoration: underline;
+    font-size: 1.2rem;
+    font-weight: 600; }
+  .footer-container .copyright-des {
+    margin-top: 2vh;
+    text-align: center;
+    color: #9b9b9b; }
+    .footer-container .copyright-des p {
+      margin: 0 0 .6rem 0; }
