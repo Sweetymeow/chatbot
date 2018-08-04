@@ -1,7 +1,7 @@
 // import React from 'react';
 import { connect } from 'react-redux';
 // import C from "../redux/constants";
-import { getNewBubble, downloadCV, openNewTab, nextStep, updateBoxHeight, updateContainerHeight, updateScrollTop, fetchWeather } from "../redux/actions";
+import { getNewBubble, downloadCV, openNewTab, nextStep, updateBoxHeight, updateContainerHeight, updateScrollTop, fetchWeather, getInitBubbles } from "../redux/actions";
 import Chatbox from '../comps/Chatbox';
 
 //指定如何把当前 Redux store state 映射到展示组件的 props 中
@@ -17,6 +17,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   onInit: () => {
     dispatch(fetchWeather('beijing'));
+    dispatch(getInitBubbles(3000));
   },
   getContainerHeight: height => {
     if (height) {

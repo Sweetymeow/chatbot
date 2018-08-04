@@ -45,7 +45,7 @@ export const fetching = (state = null, action) => {
   }
 };
 
-export const weather = (state = {}, action) => (action.type === TESTC.RECEIVE_BUBS ? {
+export const weather = (state = {}, action) => (action.type === TESTC.RECEIVE_WEATHER ? {
   ...action.weather,
   city: action.url,
   receivedAt: action.receivedAt
@@ -72,7 +72,7 @@ export const allBubbles = (state = [], action) => {
   //let hasProduct = state.some( prod => prod.step_id === action.payload.step_id );
   switch (action.type) {
     case C.INIT_BUBBLE:
-      return [...state.allBubbles];
+      return [...action.bubbles];
     case C.ADD_BUBBLE:
       return [...state, action.bubble];
     case C.BACK_TO_LAST_BUBBLE:

@@ -20,25 +20,24 @@ class Chatbox extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      holderHeight: 200,
-      element: null,
-      container: null,
-      chatboxData: null
+      // element: null,
+      container: null
+      // chatboxData: null
     };
     this.getTextArr = this.getTextArr.bind(this);
   }
 
   componentWillMount() {
     this.props.onInit();
-    this.setState({
-      element: document.getElementById(innerBoxId)
-    });
-    setTimeout(() => {
-      console.log("### Load bubble data to chatbox comp ###");
-      this.setState({
-        chatboxData: this.props.allBubbles
-      })
-    }, 3000);
+    // this.setState({
+    //   element: document.getElementById(innerBoxId)
+    // });
+    // setTimeout(() => {
+    //   console.log("### Load bubble data to chatbox comp ###");
+    //   this.setState({
+    //     chatboxData: this.props.allBubbles
+    //   })
+    // }, 3000);
   }
 
   componentDidUpdate() {
@@ -60,9 +59,7 @@ class Chatbox extends React.Component {
 
   render() {
     const { allBubbles, onBubbleClick, onCheckNextStep, getBoxHeight, getContainerHeight, containerHeight, getScrollTop } = this.props;
-    const { holderHeight, element, container, chatboxData } = this.state;
-    // let eleHeight = 0;
-    // let parentRef = null;
+    const { container } = this.state;
     return (
       <section className="chatbox-container" ref={ele => {
         getContainerHeight(ele ? ele.offsetHeight : 0);
@@ -74,8 +71,7 @@ class Chatbox extends React.Component {
       }} id="chatbox-outer">
         <div id={innerBoxId}>
         {/*<CardsBubble bubInfo={bubInfo[0].options} />*/}
-        {/*{allBubbles.map((bub, idx) => {*/}
-        {chatboxData ? chatboxData.map((bub, idx) => {
+        {allBubbles.map((bub, idx) => {
           if (bub.bubType === CBUB.TEXT_BUBBLE) {
             return (
               <TextBubble id={`bubble-${bub.stepId}`}
@@ -127,7 +123,7 @@ class Chatbox extends React.Component {
                 bubInfo={bub.options} />);
           }
           return null;
-        }) : null
+        })
       }
         </div>
         <div className="heightHolder" style={{ height: `${Math.floor(containerHeight / 2)}px` }}>..</div>

@@ -1,6 +1,7 @@
 import fetch from 'cross-fetch';
 import { C, TESTC } from './constants';
 import { imgBub0, textBub1, textBub2, btnBub3, textBub4, textBub5, btnBub6, textBub7, inputBub8, textBub9, cardsBub10, textBub11, btnBub12 } from './bubble_sample';
+import initState from './initState.json';
 import firebase from '../firebase';
 
 const bubList = [imgBub0, textBub1, textBub2, btnBub3, textBub4, textBub5, btnBub6, textBub7, inputBub8, textBub9, cardsBub10, textBub11, btnBub12];
@@ -27,6 +28,11 @@ const removeBubble = bubId => ({
 const nextStep = (step, bubNextId) => ({
   type: C.NEXT_STEP,
   step: step || bubNextId
+});
+
+const initBubbles = (bubbles) => ({
+  type: C.INIT_BUBBLE,
+  bubbles
 });
 
 const getNewBubble = (nextId, bubInfo) => ({
@@ -115,12 +121,12 @@ const getCurrentUser = () => ({
 });
 
 const requestBubbles = (url) => ({
-  type: TESTC.REQUEST_BUBS,
+  type: TESTC.REQUEST_WEATHER,
   url
 });
 
 const receiveBubbles = (url, json) => ({
-  type: TESTC.RECEIVE_BUBS,
+  type: TESTC.RECEIVE_WEATHER,
   url,
   weather: json,
   // posts: json.data.children.map(res => res.data),
@@ -146,6 +152,14 @@ const fetchWeather = (city) => dispatch => {
 };
 // 返回一个等待处理的 promise。这并不是 redux middleware 所必须的
 
+const getInitBubbles = (delay) => dispatch => {
+  // dispatch(initBubbles(delay));
+  console.log("initState: ", initState);
+  return setTimeout(() => {
+    dispatch(initBubbles(initState.allBubbles));
+  }, delay);
+};
+
 const shouldFetchPosts = (state, city) => {
   const posts = state.postsBySubreddit[city];
   if (!posts) {
@@ -168,5 +182,4 @@ const fetchPostsIfNeeded = (city) => (dispatch, getState) => {
   // return Promise.resolve();
 }
 
-
-export { getNewBubble, nextStep, removeBubble, downloadCV, openNewTab, fetchRequest, getFiredata, goNextAuto, clickBtnInGroup, getActiveIndexArray, toggleVisible, toggleLabelVisible, getAnimeStyle, updateBoxHeight, updateContainerHeight, updateScrollTop, requestBubbles, receiveBubbles, fetchWeather, fetchPostsIfNeeded, getCurrentUser };
+export { getInitBubbles, getNewBubble, nextStep, removeBubble, downloadCV, openNewTab, fetchRequest, getFiredata, goNextAuto, clickBtnInGroup, getActiveIndexArray, toggleVisible, toggleLabelVisible, getAnimeStyle, updateBoxHeight, updateContainerHeight, updateScrollTop, requestBubbles, receiveBubbles, fetchWeather, fetchPostsIfNeeded, getCurrentUser };
