@@ -8,7 +8,8 @@ const Cardsoptionble = (props) => {
   const { bubInfo } = props;
   const imgSrc = [proj1, proj2, proj3];
   return (
-    <Grid columns={3} centered className="cards-container">
+    <Grid columns={3} stackable centered className="cards-container">
+    {/*<Grid columns={3} doubling centered className="cards-container">*/}
       <Grid.Row>
         {bubInfo.map(option => {
           return (
