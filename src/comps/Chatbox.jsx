@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import '../styles/Chatbox.css';
 import { CBUB } from '../redux/constants';
-import easings from "../styles/easing";
-// import firebase from '../firebase';
+// import { scrollToEle } from "../redux/scroll";
 
 //Bubble Comps
 import ImgBubble from './ImgBubble';
@@ -26,28 +25,30 @@ class Chatbox extends React.Component {
       // chatboxData: null
     };
     this.getTextArr = this.getTextArr.bind(this);
-    this.scroll = this.scroll.bind(this);
+    this.scrollAnime = this.scrollAnime.bind(this);
   }
 
   componentWillMount() {
     this.props.onInit();
     const startTime = 'now' in window.performance ? performance.now() : new Date().getTime();
-    // this.scroll(startTime, 3000, "linear");
-    // this.setState({
-    //   element: document.getElementById(innerBoxId)
-    // });
+    // this.scrollAnime(startTime, 3000, "linear");
   }
 
   componentDidUpdate() {
     const { scrollTop } = this.props;
+    const { container } = this.state;
     // console.log("Ele State - TOP: ", this.state.element.getBoundingClientRect().top);
-    setTimeout(() => {
-      console.log(`@@@UPDATE SCROLL TOP @@@ - ${scrollTop}`);
-      this.state.container.scrollTop = scrollTop;
-    }, 3000);
+    // const animeTimer = setTimeout(() => {
+    //   console.log(`@@@UPDATE SCROLLTOP @@@ ${container.scrollTop} -> ${scrollTop}`);
+    //   container.scrollTop = scrollTop;
+    // }, 500);
+    if ( scrollTop - container.scrollTop ) {
+      console.log(`${container.scrollTop} -> Scroll to -> ${scrollTop}`);
+      this.scrollAnime(container, container.scrollTop, scrollTop, 10);
+    }
 
     const innerBox = document.getElementById(innerBoxId);
-    console.log("Chartbox innerBox.offsetHeight - ", innerBox.offsetHeight);
+    // console.log("Chartbox innerBox.offsetHeight - ", innerBox.offsetHeight);
     this.props.getBoxHeight(innerBox.offsetHeight);
   }
 
@@ -55,16 +56,26 @@ class Chatbox extends React.Component {
     return text.split("$$");
   }
 
-  scroll(startTime, duration, easing) {
-    const { scrollTop } = this.props;
-    const start = window.pageYOffset;
-    const now = 'now' in window.performance ? performance.now() : new Date().getTime();
-    const time = Math.min(1, ((now - startTime) / duration));
-    const timeFunction = easings[easing](time);
-    // window.scroll(0, Math.ceil((timeFunction * (destinationOffsetToScroll - start)) + start));
-    window.scroll(0, Math.ceil((timeFunction * (scrollTop - start)) + start));
-
-    requestAnimationFrame(this.scroll, startTime, duration, easing);
+  scrollAnime(container, currentST, targetST, step) {
+    // 计算需要移动的距离
+    const stepPX = step || 10;
+    const needScrollTop = targetST - currentST;
+    let _currentST = currentST;
+    setTimeout(() => {
+      // 一次调用滑动帧数，每次调用会不一样
+      const dist = Math.ceil(needScrollTop / stepPX);
+      _currentST += dist;
+      container.scrollTop = _currentST;
+      console.log("!!!SCROLL!!!");
+      // window.scrollTo(_currentST, currentST);
+      // 如果移动幅度小于十个像素，直接移动，否则递归调用，实现动画效果
+      if (needScrollTop > stepPX || needScrollTop < -stepPX) {
+        this.scrollAnime(container, _currentST, targetST, step);
+      } else {
+        // window.scrollTo(_currentST, targetST);
+        container.scrollTop = targetST;
+      }
+    }, 10);
   }
 
   render() {
@@ -130,6 +141,7 @@ class Chatbox extends React.Component {
               <CardsBubble key={bub.stepId}
                 id={`bubble-${bub.stepId}`}
                 checkNextStep={onCheckNextStep}
+                getScrollTop={getScrollTop}
                 bubInfo={bub.options} />);
           }
           return null;

@@ -85,7 +85,7 @@ class BtnAnimeBubble extends React.Component {
                         onClick={() => {
                           const moveDist = eleRect.getBoundingClientRect().top - innerBox.getBoundingClientRect().top;
 
-                          console.log("@@ ELE Rect Top: ", eleRect.getBoundingClientRect().top);
+                          // console.log("@@ ELE Rect Top: ", eleRect.getBoundingClientRect().top);
                           console.log("@@ Move Dist: ", moveDist);
 
                           getScrollTop(moveDist);
