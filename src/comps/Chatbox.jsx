@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import '../styles/Chatbox.css';
 import { CBUB } from '../redux/constants';
+import easings from "../styles/easing";
 // import firebase from '../firebase';
 
 //Bubble Comps
@@ -25,19 +26,16 @@ class Chatbox extends React.Component {
       // chatboxData: null
     };
     this.getTextArr = this.getTextArr.bind(this);
+    this.scroll = this.scroll.bind(this);
   }
 
   componentWillMount() {
     this.props.onInit();
+    const startTime = 'now' in window.performance ? performance.now() : new Date().getTime();
+    // this.scroll(startTime, 3000, "linear");
     // this.setState({
     //   element: document.getElementById(innerBoxId)
     // });
-    // setTimeout(() => {
-    //   console.log("### Load bubble data to chatbox comp ###");
-    //   this.setState({
-    //     chatboxData: this.props.allBubbles
-    //   })
-    // }, 3000);
   }
 
   componentDidUpdate() {
@@ -49,12 +47,24 @@ class Chatbox extends React.Component {
     }, 3000);
 
     const innerBox = document.getElementById(innerBoxId);
-    console.log("Chartbox update - ", innerBox.offsetHeight);
+    console.log("Chartbox innerBox.offsetHeight - ", innerBox.offsetHeight);
     this.props.getBoxHeight(innerBox.offsetHeight);
   }
 
   getTextArr(text) {
     return text.split("$$");
+  }
+
+  scroll(startTime, duration, easing) {
+    const { scrollTop } = this.props;
+    const start = window.pageYOffset;
+    const now = 'now' in window.performance ? performance.now() : new Date().getTime();
+    const time = Math.min(1, ((now - startTime) / duration));
+    const timeFunction = easings[easing](time);
+    // window.scroll(0, Math.ceil((timeFunction * (destinationOffsetToScroll - start)) + start));
+    window.scroll(0, Math.ceil((timeFunction * (scrollTop - start)) + start));
+
+    requestAnimationFrame(this.scroll, startTime, duration, easing);
   }
 
   render() {

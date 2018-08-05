@@ -43,7 +43,8 @@ class PWInput extends React.Component {
       inputRef: null
     });
 
-    const userId = firebase.auth().currentUser.uid;
+    const userId = firebase.auth().currentUser ? firebase.auth().currentUser.uid : "";
+    console.log(firebase.auth().currentUser);
     firebase.database().ref(`/allBubbles`)
       .once('value').then(snapshot => {
         console.log("Firebase database:", snapshot.val());
