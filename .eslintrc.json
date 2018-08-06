@@ -24,6 +24,7 @@
     "no-tabs": ["off"],
     "class-methods-use-this": ["off"],
     "jsx-quotes": ["warn"],
+    "no-param-reassign": ["warn"],
     "space-in-parens": ["off"],
     "no-plusplus": ["off"],
     "no-unused-vars": ["warn"],

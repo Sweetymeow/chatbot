@@ -61,18 +61,15 @@ class Chatbox extends React.Component {
     const stepPX = step || 10;
     const needScrollTop = targetST - currentST;
     let _currentST = currentST;
-    setTimeout(() => {
-      // 一次调用滑动帧数，每次调用会不一样
+
+    setTimeout(() => { // 一次调用滑动帧数，每次调用会不一样
       const dist = Math.ceil(needScrollTop / stepPX);
       _currentST += dist;
       container.scrollTop = _currentST;
-      console.log("!!!SCROLL!!!");
-      // window.scrollTo(_currentST, currentST);
       // 如果移动幅度小于十个像素，直接移动，否则递归调用，实现动画效果
       if (needScrollTop > stepPX || needScrollTop < -stepPX) {
         this.scrollAnime(container, _currentST, targetST, step);
       } else {
-        // window.scrollTo(_currentST, targetST);
         container.scrollTop = targetST;
       }
     }, 10);
@@ -148,7 +145,8 @@ class Chatbox extends React.Component {
         })
       }
         </div>
-        <div className="heightHolder" style={{ height: `${Math.floor(containerHeight / 2)}px` }}>..</div>
+        <div className="heightHolder">..</div>
+        {/*<div className="heightHolder" style={{ height: `${Math.floor(containerHeight / 2)}px` }}>..</div>*/}
       </section>);
   }
 }

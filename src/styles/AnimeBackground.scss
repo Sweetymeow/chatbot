@@ -41,6 +41,10 @@
     .space-hodler {
       display: flex;
       flex: 5 1 50%;
+
+      @media #{$phone} {
+        display: none;
+      }
     }
 
     #flyinleft{
@@ -51,6 +55,11 @@
     }
   }
 
+  .phone-hidden{
+    @media #{$phone} {
+      display: none;
+    }
+  }
   .tablets-hidden{
     @media #{$tablet} {
       display: none;
@@ -68,12 +77,32 @@
   // animation: fadein;
   @include animation('fadein 1000ms ease-in-out 2s forwards');
 
-  .social-link{
-    color: $footer-link-color;
-    font-family: $font-stack;
-    text-decoration: underline;
-    font-size: 1.2rem;
-    font-weight: 600;
+  .ui.grid.footer-links{
+    .social-link{
+      color: $footer-link-color;
+      font-family: $font-stack;
+      text-decoration: underline;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+    @media #{$phone} {
+      display: none;
+    }
+  }
+
+  .ui.grid.footer-icons{
+    display: block;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    transform: translateY(20vh);
+    border-top: 1px solid $border-gray;
+    background: $chat-con-bgcolor;
+    @media #{$phone} {
+      @include animation('barflyup 1200ms ease-in-out 2.4s forwards');
+    }
   }
 
   .copyright-des{
@@ -83,6 +112,16 @@
     p{
       margin: 0 0 .6rem 0;
     }
+    @media #{$phone} {
+      display: none;
+    }
+  }
+
+  @media #{$phone} {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    transform: translateX(0);
   }
 
 }

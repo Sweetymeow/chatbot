@@ -34,7 +34,7 @@ class TextBubble extends React.Component {
               {text.map((item, i) => (
                 <Transition key={i}
                   visible={isShowText}
-                  animation="swing down"
+                  animation="fade down"
                   duration={1000}>
                   <p>{item}</p>
                 </Transition>))}

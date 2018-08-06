@@ -24,6 +24,12 @@
   to {
     transform: translateY(0); } }
 
+@keyframes barflyup {
+  from {
+    transform: translateY(20vh); }
+  to {
+    transform: translateY(0); } }
+
 @keyframes flyinleft {
   from {
     transform: translateX(-60vw); }
@@ -60,6 +66,21 @@
   to {
     opacity: 1; } }
 
+/*------------   Button Animation   ------------*/
+@keyframes moveToRight {
+  from {
+    margin-left: 100%;
+    width: 300%; }
+  to {
+    margin-left: 0%;
+    width: 100%; } }
+
+@keyframes fadeColumn {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 0; } }
+
 .bg-container {
   position: fixed;
   width: 100%;
@@ -89,10 +110,16 @@
     .bg-container .animeBg-narrow .space-hodler {
       display: flex;
       flex: 5 1 50%; }
+      @media only screen and (max-width: 375px) {
+        .bg-container .animeBg-narrow .space-hodler {
+          display: none; } }
     .bg-container .animeBg-narrow #flyinleft {
       animation: flyinleft 1500ms ease-in-out forwards; }
     .bg-container .animeBg-narrow #flyinright {
       animation: flyinright 1500ms ease-in-out forwards; }
+  @media only screen and (max-width: 375px) {
+    .bg-container .phone-hidden {
+      display: none; } }
   @media only screen and (min-width: 376px) and (max-width: 768px) {
     .bg-container .tablets-hidden {
       display: none; } }
@@ -108,15 +135,43 @@
   -moz-animation: fadein 1000ms ease-in-out 2s forwards;
   -o-animation: fadein 1000ms ease-in-out 2s forwards;
   animation: fadein 1000ms ease-in-out 2s forwards; }
-  .footer-container .social-link {
+  .footer-container .ui.grid.footer-links .social-link {
     color: #3f3a3a;
     font-family: "SF Display", Helvetica, sans-serif;
     text-decoration: underline;
     font-size: 1.2rem;
     font-weight: 600; }
+  @media only screen and (max-width: 375px) {
+    .footer-container .ui.grid.footer-links {
+      display: none; } }
+  .footer-container .ui.grid.footer-icons {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    transform: translateY(20vh);
+    border-top: 1px solid #e7e7e7;
+    background: #FFF; }
+    @media only screen and (max-width: 375px) {
+      .footer-container .ui.grid.footer-icons {
+        -webkit-animation: barflyup 1200ms ease-in-out 2.4s forwards;
+        -moz-animation: barflyup 1200ms ease-in-out 2.4s forwards;
+        -o-animation: barflyup 1200ms ease-in-out 2.4s forwards;
+        animation: barflyup 1200ms ease-in-out 2.4s forwards; } }
   .footer-container .copyright-des {
     margin-top: 2vh;
     text-align: center;
     color: #9b9b9b; }
     .footer-container .copyright-des p {
       margin: 0 0 .6rem 0; }
+    @media only screen and (max-width: 375px) {
+      .footer-container .copyright-des {
+        display: none; } }
+  @media only screen and (max-width: 375px) {
+    .footer-container {
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      transform: translateX(0); } }

@@ -5,6 +5,82 @@
     opacity: 1; } }
 
 /*----------------- MEDIA QUERY -----------------*/
+@keyframes fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+/*----------------- MEDIA QUERY -----------------*/
+@keyframes flydown {
+  from {
+    transform: translateY(-100vh); }
+  to {
+    transform: translateY(0); } }
+
+@keyframes flyup {
+  from {
+    transform: translateY(100vh); }
+  to {
+    transform: translateY(0); } }
+
+@keyframes barflyup {
+  from {
+    transform: translateY(20vh); }
+  to {
+    transform: translateY(0); } }
+
+@keyframes flyinleft {
+  from {
+    transform: translateX(-60vw); }
+  to {
+    transform: translateX(0); } }
+
+@keyframes flyinright {
+  from {
+    transform: translateX(60vw); }
+  to {
+    transform: translateX(0); } }
+
+@-webkit-keyframes fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+@-moz-keyframes fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+@-o-keyframes fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+@keyframes fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+/*------------   Button Animation   ------------*/
+@keyframes moveToRight {
+  from {
+    margin-left: 100%;
+    width: 300%; }
+  to {
+    margin-left: 0%;
+    width: 100%; } }
+
+@keyframes fadeColumn {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 0; } }
+
 .chatbox-container {
   margin: 8vh auto 22vh auto;
   padding: 1.4rem 2rem;
@@ -16,14 +92,18 @@
   background-color: #FFF;
   box-shadow: -1px 2px 28px 1px rgba(155, 155, 155, 0.35);
   /*------------  TEXT bubble container   ------------*/
-  /*------------   Text Animation   ------------*/
   /*------------  image bubble container   ------------*/
   /*------------   button group container   ------------*/
-  /*------------   Button Animation   ------------*/
   /*------------   cards container   ------------*/
   /*------------   general bubble styles  ------------*/
   /*------------   general bubble styles  ------------*/
   /*------------   general styles  ------------*/ }
+  @media only screen and (max-width: 375px) {
+    .chatbox-container {
+      margin: 0;
+      max-width: 100vw;
+      width: 100vw;
+      height: 100vh; } }
   .chatbox-container .bub-fullwidth:after {
     content: "";
     clear: both;
@@ -53,67 +133,56 @@
       position: absolute;
       right: 0;
       bottom: -.8rem; }
-
-@keyframes textBubExpand {
-  from { }
-  to { } }
   .chatbox-container .imgbub-container {
     margin: 1.4rem; }
-  .chatbox-container .btn-container {
+  .chatbox-container #chatbox-inner .btn-container {
     text-align: center;
     margin: 1em auto; }
-    .chatbox-container .btn-container .btn-group-label {
+    .chatbox-container #chatbox-inner .btn-container .btn-group-label {
       text-align: center;
       color: #d3d3d3;
       font-size: 0.8rem; }
-    .chatbox-container .btn-container .btn-group {
+    .chatbox-container #chatbox-inner .btn-container .btn-group {
       width: 100%;
       margin: 0.6rem 0;
       text-align: center; }
-      .chatbox-container .btn-container .btn-group .row.column {
+      @media only screen and (max-width: 375px) {
+        .chatbox-container #chatbox-inner .btn-container .btn-group {
+          margin: 0; } }
+      .chatbox-container #chatbox-inner .btn-container .btn-group .row.column {
         padding: 0; }
-      .chatbox-container .btn-container .btn-group .ui.primary.button {
+      .chatbox-container #chatbox-inner .btn-container .btn-group .ui.primary.button {
         background-color: #1fdab0;
         border-radius: 1.4rem;
         font-size: 1rem;
         box-shadow: 0 0 6px 1px rgba(74, 74, 74, 0.3); }
-        .chatbox-container .btn-container .btn-group .ui.primary.button:hover {
+        .chatbox-container #chatbox-inner .btn-container .btn-group .ui.primary.button:hover {
           background-color: #19ad8c; }
-      .chatbox-container .btn-container .btn-group .ui.primary.button.roundBtn {
+      .chatbox-container #chatbox-inner .btn-container .btn-group .ui.primary.button.roundBtn {
         margin: 0 auto;
         padding: 0.2rem;
         width: 4rem;
         height: 4rem;
         border-radius: 2rem; }
-      .chatbox-container .btn-container .btn-group .button.ui {
+      .chatbox-container #chatbox-inner .btn-container .btn-group .button.ui {
         transition: all 1s ease-out; }
-    .chatbox-container .btn-container .bub-fullwidth .ui.button.text-bubble.right-bubble {
+    .chatbox-container #chatbox-inner .btn-container .bub-fullwidth .ui.button.text-bubble.right-bubble {
       margin-top: 0.6rem;
       background-color: #1fdab0;
       color: #FFF; }
-      .chatbox-container .btn-container .bub-fullwidth .ui.button.text-bubble.right-bubble:after {
+      .chatbox-container #chatbox-inner .btn-container .bub-fullwidth .ui.button.text-bubble.right-bubble:after {
         content: url("../res/bubble_tail_R.svg");
         position: absolute;
         right: 0;
         bottom: -.8rem; }
-    .chatbox-container .btn-container .hiddenAnime {
+    .chatbox-container #chatbox-inner .btn-container .column.wide.hiddenAnime {
       /* @keyframes duration | timing-function | delay |
-iteration-count | direction | fill-mode | play-state | name */
+        * iteration-count | direction | fill-mode |
+        * play-state | name */
       animation: 500ms ease-in both fadeColumn; }
-
-@keyframes moveToRight {
-  from {
-    margin-left: 100%;
-    width: 300%; }
-  to {
-    margin-left: 0%;
-    width: 100%; } }
-
-@keyframes fadeColumn {
-  0% {
-    opacity: 1; }
-  100% {
-    opacity: 0; } }
+      @media only screen and (max-width: 375px) {
+        .chatbox-container #chatbox-inner .btn-container .column.wide.hiddenAnime {
+          display: none !important; } }
   .chatbox-container .cards-container .ui.card {
     width: 100%;
     margin: 0; }
@@ -129,6 +198,9 @@ iteration-count | direction | fill-mode | play-state | name */
   .chatbox-container .input-container .input-pw-form {
     margin-top: 1.4rem;
     padding: .4rem 25%; }
+    @media only screen and (max-width: 375px) {
+      .chatbox-container .input-container .input-pw-form {
+        padding: 0.6rem; } }
     .chatbox-container .input-container .input-pw-form .input-header {
       margin-bottom: 0.6rem;
       text-align: center;
@@ -139,6 +211,9 @@ iteration-count | direction | fill-mode | play-state | name */
         font-size: 0.8rem;
         position: absolute;
         left: -15%; }
+        @media only screen and (max-width: 375px) {
+          .chatbox-container .input-container .input-pw-form .input-header .back-button {
+            left: 3%; } }
       .chatbox-container .input-container .input-pw-form .input-header .input-label {
         margin: auto;
         color: #d3d3d3;
@@ -195,7 +270,11 @@ iteration-count | direction | fill-mode | play-state | name */
   .chatbox-container .borderless-btn {
     border: none; }
   .chatbox-container .heightHolder {
-    opacity: 0; }
+    opacity: 0;
+    height: 35vh; }
+    @media only screen and (max-width: 375px) {
+      .chatbox-container .heightHolder {
+        height: 40vh; } }
 
 #chatbox-outer {
   opacity: 0;

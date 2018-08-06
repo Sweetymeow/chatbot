@@ -47,11 +47,12 @@ class BtnAnimeBubble extends React.Component {
         showLabel: false
       }));
 
-      setTimeout( () => {
-        this.setState({
-          animeStyle: isMoveLeft ? moveRightVal[2] : moveRightVal[idx]
-        });
-      }, fadeTimer);
+      // animation to move button
+      // setTimeout( () => {
+      //   this.setState({
+      //     animeStyle: isMoveLeft ? moveRightVal[2] : moveRightVal[idx]
+      //   });
+      // }, fadeTimer);
     }, labelFadeTimer);
   }
 
@@ -71,7 +72,7 @@ class BtnAnimeBubble extends React.Component {
            <Transition visible={showLabel} animation="fade up" duration={labelFadeTimer}>
              <p className="btn-group-label">{label}</p>
            </Transition>
-           <Grid className="btn-group">
+           <Grid stackable className="btn-group">
               <Grid.Row centered columns={btnColLength} stretched>
                 {options.map((item, idx) => (
                     <Grid.Column width={6}

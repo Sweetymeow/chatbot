@@ -8,21 +8,21 @@ const AnimeBackground = () => ( // props
       <div className="animeBg-narrow">
         <img src={bgs1} alt="background column 1" id="flyinleft" />
         <img src={bgs2} className="tablets-hidden" alt="background column 2" id="flyinleft" />
-        <img className="space-hodler" src={bgs0} alt="background column 2" />
+        <img className="space-hodler phone-hidden" src={bgs0} alt="background column 2" />
         <img src={bgs3} className="tablets-hidden" alt="background column 3" id="flyinright" />
         <img src={bgs4} alt="background column 4" id="flyinright" />
       </div>
       <div className="animeBg">
         <img src={bgc1} alt="background column 1" id="flyup" />
         <img src={bgc2} alt="background column 2" id="flydown"/>
-        <img src={bgc3} alt="background column 3" id="flyup" />
+        <img src={bgc3} alt="background column 3" className="phone-hidden" id="flyup" />
 
-        <img src={bgc4} className="tablets-hidden" alt="background column 4" id="flydown"/>
-        <img src={bgc5} className="tablets-hidden" alt="background column 5" id="flyup"/>
-        <img src={bgc6} className="tablets-hidden" alt="background column 6" id="flydown"/>
-        <img src={bgc7} className="tablets-hidden" alt="background column 7" id="flyup"/>
+        <img src={bgc4} className="tablets-hidden phone-hidden" alt="background column 4" id="flydown"/>
+        <img src={bgc5} className="tablets-hidden phone-hidden" alt="background column 5" id="flyup"/>
+        <img src={bgc6} className="tablets-hidden phone-hidden" alt="background column 6" id="flydown"/>
+        <img src={bgc7} className="tablets-hidden phone-hidden" alt="background column 7" id="flyup"/>
 
-        <img src={bgc8} alt="background column 8" id="flydown"/>
+        <img src={bgc8} alt="background column 8" className="phone-hidden" id="flydown"/>
         <img src={bgc9} alt="background column 9" id="flyup"/>
         <img src={bgc10} alt="background column 10" id="flydown"/>
       </div>

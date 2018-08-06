@@ -18,7 +18,7 @@ class CardsBubble extends React.Component {
     });
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate() { //prevProps, prevState
     const { eleRect } = this.state;
     const { getScrollTop } = this.props;
     const innerBox = document.getElementById("chatbox-inner");

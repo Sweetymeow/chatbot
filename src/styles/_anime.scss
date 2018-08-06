@@ -17,6 +17,15 @@
     }
 }
 
+@keyframes barflyup {
+    from {
+      transform: translateY(20vh);
+    }
+    to {
+      transform:  translateY(0);
+    }
+}
+
 @keyframes flyinleft {
     from {
       transform: translateX(-60vw);
@@ -36,4 +45,20 @@
 @include keyframes(fadein) {
   from {  opacity: 0; }
   to {  opacity: 1; }
+}
+
+/*------------   Button Animation   ------------*/
+@keyframes moveToRight {
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+@keyframes fadeColumn {
+  0%   { opacity: 1; }
+  100%  { opacity: 0; }
 }

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="38px" height="38px" viewBox="0 0 38 38" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>linkedin_icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="0 0 5.1203 0 5.1203 5.12 0 5.12"></polygon>
+        <polygon id="path-3" points="0.5391 0.4452 14.302 0.4452 14.302 15 0.5391 15"></polygon>
+    </defs>
+    <g id="Design---Mobile" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="iPhone_Home" transform="translate(-31.000000, -619.000000)">
+            <g id="linkedin_icon" transform="translate(31.000000, 619.000000)">
+                <path d="M38.0058738,19.0021452 C38.0058738,29.4960798 29.4976633,38.0042903 19.0029369,38.0042903 C8.50821049,38.0042903 0,29.4960798 0,19.0021452 C0,8.50662698 8.50821049,0 19.0029369,0 C29.4976633,0 38.0058738,8.50662698 38.0058738,19.0021452" id="Fill-1" fill="#D0EEE7"></path>
+                <g id="Group-4" transform="translate(9.000000, 8.000000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <g id="Clip-3"></g>
+                    <path d="M2.56264966,5.11930014 C1.14584335,5.11930014 0,3.97245692 0,2.55965007 C0,1.14684321 1.14584335,0 2.56264966,0 C3.97345679,0 5.1203,1.14684321 5.1203,2.55965007 C5.1203,3.97245692 3.97345679,5.11930014 2.56264966,5.11930014" id="Fill-2" fill="#FFFFFF" mask="url(#mask-2)"></path>
+                </g>
+                <polygon id="Fill-1" fill="#FFFFFF" points="9 29.203 14 29.203 14 15 9 15"></polygon>
+                <g id="Group-7" transform="translate(16.000000, 14.000000)">
+                    <mask id="mask-4" fill="white">
+                        <use xlink:href="#path-3"></use>
+                    </mask>
+                    <g id="Clip-6"></g>
+                    <path d="M14.3021,15.0002 L9.8891,15.0002 L9.8891,8.0922 C9.8891,6.4452 9.8601,4.3272 7.5951,4.3272 C5.2991,4.3272 4.9481,6.1232 4.9481,7.9752 L4.9481,15.0002 L0.5391,15.0002 L0.5391,0.7972 L4.7691,0.7972 L4.7691,2.7392 L4.8301,2.7392 C5.4201,1.6232 6.8591,0.4452 9.0061,0.4452 C13.4771,0.4452 14.3021,3.3862 14.3021,7.2112 L14.3021,15.0002 Z" id="Fill-5" fill="#FFFFFF" mask="url(#mask-4)"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,24 +1,60 @@
 import React from 'react';
-import { Grid } from 'semantic-ui-react';
+import { Grid, Transition } from 'semantic-ui-react';
+import { icon1, icon2, icon3, icon4 } from '../res/imgBundle';
 // import PropTypes from 'prop-types'
 import "../styles/AnimeBackground.css";
 
-const Footerlink = () => {
-  return (
+const Footerlink = () => (
     <section className="footer-container">
-      <Grid columns={4}>
+      <Grid columns={4} className="footer-links">
         <Grid.Row>
           <Grid.Column>
-            <a href="https://www.linkedin.com/" target="_blank" rel='noopener noreferrer' className="social-link">LinkedIn</a>
+            <a href="https://www.linkedin.com/" target="_blank"
+              rel="noopener noreferrer" className="social-link">LinkedIn
+            </a>
           </Grid.Column>
           <Grid.Column>
-            <a href="https://dribbble.com/" target="_blank" rel='noopener noreferrer' className="social-link">Dribbble</a>
+            <a href="https://dribbble.com/" target="_blank"
+              rel="noopener noreferrer" className="social-link">Dribbble
+            </a>
           </Grid.Column>
           <Grid.Column>
-            <a href="https://medium.com/" target="_blank" rel='noopener noreferrer' className="social-link">Medium</a>
+            <a href="https://medium.com/" target="_blank"
+              rel="noopener noreferrer" className="social-link">Medium
+            </a>
           </Grid.Column>
           <Grid.Column>
-            <a href="https://www.instagram.com/?hl=en" target="_blank" rel='noopener noreferrer' className="social-link">Instagram</a>
+            <a href="https://www.instagram.com/?hl=en" target="_blank"
+              rel="noopener noreferrer" className="social-link">Instagram
+            </a>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+      <Grid columns={4} className="footer-icons">
+        <Grid.Row>
+          <Grid.Column>
+            <a href="https://www.linkedin.com/" target="_blank"
+              rel="noopener noreferrer" className="social-link">
+              <img src={icon1} alt="LinkedIn Link"/>
+            </a>
+          </Grid.Column>
+          <Grid.Column>
+            <a href="https://dribbble.com/" target="_blank"
+              rel="noopener noreferrer" className="social-link">
+              <img src={icon2} alt="Dribbble Link"/>
+            </a>
+          </Grid.Column>
+          <Grid.Column>
+            <a href="https://medium.com/" target="_blank"
+              rel="noopener noreferrer" className="social-link">
+              <img src={icon3} alt="Medium Link"/>
+            </a>
+          </Grid.Column>
+          <Grid.Column>
+            <a href="https://www.instagram.com/?hl=en" target="_blank"
+              rel="noopener noreferrer" className="social-link">
+              <img src={icon4} alt="Instagram Link"/>
+            </a>
           </Grid.Column>
         </Grid.Row>
       </Grid>
@@ -27,7 +63,6 @@ const Footerlink = () => {
         <p>Special thank you to Xin Wen for the depevelopment of home page. </p>
       </div>
     </section>
-  );
-};
+);
 
 export default Footerlink;

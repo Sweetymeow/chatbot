@@ -19,6 +19,11 @@ import proj1 from "./Project_Image_1.png";
 import proj2 from "./Project_Image_2.png";
 import proj3 from "./Project_Image_3.png";
 
+import icon1 from "./linkedin_icon.svg";
+import icon2 from "./dribble_icon.svg";
+import icon3 from "./medium_icon.svg";
+import icon4 from "./ins_icon.svg";
+
 import downloadImg from './DownloadCV.svg';
 
-export { bgc1, bgc2, bgc3, bgc4, bgc5, bgc6, bgc7, bgc8, bgc9, bgc10, bgs0, bgs1, bgs2, bgs3, bgs4, downloadImg, proj1, proj2, proj3 };
+export { bgc1, bgc2, bgc3, bgc4, bgc5, bgc6, bgc7, bgc8, bgc9, bgc10, bgs0, bgs1, bgs2, bgs3, bgs4, downloadImg, proj1, proj2, proj3, icon1, icon2, icon3, icon4 };
