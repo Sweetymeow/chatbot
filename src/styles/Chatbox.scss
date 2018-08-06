@@ -252,6 +252,9 @@
         }
         textarea{
           height: 10rem;
+          @media #{$phone} {
+            height: 20rem;
+          }
         }
       }
       .ui.button{
