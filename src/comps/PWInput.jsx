@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Icon, Confirm, Form, Button, TextArea, Message, Transition } from 'semantic-ui-react';
 import { toggInputVisible, updateScrollTop } from '../redux/actions';
-import { FADE_TIMER } from '../redux/constants';
+import { FADE_TIMER, DELAY_TIMER } from '../redux/constants';
 import '../styles/Chatbox.css';
 import firebase from '../firebase';
 
@@ -19,6 +19,7 @@ class PWInput extends React.Component {
       userMessage: "",
       showEmailAlert: false,
       isPWSuccess: false, // true,
+      innerBox: document.getElementById("chatbox-inner"),
       // pwAnimeDuration: 500,
       isFormVisible: false,
       fbDatabase: null
@@ -35,6 +36,7 @@ class PWInput extends React.Component {
     this.handleAlertDismiss = this.handleAlertDismiss.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleEmailRequestSubmit = this.handleEmailRequestSubmit.bind(this);
+    this.scrollToForm = this.scrollToForm.bind(this);
     // this.submitPWRequest = this.submitPWRequest.bind(this);
   }
 
@@ -86,10 +88,10 @@ class PWInput extends React.Component {
 
     setTimeout(() => {
       const eleRect = document.getElementById("scrollToThis");
-      const innerBox = document.getElementById("chatbox-inner");
-      console.log(eleRect, innerBox);
-      this.props.getScrollTop(eleRect.getBoundingClientRect().top - innerBox.getBoundingClientRect().top);
-      console.log(`SUBMIT BTN PW: ${this.state.password}, height -> ${eleRect.getBoundingClientRect().top - innerBox.getBoundingClientRect().top}`);
+      // const innerBox = document.getElementById("chatbox-inner");
+      const { innerBox } = this.state;
+      const { getScrollTop } = this.props;
+      getScrollTop(eleRect.getBoundingClientRect().top - innerBox.getBoundingClientRect().top - 400);
     }, 1);
   }
 
@@ -116,15 +118,26 @@ class PWInput extends React.Component {
 
   showForm(e) {
     e.preventDefault();
-    // this.setState({
-    //   isPWSuccess: false
-    // });
-    this.props.getInputVisible(false);
+    const { getInputVisible } = this.props;
+
+    getInputVisible(false);
+
     setTimeout(() => {
       this.setState({
         isFormVisible: true
       });
-    }, FADE_TIMER);
+      this.scrollToForm();
+    }, DELAY_TIMER);
+  }
+
+  scrollToForm() {
+    setTimeout(() => {
+      const eleRect = document.getElementById("scrollToForm").getBoundingClientRect();
+      const { innerBox } = this.state;
+      const { getScrollTop } = this.props;
+      console.log(`inner Top ${innerBox.getBoundingClientRect().top}`, eleRect);
+      getScrollTop(eleRect.top - innerBox.getBoundingClientRect().top - eleRect.height);
+    }, 1);
   }
 
   handleEmailRequestSubmit() {
@@ -213,7 +226,7 @@ class PWInput extends React.Component {
         <Confirm content={alertContent} open={openAlert} onCancel={this.closeAlert} onConfirm={this.closeAlert} />
         {/*<!----------   Form to get password by send email  ----------> */}
         <Transition visible={isFormVisible} animation="slide up" duration={500}>
-          <Form className="input-request-form" onSubmit={this.handleEmailRequestSubmit} >
+          <Form className="input-request-form" onSubmit={this.handleEmailRequestSubmit} id="scrollToForm">
             <Form.Input className="form-input" id="form-email" label="Email Address" placeholder="Your email address"
               name="userEmail"
               value={userEmail} error={showEmailAlert}
