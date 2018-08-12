@@ -82,24 +82,32 @@ body {
       height: 100%;
       width: 100%; }
 
+.clearfix:after {
+  content: ".";
+  visibility: hidden;
+  display: block;
+  height: 0;
+  clear: both; }
+
 html {
   /* Extra small devices (phones, 600px and down) */
   /* small devices (landscape tablets, 375px - 768px and up) */
+  /* Extra small devices (phones, 600px and down) */
   /* Medium devices (landscape tablets, 769px and up) */
   /* Extra large devices (large laptops and desktops, 1200px and up) */
   /* Extra large devices (large laptops and desktops, 1200px and up) */ }
-  @media only screen and (max-width: 375px) {
+  @media only screen and (orientation: portrait) and (max-width: 414px) {
+    html {
+      font-size: 12px; } }
+  @media only screen and (min-width: 415px) and (max-width: 768px) {
     html {
       font-size: 13px; } }
-  @media only screen and (min-width: 376px) and (max-width: 768px) {
+  @media screen and (orientation: landscape) and (max-width: 823px) {
+    html {
+      font-size: 12px; } }
+  @media only screen and (orientation: landscape) and (min-width: 769px) and (max-width: 1200px) {
     html {
       font-size: 14px; } }
-  @media only screen and (min-width: 769px) and (max-width: 1200px) {
+  @media only screen and (orientation: landscape) and (min-width: 1200px) {
     html {
       font-size: 16px; } }
-  @media only screen and (min-width: 1200px) {
-    html {
-      font-size: 18px; } }
-  @media only screen and (min-width: 1400px) {
-    html {
-      font-size: 20px; } }

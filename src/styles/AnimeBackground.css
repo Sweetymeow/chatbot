@@ -87,7 +87,8 @@
   height: 100%;
   top: 0;
   left: 0;
-  z-index: -1; }
+  z-index: -1;
+  opacity: .3; }
   .bg-container .animeBg {
     position: relative;
     display: flex;
@@ -110,23 +111,23 @@
     .bg-container .animeBg-narrow .space-hodler {
       display: flex;
       flex: 5 1 50%; }
-      @media only screen and (max-width: 375px) {
+      @media only screen and (orientation: portrait) and (max-width: 414px) {
         .bg-container .animeBg-narrow .space-hodler {
           display: none; } }
     .bg-container .animeBg-narrow #flyinleft {
       animation: flyinleft 1500ms ease-in-out forwards; }
     .bg-container .animeBg-narrow #flyinright {
       animation: flyinright 1500ms ease-in-out forwards; }
-  @media only screen and (max-width: 375px) {
+  @media only screen and (orientation: portrait) and (max-width: 414px) {
     .bg-container .phone-hidden {
       display: none; } }
-  @media only screen and (min-width: 376px) and (max-width: 768px) {
+  @media only screen and (min-width: 415px) and (max-width: 768px) {
     .bg-container .tablets-hidden {
       display: none; } }
 
 .footer-container {
   position: fixed;
-  bottom: 8vh;
+  bottom: 6vh;
   left: 50%;
   width: 70vw;
   transform: translateX(-50%);
@@ -135,13 +136,19 @@
   -moz-animation: fadein 1000ms ease-in-out 2s forwards;
   -o-animation: fadein 1000ms ease-in-out 2s forwards;
   animation: fadein 1000ms ease-in-out 2s forwards; }
+  @media screen and (orientation: landscape) and (max-width: 823px) {
+    .footer-container {
+      display: none; } }
+  @media only screen and (min-width: 415px) and (max-width: 768px) {
+    .footer-container {
+      bottom: 4vh; } }
   .footer-container .ui.grid.footer-links .social-link {
     color: #3f3a3a;
     font-family: "SF Display", Helvetica, sans-serif;
     text-decoration: underline;
     font-size: 1.2rem;
     font-weight: 600; }
-  @media only screen and (max-width: 375px) {
+  @media only screen and (orientation: portrait) and (max-width: 414px) {
     .footer-container .ui.grid.footer-links {
       display: none; } }
   .footer-container .ui.grid.footer-icons {
@@ -151,10 +158,10 @@
     left: 0;
     width: 100%;
     margin: 0;
-    transform: translateY(20vh);
+    transform: translateY(40vh);
     border-top: 1px solid #e7e7e7;
     background: #FFF; }
-    @media only screen and (max-width: 375px) {
+    @media only screen and (orientation: portrait) and (max-width: 414px) {
       .footer-container .ui.grid.footer-icons {
         -webkit-animation: barflyup 1200ms ease-in-out 2.4s forwards;
         -moz-animation: barflyup 1200ms ease-in-out 2.4s forwards;
@@ -166,10 +173,10 @@
     color: #9b9b9b; }
     .footer-container .copyright-des p {
       margin: 0 0 .6rem 0; }
-    @media only screen and (max-width: 375px) {
+    @media only screen and (orientation: portrait) and (max-width: 414px) {
       .footer-container .copyright-des {
         display: none; } }
-  @media only screen and (max-width: 375px) {
+  @media only screen and (orientation: portrait) and (max-width: 414px) {
     .footer-container {
       bottom: 0;
       left: 0;

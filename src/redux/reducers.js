@@ -18,19 +18,7 @@ export const containerHeight = (state = 0, action) => (action.type === C.UPDATE_
 
 export const boxHeight = (state = 0, action) => (action.type === C.UPDATE_BOX_HEIGHT ? action.height : state);
 
-// export const error = (state = null, action) => {
-//   switch (action.type) {
-//     case C.ADD_ERROR:
-//       return [...state, action.payload]; //return new array with
-//     case C.CLEAR_ERROR:
-//       return state.filter(errorMsg => errorMsg !== action.payload);
-//     default:
-//       return state;
-//   }
-// };
-
 export const getUserEmail = (state = "default@gmail.com", action) => (action.type === C.DEFAULT_USER_EMAIL ? action.defaultEmail : state);
-// RECEIVE_DATA
 
 export const getCurrentUser = (state = "", action) => (action.type === TESTC.GET_CUR_USER ? action.user : state);
 
@@ -64,7 +52,7 @@ export const activeIndex = (state = [], action) => {
 
 export const showBtnGroup = (state = false, action) => (action.type === C.TOGGLE_VISIBLE ? action.isVisible : state);
 
-export const showLabel = (state = false, action) => (action.type === C.TOGGLE_LABEL_VISIBLE ? action.isVisible : state);
+export const inputVisible = (state = false, action) => (action.type === C.TOGGLE_INPUT_VISIBLE ? action.isVisible : state);
 
 export const animeStyle = (state = {}, action) => (action.type === C.BTN_MOVE ? action.style : state);
 
@@ -93,6 +81,7 @@ export default combineReducers({
   boxHeight,
   scrollTop,
   containerHeight,
+  inputVisible,
   userInfo: combineReducers({
     getUserEmail,
     fetching,

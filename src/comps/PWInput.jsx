@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Icon, Confirm, Form, Button, TextArea, Message, Transition } from 'semantic-ui-react';
+import { toggInputVisible } from '../redux/actions';
 import '../styles/Chatbox.css';
 import firebase from '../firebase';
 
@@ -15,7 +17,7 @@ class PWInput extends React.Component {
       userEmail: "",
       userMessage: "",
       showEmailAlert: false,
-      isPWinputVisible: true,
+      isPWinputVisible: true, // true,
       pwAnimeDuration: 500,
       isFormVisible: false,
       fbDatabase: null
@@ -36,15 +38,25 @@ class PWInput extends React.Component {
   }
 
   componentDidMount() {
+    const { delayTimer, updateInputVisible } = this.props;
     // get Reference to the database service
     // const defaultDatabase = firebase.database();
+
+    setTimeout(() => {
+      console.log("!!! Update Input Visible to TRUE");
+      // this.setState({
+      //   isPWinputVisible: true
+      // });
+      updateInputVisible(true);
+    }, delayTimer);
+
     this.setState({
       fbDatabase: firebase.database(),
       inputRef: null
     });
 
     const userId = firebase.auth().currentUser ? firebase.auth().currentUser.uid : "";
-    console.log(firebase.auth().currentUser);
+    // console.log(firebase.auth().currentUser);
     firebase.database().ref(`/allBubbles`)
       .once('value').then(snapshot => {
         console.log("Firebase database:", snapshot.val());
@@ -92,9 +104,10 @@ class PWInput extends React.Component {
 
   showForm(e) {
     e.preventDefault();
-    this.setState({
-      isPWinputVisible: false
-    });
+    // this.setState({
+    //   isPWinputVisible: false
+    // });
+    this.props.updateInputVisible(false);
     setTimeout(() => {
       this.setState({
         isFormVisible: true
@@ -156,11 +169,11 @@ class PWInput extends React.Component {
   }
 
   render() {
-    const { label, enableBack } = this.props;
+    const { label, enableBack, inputVisible } = this.props;
     const { password, alertContent, openAlert, showEmailAlert, userEmail, userMessage, isFormVisible, isPWinputVisible, pwAnimeDuration } = this.state;
     return (
       <section className="input-container bub-60wid-center">
-        <Transition className="input-pw-container" animation="swing up" duration={pwAnimeDuration} visible={isPWinputVisible}>
+        <div className={inputVisible ? "input-pw-container" : "input-pw-container hidden"}>
           <Form className="input-pw-form">
             <Form.Group className="input-header">
               {enableBack ? (<a className="back-button" href="http://localhost:3000/"><Icon name="arrow left" /> BACK</a>)
@@ -175,7 +188,11 @@ class PWInput extends React.Component {
             </Form.Input>
             <Button className="input-email-link borderless-btn" onClick={this.showForm} content="Request the Password" />
           </Form>
-        </Transition>
+        </div>
+        {/*<Transition className="input-pw-container" animation="fade down" duration={pwAnimeDuration} id={inputVisible ? "" : "hidden"}
+          onShow={console.log("!! SHOW")} onHide={
+            console.log("@@ HIDE", "// Input visible ? ", inputVisible)
+          }></Transition>*/}
         <Confirm content={alertContent} open={openAlert} onCancel={this.closeAlert} onConfirm={this.closeAlert} />
         {/*<!----------   Form to get password by send email  ----------> */}
         <Transition visible={isFormVisible} animation="slide up" duration={500}>
@@ -203,11 +220,24 @@ class PWInput extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  inputVisible: state.inputVisible
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  updateInputVisible: (isVisible) => dispatch(toggInputVisible(isVisible))
+  // getSpendAgency: () => dispatch(getSpendAgency())
+});
+
 PWInput.propTypes = {
+  inputVisible: PropTypes.bool,
   enableBack: PropTypes.bool,
   label: PropTypes.string,
+  delayTimer: PropTypes.number,
   nextStepId: PropTypes.number,
-  onLogin: PropTypes.func
+  onLogin: PropTypes.func,
+  updateInputVisible: PropTypes.func
 };
 
-export default PWInput;
+// export default PWInput;
+export default connect(mapStateToProps, mapDispatchToProps)(PWInput);

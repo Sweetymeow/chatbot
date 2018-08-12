@@ -20,9 +20,7 @@ class Chatbox extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // element: null,
       container: null
-      // chatboxData: null
     };
     this.getTextArr = this.getTextArr.bind(this);
     this.scrollAnime = this.scrollAnime.bind(this);
@@ -76,7 +74,7 @@ class Chatbox extends React.Component {
   }
 
   render() {
-    const { allBubbles, onBubbleClick, onCheckNextStep, getBoxHeight, getContainerHeight, containerHeight, getScrollTop } = this.props;
+    const { allBubbles, onBubbleClick, onCheckNextStep, getBoxHeight, getContainerHeight, getScrollTop } = this.props; // containerHeight,
     const { container } = this.state;
     return (
       <section className="chatbox-container" ref={ele => {
@@ -88,13 +86,13 @@ class Chatbox extends React.Component {
         }
       }} id="chatbox-outer">
         <div id={innerBoxId}>
-        {/*<CardsBubble bubInfo={bubInfo[0].options} />*/}
-        {allBubbles.map((bub, idx) => {
+        {/* <CardsBubble bubInfo={bubInfo[0].options} /> */}
+        {allBubbles.map((bub) => {
           if (bub.bubType === CBUB.TEXT_BUBBLE) {
             return (
               <TextBubble id={`bubble-${bub.stepId}`}
                 key={bub.stepId}
-                delayTimer={bub.delayTimer || 600 * idx}
+                delayTimer={bub.delayTimer || 600}
                 isGoNextStep={bub.isGoNextAuto}
                 nextStepId={bub.nextStepId}
                 onCheckNextAuto={onCheckNextStep}
@@ -126,17 +124,19 @@ class Chatbox extends React.Component {
           }
           if (bub.bubType === CBUB.INPUTPW_BUBBLE) {
             // console.log("INPUTPW_BUBBLE - ", bub);
-            return (
-              <PWInput key={bub.stepId}
+            return (<PWInput key={bub.stepId}
                 id={`bubble-${bub.stepId}`}
+                delayTimer={bub.delayTimer || 600}
                 onLogin={onBubbleClick}
                 nextStepId={bub.nextStepId}
-                label={bub.label} enableBack clearBox={this.handleClearBox} />);
+                label={bub.label} enableBack clearBox={this.handleClearBox} />
+            );
           }
           if (bub.bubType === CBUB.CARDS_BUBBLE) {
             return (
               <CardsBubble key={bub.stepId}
                 id={`bubble-${bub.stepId}`}
+                delayTimer={bub.delayTimer || 600}
                 checkNextStep={onCheckNextStep}
                 getScrollTop={getScrollTop}
                 bubInfo={bub.options} />);

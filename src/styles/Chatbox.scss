@@ -1,16 +1,25 @@
 @import 'var';
 @import 'anime';
 
+#hidden{
+  display: none;
+}
+
 .chatbox-container{
-  margin: 8vh auto 22vh auto;
+  margin: 8vh auto 18vh auto;
   padding: $md-pw $lg-pw;
-  max-width: 76vw;
-  height: 70vh;
+  max-width: 60vw; // 76vw;
+  height: 72vh;
   overflow-x: hidden;
   overflow-y: scroll;
   border-radius: 9px;
   background-color: $chat-con-bgcolor; // $background-color;
   box-shadow: -1px 2px 28px 1px rgba(155, 155, 155, 0.35);
+
+  @media #{$phone-land}{
+    height: 100vh;
+    margin-top: 0;
+  }
 
   @media #{$phone} {
     margin: 0;
@@ -36,6 +45,7 @@
     position: relative;
     // box-shadow: -1px 2px 2px 1px rgba(155, 155, 155, 0.2);
     margin: $mini-pw 0;
+    font-size: $bub-text-size;
 
     p{
       margin: $text-pw auto;
@@ -58,8 +68,6 @@
 
       &:after{
         content: url('../res/bubble_tail_R.svg');
-        // height: 2rem;
-        // width: 2rem;
         position: absolute;
         right: 0;
         bottom: -.8rem;
@@ -168,8 +176,15 @@
     margin: $mini-pw;
   }
 
-  /*------------   general bubble styles  ------------*/
+  /*------------   Input Password styles  ------------*/
   .input-container{
+    .input-pw-container{
+      display: block;
+      @include animation('fadein 1000ms ease-in-out 1500ms forwards');
+    }
+    .input-pw-container.hidden{
+      display: none;
+    }
     .input-pw-form{
       margin-top: $md-pw;
       padding: .4rem 25%;

@@ -27,30 +27,43 @@ body {
   }
 }
 
+.clearfix:after {
+  content: ".";
+  visibility: hidden;
+  display: block;
+  height: 0;
+  clear: both;
+}
+
 html{
   // font-size: 14px; // 62.5%;
 
   /* Extra small devices (phones, 600px and down) */
   @media #{$phone} {
-    font-size: 13px;
+    font-size: 12px;
   }
 
   /* small devices (landscape tablets, 375px - 768px and up) */
   @media #{$tablet} {
-    font-size: 14px;
+    font-size: 13px;
+  }
+
+  /* Extra small devices (phones, 600px and down) */
+  @media #{$phone-land} {
+    font-size: 12px;
   }
 
   /* Medium devices (landscape tablets, 769px and up) */
   @media  #{$sm-desk} {
-     font-size: 16px;
+     font-size: 14px;
   }
 
   /* Extra large devices (large laptops and desktops, 1200px and up) */
   @media #{$desktop} {
-     font-size: 18px;
+     font-size: 16px;
   }
   /* Extra large devices (large laptops and desktops, 1200px and up) */
-  @media only screen and (min-width: 1400px) {
-     font-size: 20px;
-  }
+  // @media only screen and (min-width: 1400px) {
+  //    font-size: 18px;
+  // }
 }

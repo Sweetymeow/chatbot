@@ -10,8 +10,6 @@ const getWeatherUrl = city => `https://samples.openweathermap.org/data/2.5/forec
 
 const moveRightVal = [{ transform: "translate(calc((75vw - 2.4rem) * .5))" }, { transform: "translate(calc((75vw - 2.4rem) * .15))" }, { transform: "translate(calc((75vw - 2.4rem) * .55))" }];
 
-// console.log(firebase.auth().currentUser.uid);
-
 const initActiveIndex = groupLength => {
   const newActiveIdx = [];
   for (let i = 0; i < groupLength; i++) {
@@ -108,8 +106,8 @@ const toggleVisible = (isVisible) => ({
   isVisible
 });
 
-const toggleLabelVisible = (isVisible) => ({
-  type: C.TOGGLE_LABEL_VISIBLE,
+const toggInputVisible = (isVisible) => ({
+  type: C.TOGGLE_INPUT_VISIBLE,
   isVisible
 });
 
@@ -182,4 +180,4 @@ const fetchPostsIfNeeded = (city) => (dispatch, getState) => {
   // return Promise.resolve();
 }
 
-export { getInitBubbles, getNewBubble, nextStep, removeBubble, downloadCV, openNewTab, fetchRequest, getFiredata, goNextAuto, clickBtnInGroup, getActiveIndexArray, toggleVisible, toggleLabelVisible, getAnimeStyle, updateBoxHeight, updateContainerHeight, updateScrollTop, requestBubbles, receiveBubbles, fetchWeather, fetchPostsIfNeeded, getCurrentUser };
+export { getInitBubbles, getNewBubble, nextStep, removeBubble, downloadCV, openNewTab, fetchRequest, getFiredata, goNextAuto, clickBtnInGroup, getActiveIndexArray, toggleVisible, toggInputVisible, getAnimeStyle, updateBoxHeight, updateContainerHeight, updateScrollTop, requestBubbles, receiveBubbles, fetchWeather, fetchPostsIfNeeded, getCurrentUser };
