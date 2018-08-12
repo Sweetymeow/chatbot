@@ -25,11 +25,6 @@ const store = createStore(
 
 // store.dispatch(fetchWeather('beijing')).then(() => console.log("FETCHWEATHER Successful"));
 
-// const composeStoreWithMiddleware = applyMiddleware(
-//   loggerMiddleware,
-//   promiseMiddleware()
-// )(createStore);
-
 ReactDOM.render(
   <Provider store={store}>
     <App />

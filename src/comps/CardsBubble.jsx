@@ -19,16 +19,16 @@ class CardsBubble extends React.Component {
   }
 
   componentDidUpdate() { //prevProps, prevState
-    const { eleRect } = this.state;
-    const { getScrollTop } = this.props;
-    const innerBox = document.getElementById("chatbox-inner");
-
-    if (eleRect) {
-      const moveDist = eleRect.getBoundingClientRect().top - innerBox.getBoundingClientRect().top;
-
-      console.log("Udpate eleRect", eleRect, " // Move dist: ", moveDist);
-      getScrollTop(moveDist);
-    }
+    // const { eleRect } = this.state;
+    // const { getScrollTop } = this.props;
+    // const innerBox = document.getElementById("chatbox-inner");
+    //
+    // if (eleRect) {
+    //   const moveDist = eleRect.getBoundingClientRect().top - innerBox.getBoundingClientRect().top;
+    //
+    //   console.log("Udpate eleRect", eleRect, " // Move dist: ", moveDist);
+    //   getScrollTop(moveDist);
+    // }
   }
 
   render() {

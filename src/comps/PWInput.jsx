@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Icon, Confirm, Form, Button, TextArea, Message, Transition } from 'semantic-ui-react';
-import { toggInputVisible } from '../redux/actions';
+import { toggInputVisible, updateScrollTop } from '../redux/actions';
+import { FADE_TIMER } from '../redux/constants';
 import '../styles/Chatbox.css';
 import firebase from '../firebase';
 
@@ -17,8 +18,8 @@ class PWInput extends React.Component {
       userEmail: "",
       userMessage: "",
       showEmailAlert: false,
-      isPWinputVisible: true, // true,
-      pwAnimeDuration: 500,
+      isPWSuccess: false, // true,
+      // pwAnimeDuration: 500,
       isFormVisible: false,
       fbDatabase: null
     };
@@ -38,16 +39,16 @@ class PWInput extends React.Component {
   }
 
   componentDidMount() {
-    const { delayTimer, updateInputVisible } = this.props;
+    const { delayTimer, getInputVisible } = this.props;
     // get Reference to the database service
     // const defaultDatabase = firebase.database();
 
     setTimeout(() => {
       console.log("!!! Update Input Visible to TRUE");
       // this.setState({
-      //   isPWinputVisible: true
+      //   isPWSuccess: true
       // });
-      updateInputVisible(true);
+      getInputVisible(true);
     }, delayTimer);
 
     this.setState({
@@ -77,8 +78,19 @@ class PWInput extends React.Component {
   }
 
   handleSubmit() {
-    console.log(`SUBMIT BTN PW: ${this.state.password}`);
     this.loginFirebaseAccount();
+    this.props.getInputVisible(false);
+    this.setState({
+      isPWSuccess: true
+    });
+
+    setTimeout(() => {
+      const eleRect = document.getElementById("scrollToThis");
+      const innerBox = document.getElementById("chatbox-inner");
+      console.log(eleRect, innerBox);
+      this.props.getScrollTop(eleRect.getBoundingClientRect().top - innerBox.getBoundingClientRect().top);
+      console.log(`SUBMIT BTN PW: ${this.state.password}, height -> ${eleRect.getBoundingClientRect().top - innerBox.getBoundingClientRect().top}`);
+    }, 1);
   }
 
   handleEnterPress(event) {
@@ -105,14 +117,14 @@ class PWInput extends React.Component {
   showForm(e) {
     e.preventDefault();
     // this.setState({
-    //   isPWinputVisible: false
+    //   isPWSuccess: false
     // });
-    this.props.updateInputVisible(false);
+    this.props.getInputVisible(false);
     setTimeout(() => {
       this.setState({
         isFormVisible: true
       });
-    }, this.state.pwAnimeDuration);
+    }, FADE_TIMER);
   }
 
   handleEmailRequestSubmit() {
@@ -170,7 +182,7 @@ class PWInput extends React.Component {
 
   render() {
     const { label, enableBack, inputVisible } = this.props;
-    const { password, alertContent, openAlert, showEmailAlert, userEmail, userMessage, isFormVisible, isPWinputVisible, pwAnimeDuration } = this.state;
+    const { password, alertContent, openAlert, showEmailAlert, userEmail, userMessage, isFormVisible, isPWSuccess } = this.state;
     return (
       <section className="input-container bub-60wid-center">
         <div className={inputVisible ? "input-pw-container" : "input-pw-container hidden"}>
@@ -189,6 +201,11 @@ class PWInput extends React.Component {
             <Button className="input-email-link borderless-btn" onClick={this.showForm} content="Request the Password" />
           </Form>
         </div>
+        <Transition animation="fade" visible={isPWSuccess}>
+          <div className="input-success-message" id="scrollToThis">
+            <p>Password Passed!</p>
+          </div>
+        </Transition>
         {/*<Transition className="input-pw-container" animation="fade down" duration={pwAnimeDuration} id={inputVisible ? "" : "hidden"}
           onShow={console.log("!! SHOW")} onHide={
             console.log("@@ HIDE", "// Input visible ? ", inputVisible)
@@ -225,8 +242,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  updateInputVisible: (isVisible) => dispatch(toggInputVisible(isVisible))
-  // getSpendAgency: () => dispatch(getSpendAgency())
+  getInputVisible: (isVisible) => dispatch(toggInputVisible(isVisible)),
+  getScrollTop: (height) => dispatch(updateScrollTop(height))
 });
 
 PWInput.propTypes = {
@@ -236,7 +253,8 @@ PWInput.propTypes = {
   delayTimer: PropTypes.number,
   nextStepId: PropTypes.number,
   onLogin: PropTypes.func,
-  updateInputVisible: PropTypes.func
+  getInputVisible: PropTypes.func,
+  getScrollTop: PropTypes.func
 };
 
 // export default PWInput;

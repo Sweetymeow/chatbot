@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import '../styles/Chatbox.css';
-import { CBUB } from '../redux/constants';
+import { CBUB, FADE_TIMER } from '../redux/constants';
 // import { scrollToEle } from "../redux/scroll";
 
 //Bubble Comps
@@ -33,21 +33,19 @@ class Chatbox extends React.Component {
   }
 
   componentDidUpdate() {
-    const { scrollTop } = this.props;
+    const { scrollTop, getBoxHeight } = this.props;
     const { container } = this.state;
-    // console.log("Ele State - TOP: ", this.state.element.getBoundingClientRect().top);
-    // const animeTimer = setTimeout(() => {
-    //   console.log(`@@@UPDATE SCROLLTOP @@@ ${container.scrollTop} -> ${scrollTop}`);
-    //   container.scrollTop = scrollTop;
-    // }, 500);
-    if ( scrollTop - container.scrollTop ) {
-      console.log(`${container.scrollTop} -> Scroll to -> ${scrollTop}`);
-      this.scrollAnime(container, container.scrollTop, scrollTop, 10);
-    }
 
     const innerBox = document.getElementById(innerBoxId);
-    // console.log("Chartbox innerBox.offsetHeight - ", innerBox.offsetHeight);
-    this.props.getBoxHeight(innerBox.offsetHeight);
+    getBoxHeight(innerBox.offsetHeight);
+
+    // Scroll To Right Position
+    setTimeout(() => {
+      if ( scrollTop - container.scrollTop ) {
+        console.log(`${container.scrollTop} -> Scroll to -> ${scrollTop}`);
+        this.scrollAnime(container, container.scrollTop, scrollTop, 10);
+      }
+    }, FADE_TIMER);
   }
 
   getTextArr(text) {

@@ -244,6 +244,11 @@
         }
       }
     }
+    .input-success-message{
+      font-size: 20px;
+      color: $primary-color;
+      font-weight: bold;
+    }
     .input-request-form{
       border: 1px solid $primary-color;
       margin-top: $sm-pw;

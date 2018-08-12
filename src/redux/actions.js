@@ -81,7 +81,7 @@ const updateContainerHeight = height => ({
 
 const updateScrollTop = height => ({
   type: C.UPDATE_SCROLLTOP,
-  height
+  height: height + 16
 });
 
 /*-------- action for button group --------*/

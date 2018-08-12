@@ -259,6 +259,10 @@
       padding: 0; }
       .chatbox-container .input-container .input-pw-form .input-email-link:hover {
         color: #19ad8c; }
+  .chatbox-container .input-container .input-success-message {
+    font-size: 20px;
+    color: #1fdab0;
+    font-weight: bold; }
   .chatbox-container .input-container .input-request-form {
     border: 1px solid #1fdab0;
     margin-top: 1rem;
