@@ -7,8 +7,10 @@ const imgBub0 = {
   isGoNextAuto: false,
   options: [],
   bubContent: {
-    imgSrc: "../res/Gopher.png",
-    imgName: "Gppher"
+    imgSrc: "Gopher",
+    imgName: "Gppher",
+    imgSize: "tiny",
+    isScroll: false
   }
 };
 
@@ -215,4 +217,21 @@ const btnBub12 = {
   bubContent: {}
 };
 
-export { imgBub0, textBub1, textBub2, btnBub3, textBub4, textBub5, btnBub6, textBub7, inputBub8, textBub9, cardsBub10, textBub11, btnBub12 };
+const imgBub13 = {
+  stepId: 13,
+  bubType: "IMAGE_BUBBLE",
+  nextStepId: null,
+  isGoNextAuto: false,
+  // options: [],
+  bubContent: {
+    imgSrc: "successText",
+    imgName: "Success Email Message",
+    imgSize: "big",
+    isScroll: true
+  }
+};
+// "Email has been sent!
+// I will try to reply you as soon as possible.
+// Have a nice day! "
+
+export { imgBub0, textBub1, textBub2, btnBub3, textBub4, textBub5, btnBub6, textBub7, inputBub8, textBub9, cardsBub10, textBub11, btnBub12, imgBub13 };

@@ -1,8 +1,8 @@
 {
   "main.css": "static/css/main.1df17c6d.css",
   "main.css.map": "static/css/main.1df17c6d.css.map",
-  "main.js": "static/js/main.8da50bda.js",
-  "main.js.map": "static/js/main.8da50bda.js.map",
+  "main.js": "static/js/main.1e4e2b8a.js",
+  "main.js.map": "static/js/main.1e4e2b8a.js.map",
   "static/media/DownloadCV.svg": "static/media/DownloadCV.edb4c829.svg",
   "static/media/Project_Image_1.png": "static/media/Project_Image_1.5a6b2c9d.png",
   "static/media/Project_Image_2.png": "static/media/Project_Image_2.2d33d2cb.png",
@@ -53,5 +53,7 @@
   "static/media/outline-icons.svg": "static/media/outline-icons.82f60bd0.svg",
   "static/media/outline-icons.ttf": "static/media/outline-icons.ad97afd3.ttf",
   "static/media/outline-icons.woff": "static/media/outline-icons.ef60a4f6.woff",
-  "static/media/outline-icons.woff2": "static/media/outline-icons.cd6c777f.woff2"
+  "static/media/outline-icons.woff2": "static/media/outline-icons.cd6c777f.woff2",
+  "static/media/success.png": "static/media/success.734bf745.png",
+  "static/media/success_text.png": "static/media/success_text.d087c6c5.png"
 }

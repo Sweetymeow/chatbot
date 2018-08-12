@@ -24,6 +24,10 @@ import icon2 from "./dribble_icon.svg";
 import icon3 from "./medium_icon.svg";
 import icon4 from "./ins_icon.svg";
 
+import successText from "./success_text.png";
+import success from "./success.png";
+
+import Gopher from './Gopher.png';
 import downloadImg from './DownloadCV.svg';
 
-export { bgc1, bgc2, bgc3, bgc4, bgc5, bgc6, bgc7, bgc8, bgc9, bgc10, bgs0, bgs1, bgs2, bgs3, bgs4, downloadImg, proj1, proj2, proj3, icon1, icon2, icon3, icon4 };
+export { bgc1, bgc2, bgc3, bgc4, bgc5, bgc6, bgc7, bgc8, bgc9, bgc10, bgs0, bgs1, bgs2, bgs3, bgs4, downloadImg, proj1, proj2, proj3, icon1, icon2, icon3, icon4, success, successText, Gopher };

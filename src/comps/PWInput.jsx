@@ -4,8 +4,11 @@ import { connect } from 'react-redux';
 import { Icon, Confirm, Form, Button, TextArea, Message, Transition } from 'semantic-ui-react';
 import { toggInputVisible, updateScrollTop } from '../redux/actions';
 import { DELAY_TIMER } from '../redux/constants';
+import { success } from '../res/imgBundle';
 import '../styles/Chatbox.css';
 import firebase from '../firebase';
+
+const emailSuccessId = 13;
 
 class PWInput extends React.Component {
   constructor(props) {
@@ -148,15 +151,16 @@ class PWInput extends React.Component {
       console.log("EMAIL FORMAT ERROR");
       this.setState({
         showEmailAlert: true
-      })
+      });
+    } else {
+      const userId = firebase.auth().currentUser.uid || "test12345";
+      firebase.database().ref(`users/${userId}`).set({
+        userId,
+        email: userEmail,
+        context: userMessage
+      });
+      this.props.onBtnClick(emailSuccessId); // nextID, bubInfo
     }
-
-    const userId = firebase.auth().currentUser.uid || "test12345";
-    firebase.database().ref(`users/${userId}`).set({
-      userId,
-      email: userEmail,
-      context: userMessage
-    });
   }
 
   handleAlertDismiss() {
@@ -179,13 +183,13 @@ class PWInput extends React.Component {
   }
 
   loginFirebaseAccount() {
-    const { onLogin, nextStepId } = this.props;
+    const { onBtnClick, nextStepId } = this.props;
     firebase.auth()
       .signInWithEmailAndPassword(this.state.defaultEmail, this.state.password)
       .then( msg => {
         console.log("Success Log in - ", msg);
         // window.open('https://www.google.com', '_blank');
-        onLogin(nextStepId);
+        onBtnClick(nextStepId);
       })
       .catch(error => { // Handle Errors here.
         this.setState({
@@ -269,7 +273,7 @@ PWInput.propTypes = {
   label: PropTypes.string,
   delayTimer: PropTypes.number,
   nextStepId: PropTypes.number,
-  onLogin: PropTypes.func,
+  onBtnClick: PropTypes.func,
   getInputVisible: PropTypes.func,
   getScrollTopHeight: PropTypes.func
 };

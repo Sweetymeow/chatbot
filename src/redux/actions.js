@@ -1,10 +1,10 @@
 import fetch from 'cross-fetch';
 import { C, TESTC } from './constants';
-import { imgBub0, textBub1, textBub2, btnBub3, textBub4, textBub5, btnBub6, textBub7, inputBub8, textBub9, cardsBub10, textBub11, btnBub12 } from './bubble_sample';
+import { imgBub0, textBub1, textBub2, btnBub3, textBub4, textBub5, btnBub6, textBub7, inputBub8, textBub9, cardsBub10, textBub11, btnBub12, imgBub13 } from './bubble_sample';
 import initState from './initState.json';
 import firebase from '../firebase';
 
-const bubList = [imgBub0, textBub1, textBub2, btnBub3, textBub4, textBub5, btnBub6, textBub7, inputBub8, textBub9, cardsBub10, textBub11, btnBub12];
+const bubList = [imgBub0, textBub1, textBub2, btnBub3, textBub4, textBub5, btnBub6, textBub7, inputBub8, textBub9, cardsBub10, textBub11, btnBub12, imgBub13];
 
 const getWeatherUrl = city => `https://samples.openweathermap.org/data/2.5/forecast?q=${city},USA&appid=50fb41fcba931b8c18c627d47ea8494d`;
 

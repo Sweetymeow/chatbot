@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import '../styles/Chatbox.css';
 import { CBUB, DELAY_TIMER } from '../redux/constants';
-// import { scrollToEle } from "../redux/scroll";
 
 //Bubble Comps
 import ImgBubble from './ImgBubble';
@@ -12,7 +11,8 @@ import BtnAnimeBubble from './BtnAnimeBubble';
 import PWInput from './PWInput';
 import CardsBubble from './CardsBubble';
 //Image
-import Gopher from '../res/Gopher.png';
+// import Gopher from '../res/Gopher.png';
+import { Gopher, successText } from '../res/imgBundle';
 
 const innerBoxId = "chatbox-inner";
 
@@ -104,11 +104,14 @@ class Chatbox extends React.Component {
                 text={this.getTextArr(bub.bubContent.text)} speaker="bot" />);
           }
           if (bub.bubType === CBUB.IMAGE_BUBBLE) {
+            console.log("Image bub: ", bub);
             return ( <ImgBubble id={`bubble-${bub.stepId}`}
               key={bub.stepId}
               delayTimer={bub.delayTimer || 600}
               checkNextStep={onCheckNextStep}
-              imgSrc={Gopher} />
+              imgSrc={bub.bubContent.imgSrc === "Gopher" ? Gopher : successText}
+              imgSize={bub.bubContent.imgSize}
+              isScroll={bub.bubContent.isScroll} />
             );
           }
           if (bub.bubType === CBUB.BUTTONGROUP_BUBBLE) {
@@ -128,11 +131,10 @@ class Chatbox extends React.Component {
             />);
           }
           if (bub.bubType === CBUB.INPUTPW_BUBBLE) {
-            // console.log("INPUTPW_BUBBLE - ", bub);
             return (<PWInput key={bub.stepId}
                 id={`bubble-${bub.stepId}`}
                 delayTimer={bub.delayTimer || 600}
-                onLogin={onBubbleClick}
+                onBtnClick={onBubbleClick}
                 nextStepId={bub.nextStepId}
                 label={bub.label} enableBack clearBox={this.handleClearBox} />
             );
@@ -151,7 +153,7 @@ class Chatbox extends React.Component {
       }
         </div>
         <div className="heightHolder">..</div>
-        {/*<div className="heightHolder" style={{ height: `${Math.floor(containerHeight / 2)}px` }}>..</div>*/}
+        {/* <div className="heightHolder" style={{ height: `${Math.floor(containerHeight / 2)}px` }}>..</div> */}
       </section>);
   }
 }
