@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Icon, Confirm, Form, Button, TextArea, Message, Transition } from 'semantic-ui-react';
 import { toggInputVisible, updateScrollTop } from '../redux/actions';
-import { FADE_TIMER, DELAY_TIMER } from '../redux/constants';
+import { DELAY_TIMER } from '../redux/constants';
 import '../styles/Chatbox.css';
 import firebase from '../firebase';
 
@@ -90,8 +90,8 @@ class PWInput extends React.Component {
       const eleRect = document.getElementById("scrollToThis");
       // const innerBox = document.getElementById("chatbox-inner");
       const { innerBox } = this.state;
-      const { getScrollTop } = this.props;
-      getScrollTop(eleRect.getBoundingClientRect().top - innerBox.getBoundingClientRect().top - 400);
+      const { getScrollTopHeight } = this.props;
+      getScrollTopHeight(eleRect.getBoundingClientRect().top - innerBox.getBoundingClientRect().top);
     }, 1);
   }
 
@@ -134,10 +134,12 @@ class PWInput extends React.Component {
     setTimeout(() => {
       const eleRect = document.getElementById("scrollToForm").getBoundingClientRect();
       const { innerBox } = this.state;
-      const { getScrollTop } = this.props;
-      console.log(`inner Top ${innerBox.getBoundingClientRect().top}`, eleRect);
-      getScrollTop(eleRect.top - innerBox.getBoundingClientRect().top - eleRect.height);
-    }, 1);
+      const { getScrollTopHeight } = this.props;
+
+      const newScrollTop = eleRect.top - innerBox.getBoundingClientRect().top - 400;
+      // console.log(`inner Top ${innerBox.getBoundingClientRect().top} // NEW - ${newScrollTop}`);
+      getScrollTopHeight(newScrollTop);
+    }, 100);
   }
 
   handleEmailRequestSubmit() {
@@ -256,7 +258,9 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   getInputVisible: (isVisible) => dispatch(toggInputVisible(isVisible)),
-  getScrollTop: (height) => dispatch(updateScrollTop(height))
+  getScrollTopHeight: (height) => {
+    dispatch(updateScrollTop(height))
+  }
 });
 
 PWInput.propTypes = {
@@ -267,7 +271,7 @@ PWInput.propTypes = {
   nextStepId: PropTypes.number,
   onLogin: PropTypes.func,
   getInputVisible: PropTypes.func,
-  getScrollTop: PropTypes.func
+  getScrollTopHeight: PropTypes.func
 };
 
 // export default PWInput;

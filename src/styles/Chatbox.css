@@ -99,6 +99,7 @@
   /*------------   button group container   ------------*/
   /*------------   cards container   ------------*/
   /*------------   Input Password styles  ------------*/
+  /*------------   Cards styles  ------------*/
   /*------------   general bubble styles  ------------*/
   /*------------   general styles  ------------*/ }
   @media screen and (orientation: landscape) and (max-width: 823px) {
@@ -111,6 +112,9 @@
       max-width: 100vw;
       width: 100vw;
       height: 100vh; } }
+  @media only screen and (min-width: 415px) and (max-width: 768px) {
+    .chatbox-container {
+      max-width: 80vw; } }
   .chatbox-container .bub-fullwidth:after {
     content: "";
     clear: both;
@@ -205,10 +209,10 @@
     margin: 0.6rem; }
   .chatbox-container .input-container .input-pw-container {
     display: block;
-    -webkit-animation: fadein 1000ms ease-in-out 1500ms forwards;
-    -moz-animation: fadein 1000ms ease-in-out 1500ms forwards;
-    -o-animation: fadein 1000ms ease-in-out 1500ms forwards;
-    animation: fadein 1000ms ease-in-out 1500ms forwards; }
+    -webkit-animation: fadein 1200ms ease-in-out forwards;
+    -moz-animation: fadein 1200ms ease-in-out forwards;
+    -o-animation: fadein 1200ms ease-in-out forwards;
+    animation: fadein 1200ms ease-in-out forwards; }
   .chatbox-container .input-container .input-pw-container.hidden {
     display: none; }
   .chatbox-container .input-container .input-pw-form {

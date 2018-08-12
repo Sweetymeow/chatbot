@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Grid, Button, Transition, Image } from 'semantic-ui-react';
 import imgDownload from '../res/DownloadCV.svg';
+import { FADE_TIMER, DELAY_TIMER } from '../redux/constants';
 import cvFile from '../file/cv.pdf';
 import '../styles/Chatbox.css';
 
@@ -14,6 +15,7 @@ class BtnAnimeBubble extends React.Component {
     super(props);
     // this.myRef = React.createRef();
     this.btnToTextBub = this.btnToTextBub.bind(this);
+    this.updateScrollTop = this.updateScrollTop.bind(this);
     this.state = {
       showBtnGroup: false,
       activeIndex: [],
@@ -54,12 +56,22 @@ class BtnAnimeBubble extends React.Component {
     }, fadeTimer);
   }
 
+  updateScrollTop(eleRect) {
+    const innerBox = document.getElementById("chatbox-inner");
+    const { getScrollTop } = this.props;
+    // console.log("@@ ELE Rect Top: ", eleRect.getBoundingClientRect().top);
+    setTimeout(() => {
+      const moveDist = eleRect.getBoundingClientRect().top - innerBox.getBoundingClientRect().top;
+      console.log("@@ Move Dist: ", moveDist);
+      getScrollTop(moveDist);
+    }, 1);
+  }
+
   render() {
     const { activeIndex, animeStyle, showBtnGroup, showAnswerBub, answerText } = this.state;
-    const { id, options, onBtnClick, label, checkNextStep, containerHeight, getScrollTop, scrollTop } = this.props;
+    const { id, options, onBtnClick, label, checkNextStep, containerHeight, scrollTop } = this.props;
     const btnColLength = options.length;
     let eleRect = {};
-    const innerBox = document.getElementById("chatbox-inner");
     return (
       <div className="btn-container clearfix" id={id}
         ref={ele => {
@@ -81,19 +93,17 @@ class BtnAnimeBubble extends React.Component {
                           key={item.opId + 2}
                           style={animeStyle}
                           onClick={(e, { value }) => {
-                            const moveDist = eleRect.getBoundingClientRect().top - innerBox.getBoundingClientRect().top;
+                            this.updateScrollTop(eleRect);
 
-                            // console.log("@@ ELE Rect Top: ", eleRect.getBoundingClientRect().top);
-                            console.log("@@ Move Dist: ", moveDist);
                             this.setState({
                               answerText: value,
                               showBtnGroup: false
-                            })
+                            });
 
-                            getScrollTop(moveDist);
-                            // const isMoveLeft = item.opLink;
                             onBtnClick(item.nextStepId, null, containerHeight);
+
                             checkNextStep(item.requestClick, item.nextStepId);
+
                             this.btnToTextBub(idx);
                           }}>
                           {item.opLink ? (<Image as="a" src={imgDownload} target="_blank" href={item.opLink} download />) : item.opText }

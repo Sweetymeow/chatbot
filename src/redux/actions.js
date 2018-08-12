@@ -84,6 +84,11 @@ const updateScrollTop = height => ({
   height: height + 16
 });
 
+const scrollToPosition = pos => ({
+  type: C.SCROLL_TO_POS,
+  pos
+});
+
 /*-------- action for button group --------*/
 
 const getActiveIndexArray = (groupLength) => ({
@@ -180,4 +185,4 @@ const fetchPostsIfNeeded = (city) => (dispatch, getState) => {
   // return Promise.resolve();
 }
 
-export { getInitBubbles, getNewBubble, nextStep, removeBubble, downloadCV, openNewTab, fetchRequest, getFiredata, goNextAuto, clickBtnInGroup, getActiveIndexArray, toggleVisible, toggInputVisible, getAnimeStyle, updateBoxHeight, updateContainerHeight, updateScrollTop, requestBubbles, receiveBubbles, fetchWeather, fetchPostsIfNeeded, getCurrentUser };
+export { getInitBubbles, getNewBubble, nextStep, removeBubble, downloadCV, openNewTab, fetchRequest, getFiredata, goNextAuto, clickBtnInGroup, getActiveIndexArray, toggleVisible, toggInputVisible, getAnimeStyle, updateBoxHeight, updateContainerHeight, updateScrollTop, scrollToPosition, requestBubbles, receiveBubbles, fetchWeather, fetchPostsIfNeeded, getCurrentUser };

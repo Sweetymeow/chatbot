@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import '../styles/Chatbox.css';
-import { CBUB, FADE_TIMER } from '../redux/constants';
+import { CBUB, DELAY_TIMER } from '../redux/constants';
 // import { scrollToEle } from "../redux/scroll";
 
 //Bubble Comps
@@ -24,6 +24,7 @@ class Chatbox extends React.Component {
     };
     this.getTextArr = this.getTextArr.bind(this);
     this.scrollAnime = this.scrollAnime.bind(this);
+    this.scrollToPosition = this.scrollToPosition.bind(this);
   }
 
   componentWillMount() {
@@ -33,23 +34,29 @@ class Chatbox extends React.Component {
   }
 
   componentDidUpdate() {
-    const { scrollTop, getBoxHeight } = this.props;
-    const { container } = this.state;
+    const { getBoxHeight } = this.props;
 
     const innerBox = document.getElementById(innerBoxId);
     getBoxHeight(innerBox.offsetHeight);
 
     // Scroll To Right Position
-    setTimeout(() => {
-      if ( scrollTop - container.scrollTop ) {
-        console.log(`${container.scrollTop} -> Scroll to -> ${scrollTop}`);
-        this.scrollAnime(container, container.scrollTop, scrollTop, 10);
-      }
-    }, FADE_TIMER);
+    this.scrollToPosition();
   }
 
   getTextArr(text) {
     return text.split("$$");
+  }
+
+  scrollToPosition() {
+    const { scrollTop } = this.props;
+    const { container } = this.state;
+
+    setTimeout(() => {
+      if ( scrollTop - container.scrollTop > 0 ) {
+        console.log(`${container.scrollTop} -> Scroll to -> ${scrollTop}`);
+        this.scrollAnime(container, container.scrollTop, scrollTop, 10);
+      }
+    }, 1);
   }
 
   scrollAnime(container, currentST, targetST, step) {

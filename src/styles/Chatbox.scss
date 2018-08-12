@@ -27,6 +27,9 @@
     width: 100vw;
     height: 100vh;
   }
+  @media #{$tablet} {
+    max-width: 80vw; // 76vw;
+  }
 
   .bub-fullwidth{
     &:after{
@@ -180,7 +183,7 @@
   .input-container{
     .input-pw-container{
       display: block;
-      @include animation('fadein 1000ms ease-in-out 1500ms forwards');
+      @include animation('fadein 1200ms ease-in-out forwards');
     }
     .input-pw-container.hidden{
       display: none;
@@ -280,6 +283,13 @@
       .ui.button{
         border-radius: $md-pw;
       }
+    }
+  }
+
+  /*------------   Cards styles  ------------*/
+  .cards-bubble{
+    @media #{$tablet} {
+      // flex: 
     }
   }
 
