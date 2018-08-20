@@ -11,7 +11,8 @@ const imgBub0 = {
     imgName: "Gppher",
     imgSize: "tiny",
     isScroll: false
-  }
+  },
+  isTriggerAnime: false
 };
 
 const textBub1 = {
@@ -24,7 +25,8 @@ const textBub1 = {
   bubContent: {
     text: "My name is Juan!!!. I am a UX/UI designer currently working at SAP.",
     html: "My name is <s>Juan</s>. I am a <s>UX / UI designer</s> currently working at <s className='underline'>SAP</s>."
-  }
+  },
+  isTriggerAnime: false
 };
 
 const textBub2 = {
@@ -37,7 +39,8 @@ const textBub2 = {
   bubContent: {
     text: "Thanks for your interest in my portfolio! $$ May I ask your purpose of visiting today? :)",
     html: "Thanks for your interest in my portfolio! <s>May I ask your purpose of visiting today? :)</s>"
-  }
+  },
+  isTriggerAnime: false
 };
 
 const btnBub3 = {
@@ -59,7 +62,8 @@ const btnBub3 = {
     opVal: "No specific purpose",
     nextStepId: 5
   }],
-  bubContent: {}
+  bubContent: {},
+  isTriggerAnime: false
 };
 
 // 3 -> Recruiting Designer
@@ -73,7 +77,8 @@ const textBub4 = {
   bubContent: {
     text: "Nice to e-meet you! 😃 Here is my resume.",
     html: "Nice to e-meet you! &#x1F601; Here is my resume."
-  } // &#128513;
+  },
+  isTriggerAnime: false
 };// https://www.quackit.com/character_sets/emoji/emoji_v3.0/unicode_emoji_v3.0_characters_smileys_and_people.cfm
 
 // 3 -> Just Wander Around
@@ -87,7 +92,8 @@ const textBub5 = {
   bubContent: {
     text: "Nice to e-meet you! Hope you are doing well today! 😃",
     html: "Nice to e-meet you! Hope you are doing well today! 😃"
-  }
+  },
+  isTriggerAnime: false
 }; // -> 11
 
 const btnBub6 = {
@@ -105,7 +111,8 @@ const btnBub6 = {
     opLink: "/static/media/cv.5e592567.pdf",
     nextStepId: 7
   }],
-  bubContent: {}
+  bubContent: {},
+  isTriggerAnime: false
 };
 
 const textBub7 = {
@@ -118,7 +125,9 @@ const textBub7 = {
   bubContent: {
     text: "I have been a pretty hands-on UX/UI designer for 3+ years on both B2C and B2B areas. The projects include both release and concept work that cross many industries such as medical, marketing, sales, utility and etc… Before I start to give you a guide, you need a password to access as all my projects are signed with NDA.",
     html: "I have been a pretty hands-on UX/UI designer for <s>3+ years</s> on both <s>B2C</s> and <s>B2B</s> areas. The projects include both release and concept work that cross many industries such as <s>medical, marketing, sales, utility and etc…</s> Before I start to give you a guide, you need a password to access as all my projects are signed with NDA."
-  } // &#128513;
+  },
+  isTriggerAnime: true,
+  targetId: "bubble-3"
 };
 
 const inputBub8 = {
@@ -133,7 +142,8 @@ const inputBub8 = {
     opRequest: 'ok',
     nextStepId: 9
   }],
-  bubContent: {}
+  bubContent: {},
+  isTriggerAnime: false
 };
 
 const textBub9 = {
@@ -146,7 +156,8 @@ const textBub9 = {
   bubContent: {
     text: "Here are my top 3 favorite projects. You will go to project page by click “View Project”. Hope you like my portfolio, enjoy! ☺️",
     html: "Here are my top 3 favorite projects. You will go to project page by click “View Project”. Hope you like my portfolio, enjoy! &#128513;"
-  } // &#128513;
+  },
+  isTriggerAnime: false
 };
 
 const cardsBub10 = {
@@ -180,7 +191,9 @@ const cardsBub10 = {
     opLabels: ["#B2B", "#Marketing"],
     opContent: "Lorem ipsum vitae inceptos luctus vel urna Nam congue laoreet vestibulum arcu. Vitae sed massa quam. Sem ipsum laoreet lorem, rutrum, tincidunt. Vitae sed massa quam, tincidunt."
   }],
-  bubContent: {}
+  bubContent: {},
+  isTriggerAnime: true,
+  targetId: "bubble-8"
 };
 
 const textBub11 = {
@@ -193,7 +206,9 @@ const textBub11 = {
   bubContent: {
     text: "Since all my projects are signed with NDA , and you are not recruiting people, I’m afraid I can’t give you a password to access… $$ BUT, we still can talk continually! $$ What do you want to know me more?",
     html: "Since all my projects are signed with NDA , and you are not recruiting people, I’m afraid I can’t give you a password to access… $$ BUT, we still can talk continually! $$ What do you want to know me more?"
-  }
+  },
+  isTriggerAnime: true,
+  targetId: "bubble-7"
 };
 
 const btnBub12 = {
@@ -214,7 +229,8 @@ const btnBub12 = {
     opVal: "hobbies",
     nextStepId: 14
   }],
-  bubContent: {}
+  bubContent: {},
+  isTriggerAnime: true
 };
 
 const imgBub13 = {
@@ -228,7 +244,8 @@ const imgBub13 = {
     imgName: "Success Email Message",
     imgSize: "big",
     isScroll: true
-  }
+  },
+  isTriggerAnime: true
 };
 // "Email has been sent!
 // I will try to reply you as soon as possible.

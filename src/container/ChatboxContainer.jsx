@@ -1,8 +1,24 @@
 // import React from 'react';
 import { connect } from 'react-redux';
 // import C from "../redux/constants";
-import { getNewBubble, downloadCV, openNewTab, nextStep, updateBoxHeight, updateContainerHeight, updateScrollTop, fetchWeather, getInitBubbles } from "../redux/actions";
+import { getNewBubble, downloadCV, openNewTab, nextStep, updateBoxHeight, updateContainerHeight, updateScrollTop, fetchWeather, getInitBubbles, postScrollAnimation } from "../redux/actions";
 import Chatbox from '../comps/Chatbox';
+import scrollAnime from '../comps/scrollAnime';
+
+const scrollToNewPosition = (scrollTop) => {
+  const container = document.getElementById("chatbox-outer");
+
+  if ( scrollTop - container.scrollTop > 0 ) {
+    console.log(`${container.scrollTop} -> Scroll to -> ${scrollTop}`);
+    scrollAnime(container, container.scrollTop, scrollTop, 10);
+  }
+};
+
+const timerPromise = (timer) => {
+  return new Promise((resolve) => {
+    setTimeout(resolve, timer, "SUCCESS");
+  });
+};
 
 //指定如何把当前 Redux store state 映射到展示组件的 props 中
 const mapStateToProps = state => ({
@@ -43,7 +59,6 @@ const mapDispatchToProps = dispatch => ({
     if (isGoNextStep) {
       dispatch(nextStep(nextStepId));
       dispatch(getNewBubble(nextStepId));
-      // goNextAuto = (nextId, isNeedClick)
     }
   },
   onCardClick: link => {
@@ -51,6 +66,22 @@ const mapDispatchToProps = dispatch => ({
   },
   onDownloadBtnClick: link => {
     dispatch(downloadCV(link));
+  },
+  onContainerScroll: (eleId, delayTimer) => { // delayTimer
+    const delayPromise = timerPromise(delayTimer);
+    delayPromise.then(res => {
+      if (res === "SUCCESS") {
+        const innerBox = document.getElementById("chatbox-inner");
+        const eleRect = document.getElementById(eleId);
+        if (eleRect) { // height &&
+          const moveDist = eleRect.getBoundingClientRect().top - innerBox.getBoundingClientRect().top;
+          console.log("@@ Move Dist: ", moveDist);
+          dispatch(updateScrollTop(moveDist));
+        } else {
+          // console.log("@@ ELERECT is not exist!1");
+        }
+      }
+    });
   }
 });
 

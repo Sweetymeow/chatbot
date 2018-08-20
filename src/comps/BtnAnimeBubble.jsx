@@ -13,9 +13,8 @@ const moveRightVal = [{ transform: "translate(calc((75vw - 2.4rem) * .5))" }, { 
 class BtnAnimeBubble extends React.Component {
   constructor(props) {
     super(props);
-    // this.myRef = React.createRef();
     this.btnToTextBub = this.btnToTextBub.bind(this);
-    this.updateScrollTop = this.updateScrollTop.bind(this);
+    // this.updateScrollTop = this.updateScrollTop.bind(this);
     this.state = {
       showBtnGroup: false,
       activeIndex: [],
@@ -55,17 +54,17 @@ class BtnAnimeBubble extends React.Component {
       }));
     }, fadeTimer);
   }
-
-  updateScrollTop(eleRect) {
-    const innerBox = document.getElementById("chatbox-inner");
-    const { getScrollTop } = this.props;
-    // console.log("@@ ELE Rect Top: ", eleRect.getBoundingClientRect().top);
-    setTimeout(() => {
-      const moveDist = eleRect.getBoundingClientRect().top - innerBox.getBoundingClientRect().top;
-      console.log("@@ Move Dist: ", moveDist);
-      getScrollTop(moveDist);
-    }, 1);
-  }
+  //
+  // updateScrollTop(eleRect) {
+  //   const innerBox = document.getElementById("chatbox-inner");
+  //   const { getScrollTop, delayTimer } = this.props;
+  //   // console.log("@@ ELE Rect Top: ", eleRect.getBoundingClientRect().top);
+  //   setTimeout(() => {
+  //     const moveDist = eleRect.getBoundingClientRect().top - innerBox.getBoundingClientRect().top;
+  //     console.log("@@ Move Dist: ", moveDist);
+  //     getScrollTop(moveDist);
+  //   }, delayTimer);
+  // }
 
   render() {
     const { activeIndex, animeStyle, showBtnGroup, showAnswerBub, answerText } = this.state;
@@ -93,7 +92,7 @@ class BtnAnimeBubble extends React.Component {
                           key={item.opId + 2}
                           style={animeStyle}
                           onClick={(e, { value }) => {
-                            this.updateScrollTop(eleRect);
+                            // this.updateScrollTop(eleRect);
 
                             this.setState({
                               answerText: value,
@@ -134,7 +133,7 @@ BtnAnimeBubble.propTypes = {
   delayTimer: PropTypes.number,
   onBtnClick: PropTypes.func,
   checkNextStep: PropTypes.func,
-  getScrollTop: PropTypes.func,
+  // getScrollTop: PropTypes.func,
   isGoNextStep: PropTypes.bool,
   nextStepId: PropTypes.number,
   id: PropTypes.string,

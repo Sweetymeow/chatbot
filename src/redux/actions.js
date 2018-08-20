@@ -79,12 +79,14 @@ const updateContainerHeight = height => ({
   height
 });
 
+/*-------- action for Scroll Animation --------*/
+
 const updateScrollTop = height => ({
   type: C.UPDATE_SCROLLTOP,
   height: height + 16
 });
 
-const scrollToPosition = pos => ({
+const scrollToPosition = (pos) => ({
   type: C.SCROLL_TO_POS,
   pos
 });

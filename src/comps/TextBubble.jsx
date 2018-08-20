@@ -26,9 +26,9 @@ class TextBubble extends React.Component {
 
   render() {
     const { isShowText } = this.state;
-    const { text, type } = this.props;
+    const { text, type, id } = this.props;
     return (
-      <div className="bub-fullwidth">
+      <div className="bub-fullwidth" id={id}>
         { type !== "user" ? (
           <div className="text-bubble left-bubble" >
               {text.map((item, i) => (
@@ -54,6 +54,7 @@ TextBubble.propTypes = {
   isGoNextStep: PropTypes.bool,
   nextStepId: PropTypes.number,
   type: PropTypes.string,
+  id: PropTypes.string,
   delayTimer: PropTypes.number,
   onCheckNextAuto: PropTypes.func
   // html: PropTypes.string

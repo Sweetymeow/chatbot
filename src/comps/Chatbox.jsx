@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import '../styles/Chatbox.css';
 import { CBUB, DELAY_TIMER } from '../redux/constants';
-
+import scrollAnime from './scrollAnime';
 //Bubble Comps
 import ImgBubble from './ImgBubble';
 import TextBubble from './TextBubble';
@@ -23,7 +23,7 @@ class Chatbox extends React.Component {
       container: null
     };
     this.getTextArr = this.getTextArr.bind(this);
-    this.scrollAnime = this.scrollAnime.bind(this);
+    // this.scrollAnime = this.scrollAnime.bind(this);
     this.scrollToPosition = this.scrollToPosition.bind(this);
   }
 
@@ -53,33 +53,33 @@ class Chatbox extends React.Component {
 
     setTimeout(() => {
       if ( scrollTop - container.scrollTop > 0 ) {
-        console.log(`${container.scrollTop} -> Scroll to -> ${scrollTop}`);
-        this.scrollAnime(container, container.scrollTop, scrollTop, 10);
+        // console.log(`${container.scrollTop} -> Scroll to -> ${scrollTop}`);
+        scrollAnime(container, container.scrollTop, scrollTop, 10);
       }
     }, 1);
   }
 
-  scrollAnime(container, currentST, targetST, step) {
-    // 计算需要移动的距离
-    const stepPX = step || 10;
-    const needScrollTop = targetST - currentST;
-    let _currentST = currentST;
-
-    setTimeout(() => { // 一次调用滑动帧数，每次调用会不一样
-      const dist = Math.ceil(needScrollTop / stepPX);
-      _currentST += dist;
-      container.scrollTop = _currentST;
-      // 如果移动幅度小于十个像素，直接移动，否则递归调用，实现动画效果
-      if (needScrollTop > stepPX || needScrollTop < -stepPX) {
-        this.scrollAnime(container, _currentST, targetST, step);
-      } else {
-        container.scrollTop = targetST;
-      }
-    }, 10);
-  }
+  // scrollAnime(container, currentST, targetST, step) {
+  //   // 计算需要移动的距离
+  //   const stepPX = step || 10;
+  //   const needScrollTop = targetST - currentST;
+  //   let _currentST = currentST;
+  //
+  //   setTimeout(() => { // 一次调用滑动帧数，每次调用会不一样
+  //     const dist = Math.ceil(needScrollTop / stepPX);
+  //     _currentST += dist;
+  //     container.scrollTop = _currentST;
+  //     // 如果移动幅度小于十个像素，直接移动，否则递归调用，实现动画效果
+  //     if (needScrollTop > stepPX || needScrollTop < -stepPX) {
+  //       this.scrollAnime(container, _currentST, targetST, step);
+  //     } else {
+  //       container.scrollTop = targetST;
+  //     }
+  //   }, 10);
+  // }
 
   render() {
-    const { allBubbles, onBubbleClick, onCheckNextStep, getBoxHeight, getContainerHeight, getScrollTop } = this.props; // containerHeight,
+    const { allBubbles, onBubbleClick, onCheckNextStep, getBoxHeight, getContainerHeight, getScrollTop, onContainerScroll } = this.props; // containerHeight,
     const { container } = this.state;
     return (
       <section className="chatbox-container" ref={ele => {
@@ -93,6 +93,9 @@ class Chatbox extends React.Component {
         <div id={innerBoxId}>
         {/* <CardsBubble bubInfo={bubInfo[0].options} /> */}
         {allBubbles.map((bub) => {
+          if (bub.isTriggerAnime) {
+            onContainerScroll(bub.targetId, bub.delayTimer * 2);
+          }
           if (bub.bubType === CBUB.TEXT_BUBBLE) {
             return (
               <TextBubble id={`bubble-${bub.stepId}`}
@@ -116,7 +119,6 @@ class Chatbox extends React.Component {
           }
           if (bub.bubType === CBUB.BUTTONGROUP_BUBBLE) {
             return (
-            // parentRect={element ? element.getBoundingClientRect() : null}
             <BtnAnimeBubble
               id={`bubble-${bub.stepId}`}
               key={bub.stepId}
@@ -126,9 +128,9 @@ class Chatbox extends React.Component {
               isGoNextStep={bub.isGoNextAuto}
               nextStepId={bub.nextStepId}
               checkNextStep={onCheckNextStep}
-              getScrollTop={getScrollTop}
               label={bub.label}
             />);
+            // getScrollTop={getScrollTop}
           }
           if (bub.bubType === CBUB.INPUTPW_BUBBLE) {
             return (<PWInput key={bub.stepId}
@@ -162,6 +164,7 @@ Chatbox.propTypes = {
   getScrollTop: PropTypes.func,
   getBoxHeight: PropTypes.func,
   getContainerHeight: PropTypes.func,
+  onContainerScroll: PropTypes.func,
   allBubbles: PropTypes.arrayOf(
     PropTypes.shape({
       stepId: PropTypes.number.isRequired,

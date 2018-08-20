@@ -43,5 +43,6 @@
   },
   "eslintConfig": {
     "extends": "react-app"
-  }
+  },
+  "homepage": "https://vadbqww.lab.od.sap.biz:30211/PayEquity_XS_Project/newui/WebContent/"
 }
