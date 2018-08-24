@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import '../styles/Chatbox.css';
+import { Image } from 'semantic-ui-react';
 import { CBUB, DELAY_TIMER } from '../redux/constants';
 import scrollAnime from './scrollAnime';
 //Bubble Comps
@@ -10,9 +11,7 @@ import BtnAnimeBubble from './BtnAnimeBubble';
 // import BtnAnimeContainer from '../container/BtnAnimeContainer';
 import PWInput from './PWInput';
 import CardsBubble from './CardsBubble';
-//Image
-// import Gopher from '../res/Gopher.png';
-import { Gopher, successText } from '../res/imgBundle';
+import { Gopher, successText, fadeImg1 } from '../res/imgBundle';
 
 const innerBoxId = "chatbox-inner";
 
@@ -59,29 +58,11 @@ class Chatbox extends React.Component {
     }, 1);
   }
 
-  // scrollAnime(container, currentST, targetST, step) {
-  //   // 计算需要移动的距离
-  //   const stepPX = step || 10;
-  //   const needScrollTop = targetST - currentST;
-  //   let _currentST = currentST;
-  //
-  //   setTimeout(() => { // 一次调用滑动帧数，每次调用会不一样
-  //     const dist = Math.ceil(needScrollTop / stepPX);
-  //     _currentST += dist;
-  //     container.scrollTop = _currentST;
-  //     // 如果移动幅度小于十个像素，直接移动，否则递归调用，实现动画效果
-  //     if (needScrollTop > stepPX || needScrollTop < -stepPX) {
-  //       this.scrollAnime(container, _currentST, targetST, step);
-  //     } else {
-  //       container.scrollTop = targetST;
-  //     }
-  //   }, 10);
-  // }
-
   render() {
-    const { allBubbles, onBubbleClick, onCheckNextStep, getBoxHeight, getContainerHeight, getScrollTop, onContainerScroll } = this.props; // containerHeight,
+    const { allBubbles, onBubbleClick, onCheckNextStep, getContainerHeight, getScrollTop, onContainerScroll } = this.props; // containerHeight, getBoxHeight
     const { container } = this.state;
     return (
+      <div id="testId">
       <section className="chatbox-container" ref={ele => {
         getContainerHeight(ele ? ele.offsetHeight : 0);
         if (!container && ele) {
@@ -154,9 +135,15 @@ class Chatbox extends React.Component {
         })
       }
         </div>
+        <section>
+          <Image src={fadeImg1} size="medium" disabled id="fade-top-img" />
+          <Image src={fadeImg1} size="medium" disabled id="fade-bottom-img" />
+          <Image src={fadeImg1} size="medium" disabled id="fade-bottom-img" />
+        </section>
         <div className="heightHolder">..</div>
+
         {/* <div className="heightHolder" style={{ height: `${Math.floor(containerHeight / 2)}px` }}>..</div> */}
-      </section>);
+      </section></div>);
   }
 }
 

@@ -84,10 +84,40 @@
 #hidden {
   display: none; }
 
+#fade-top-img {
+  position: absolute;
+  width: 60vw;
+  z-index: 100;
+  top: 7.6vh;
+  left: 20vw;
+  height: 4vh;
+  opacity: 1; }
+
+#fade-bottom-img {
+  position: absolute;
+  transform: rotate(180deg);
+  width: 60vw;
+  z-index: 100;
+  left: 20vw;
+  bottom: 19.6vh;
+  height: 4vh;
+  opacity: 1; }
+
+#testId {
+  position: absolute;
+  left: 20vw;
+  margin: 0;
+  width: 60vw;
+  height: 72vh;
+  overflow: hidden;
+  top: 8vh;
+  border-radius: .5rem;
+  background-color: #FFF;
+  box-shadow: -1px 2px 28px 1px rgba(155, 155, 155, 0.35); }
+
 .chatbox-container {
-  margin: 8vh auto 18vh auto;
   padding: 1.4rem 2rem;
-  max-width: 60vw;
+  width: 100%;
   height: 72vh;
   overflow-x: hidden;
   overflow-y: scroll;

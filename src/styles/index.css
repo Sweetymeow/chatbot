@@ -71,7 +71,8 @@ body {
   font-family: "SF Display", Helvetica, sans-serif;
   height: 100vh;
   width: 100vw;
-  overflow: hidden; }
+  overflow: hidden;
+  position: relative; }
   body #root {
     height: 100%;
     width: 100%;
