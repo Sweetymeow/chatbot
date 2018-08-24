@@ -9,9 +9,12 @@
             <stop stop-color="#FFFFFF" stop-opacity="0" offset="100%"></stop>
         </linearGradient>
     </defs>
-    <g id="Draft" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Fade" fill="url(#linearGradient-1)" fill-rule="nonzero">
-            <rect id="fade_v1" x="0" y="0" width="1440" height="64"></rect>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" fill="url(#linearGradient-1)" fill-rule="nonzero">
+            <g id="fade_v1">
+                <rect x="0" y="0" width="1440" height="64"></rect>
+                <rect id="fade_v1-copy" x="0" y="0" width="1440" height="64"></rect>
+            </g>
         </g>
     </g>
 </svg>

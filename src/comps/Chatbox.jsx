@@ -63,86 +63,85 @@ class Chatbox extends React.Component {
     const { container } = this.state;
     return (
       <div id="testId">
-      <section className="chatbox-container" ref={ele => {
-        getContainerHeight(ele ? ele.offsetHeight : 0);
-        if (!container && ele) {
-          this.setState({
-            container: ele
-          });
-        }
-      }} id="chatbox-outer">
-        <Image src={fadeImg1} size="medium" disabled id="fade-top-img" />
-        <Image src={fadeImg1} size="medium" disabled id="fade-bottom-img" />
-        <Image src={fadeImg1} size="medium" disabled id="fade-bottom-img" />
-        <div id={innerBoxId}>
-        {/* <CardsBubble bubInfo={bubInfo[0].options} /> */}
-        {allBubbles.map((bub) => {
-          if (bub.isTriggerAnime) {
-            onContainerScroll(bub.targetId, bub.delayTimer * 2);
+        <section className="chatbox-container" ref={ele => {
+          getContainerHeight(ele ? ele.offsetHeight : 0);
+          if (!container && ele) {
+            this.setState({
+              container: ele
+            });
           }
-          if (bub.bubType === CBUB.TEXT_BUBBLE) {
-            return (
-              <TextBubble id={`bubble-${bub.stepId}`}
+        }} id="chatbox-outer">
+          <Image src={fadeImg1} size="medium" disabled id="fade-top-img" />
+          <Image src={fadeImg1} size="medium" disabled id="fade-bottom-img" />
+          <div id={innerBoxId}>
+          {/* <CardsBubble bubInfo={bubInfo[0].options} /> */}
+          {allBubbles.map((bub) => {
+            if (bub.isTriggerAnime) {
+              onContainerScroll(bub.targetId, bub.delayTimer * 2);
+            }
+            if (bub.bubType === CBUB.TEXT_BUBBLE) {
+              return (
+                <TextBubble id={`bubble-${bub.stepId}`}
+                  key={bub.stepId}
+                  delayTimer={bub.delayTimer || 600}
+                  isGoNextStep={bub.isGoNextAuto}
+                  nextStepId={bub.nextStepId}
+                  onCheckNextAuto={onCheckNextStep}
+                  text={this.getTextArr(bub.bubContent.text)} speaker="bot" />);
+            }
+            if (bub.bubType === CBUB.IMAGE_BUBBLE) {
+              console.log("Image bub: ", bub);
+              return ( <ImgBubble id={`bubble-${bub.stepId}`}
                 key={bub.stepId}
                 delayTimer={bub.delayTimer || 600}
+                checkNextStep={onCheckNextStep}
+                imgSrc={bub.bubContent.imgSrc === "Gopher" ? Gopher : successText}
+                imgSize={bub.bubContent.imgSize}
+                isScroll={bub.bubContent.isScroll} />
+              );
+            }
+            if (bub.bubType === CBUB.BUTTONGROUP_BUBBLE) {
+              return (
+              <BtnAnimeBubble
+                id={`bubble-${bub.stepId}`}
+                key={bub.stepId}
+                delayTimer={bub.delayTimer || 600}
+                options={bub.options}
+                onBtnClick={onBubbleClick}
                 isGoNextStep={bub.isGoNextAuto}
                 nextStepId={bub.nextStepId}
-                onCheckNextAuto={onCheckNextStep}
-                text={this.getTextArr(bub.bubContent.text)} speaker="bot" />);
-          }
-          if (bub.bubType === CBUB.IMAGE_BUBBLE) {
-            console.log("Image bub: ", bub);
-            return ( <ImgBubble id={`bubble-${bub.stepId}`}
-              key={bub.stepId}
-              delayTimer={bub.delayTimer || 600}
-              checkNextStep={onCheckNextStep}
-              imgSrc={bub.bubContent.imgSrc === "Gopher" ? Gopher : successText}
-              imgSize={bub.bubContent.imgSize}
-              isScroll={bub.bubContent.isScroll} />
-            );
-          }
-          if (bub.bubType === CBUB.BUTTONGROUP_BUBBLE) {
-            return (
-            <BtnAnimeBubble
-              id={`bubble-${bub.stepId}`}
-              key={bub.stepId}
-              delayTimer={bub.delayTimer || 600}
-              options={bub.options}
-              onBtnClick={onBubbleClick}
-              isGoNextStep={bub.isGoNextAuto}
-              nextStepId={bub.nextStepId}
-              checkNextStep={onCheckNextStep}
-              label={bub.label}
-            />);
-            // getScrollTop={getScrollTop}
-          }
-          if (bub.bubType === CBUB.INPUTPW_BUBBLE) {
-            return (<PWInput key={bub.stepId}
-                id={`bubble-${bub.stepId}`}
-                delayTimer={bub.delayTimer || 600}
-                onBtnClick={onBubbleClick}
-                nextStepId={bub.nextStepId}
-                label={bub.label} enableBack clearBox={this.handleClearBox} />
-            );
-          }
-          if (bub.bubType === CBUB.CARDS_BUBBLE) {
-            return (
-              <CardsBubble key={bub.stepId}
-                id={`bubble-${bub.stepId}`}
-                delayTimer={bub.delayTimer || 600}
                 checkNextStep={onCheckNextStep}
-                getScrollTop={getScrollTop}
-                bubInfo={bub.options} />);
-          }
-          return null;
-        })
-      }
-        </div>
-        <div className="heightHolder">..</div>
+                label={bub.label}
+              />);
+              // getScrollTop={getScrollTop}
+            }
+            if (bub.bubType === CBUB.INPUTPW_BUBBLE) {
+              return (<PWInput key={bub.stepId}
+                  id={`bubble-${bub.stepId}`}
+                  delayTimer={bub.delayTimer || 600}
+                  onBtnClick={onBubbleClick}
+                  nextStepId={bub.nextStepId}
+                  label={bub.label} enableBack clearBox={this.handleClearBox} />
+              );
+            }
+            if (bub.bubType === CBUB.CARDS_BUBBLE) {
+              return (
+                <CardsBubble key={bub.stepId}
+                  id={`bubble-${bub.stepId}`}
+                  delayTimer={bub.delayTimer || 600}
+                  checkNextStep={onCheckNextStep}
+                  getScrollTop={getScrollTop}
+                  bubInfo={bub.options} />);
+            }
+            return null;
+          })
+        }
+          </div>
+          <div className="heightHolder">..</div>
 
-        {/* <div className="heightHolder" style={{ height: `${Math.floor(containerHeight / 2)}px` }}>..</div> */}
-      </section>
-    </div>);
+          {/* <div className="heightHolder" style={{ height: `${Math.floor(containerHeight / 2)}px` }}>..</div> */}
+        </section>
+      </div>);
   }
 }
 

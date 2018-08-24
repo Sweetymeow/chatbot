@@ -3,6 +3,12 @@ import PropTypes from 'prop-types';
 import { Transition } from 'semantic-ui-react';
 import '../styles/Chatbox.css';
 
+const LinkSpan = (props) => {
+  return (
+    <a href={props.linkHref}>{props.linkText}</a>
+  )
+};
+
 class TextBubble extends React.Component {
   constructor(props) {
     super(props);
