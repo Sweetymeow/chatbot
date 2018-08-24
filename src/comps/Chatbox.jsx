@@ -71,6 +71,9 @@ class Chatbox extends React.Component {
           });
         }
       }} id="chatbox-outer">
+        <Image src={fadeImg1} size="medium" disabled id="fade-top-img" />
+        <Image src={fadeImg1} size="medium" disabled id="fade-bottom-img" />
+        <Image src={fadeImg1} size="medium" disabled id="fade-bottom-img" />
         <div id={innerBoxId}>
         {/* <CardsBubble bubInfo={bubInfo[0].options} /> */}
         {allBubbles.map((bub) => {
@@ -135,15 +138,11 @@ class Chatbox extends React.Component {
         })
       }
         </div>
-        <section>
-          <Image src={fadeImg1} size="medium" disabled id="fade-top-img" />
-          <Image src={fadeImg1} size="medium" disabled id="fade-bottom-img" />
-          <Image src={fadeImg1} size="medium" disabled id="fade-bottom-img" />
-        </section>
         <div className="heightHolder">..</div>
 
         {/* <div className="heightHolder" style={{ height: `${Math.floor(containerHeight / 2)}px` }}>..</div> */}
-      </section></div>);
+      </section>
+    </div>);
   }
 }
 

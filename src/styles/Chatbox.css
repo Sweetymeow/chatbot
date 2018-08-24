@@ -84,25 +84,6 @@
 #hidden {
   display: none; }
 
-#fade-top-img {
-  position: absolute;
-  width: 60vw;
-  z-index: 100;
-  top: 7.6vh;
-  left: 20vw;
-  height: 4vh;
-  opacity: 1; }
-
-#fade-bottom-img {
-  position: absolute;
-  transform: rotate(180deg);
-  width: 60vw;
-  z-index: 100;
-  left: 20vw;
-  bottom: 19.6vh;
-  height: 4vh;
-  opacity: 1; }
-
 #testId {
   position: absolute;
   left: 20vw;
@@ -332,6 +313,25 @@
     @media only screen and (orientation: portrait) and (max-width: 414px) {
       .chatbox-container .heightHolder {
         height: 40vh; } }
+
+#fade-top-img {
+  position: absolute;
+  width: 60vw;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  height: 4vh;
+  opacity: 1; }
+
+#fade-bottom-img {
+  position: absolute;
+  transform: rotate(180deg);
+  width: 60vw;
+  z-index: 100;
+  left: 0;
+  bottom: 0;
+  height: 4vh;
+  opacity: 1; }
 
 #chatbox-outer {
   opacity: 0;
