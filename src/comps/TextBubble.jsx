@@ -2,11 +2,18 @@ import React from 'react'
 import PropTypes from 'prop-types';
 import { Transition } from 'semantic-ui-react';
 import '../styles/Chatbox.css';
+import CSSLoader from './CSSLoader';
 
-const LinkSpan = (props) => {
+const Boldspan = (props) => {
+  return (
+    <strong>{props.text}</strong>
+  );
+};
+
+const Linkspan = (props) => {
   return (
     <a href={props.linkHref}>{props.linkText}</a>
-  )
+  );
 };
 
 class TextBubble extends React.Component {
@@ -15,6 +22,7 @@ class TextBubble extends React.Component {
     this.state = {
       isShowText: false
     };
+    this.checkBold = this.checkBold.bind(this);
   }
 
   componentDidMount() {
@@ -30,30 +38,66 @@ class TextBubble extends React.Component {
     }, delayTimer);
   }
 
+  checkBold(text, link) {
+    const textArr = text.split("**");
+    const newTextArr = textArr.map(item => {
+      if (item.indexOf("[[") > 0) {
+        const linkArr = item.split("[[");
+        console.log(linkArr);
+        return <span>{linkArr[0]} <Linkspan linkText={` ${linkArr[1]} `} linkHref={link} /> {linkArr[2]}</span>
+      }
+      return item
+    });
+    return newTextArr; //textArr;
+  }
+
   render() {
-    const { isShowText } = this.state;
+    const { isShowText, link } = this.state;
     const { text, type, id } = this.props;
     return (
       <div className="bub-fullwidth" id={id}>
-        { type !== "user" ? (
+        { isShowText ? (
           <div className="text-bubble left-bubble" >
-              {text.map((item, i) => (
-                <Transition key={i}
-                  visible={isShowText}
-                  animation="fade down"
-                  duration={1000}>
-                  <p>{item}</p>
-                </Transition>))}
-              {/* <Image className="bot-tail-left" src={BubTail} /> */}
+            { text.map((item, i) => {
+              const textArr = this.checkBold(item, link);
+              return (
+                  <Transition key={i}
+                    visible={isShowText}
+                    animation="fade down"
+                    duration={1000}>
+                    <p>
+                      {textArr[0]}
+                      {<Boldspan text={textArr[1]} />}
+                      {textArr[2]}
+                    </p>
+                    {/*<p>{item}</p>*/}
+                  </Transition>);
+            })
+          }
           </div>) : (
-          <div className="text-bubble right-bubble" >
-            {text.map((item, i) => <p key={i}>{item}</p>)}
+          <div className="text-bubble left-bubble loader-container" >
+            <CSSLoader />
           </div>)
         }
       </div>
     );
   }
 }
+// CSSLoader
+// { type !== "user" ? (
+//   <div className="text-bubble left-bubble" >
+//       {text.map((item, i) => (
+//         <Transition key={i}
+//           visible={isShowText}
+//           animation="fade down"
+//           duration={1000}>
+//           <p>{item}</p>
+//         </Transition>))}
+//   </div>) : (
+//   <div className="text-bubble right-bubble" >
+//     {text.map((item, i) => <p key={i}>{item}</p>)}
+//   </div>)
+// }
 
 TextBubble.propTypes = {
   text: PropTypes.array.isRequired,

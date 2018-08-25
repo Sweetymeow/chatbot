@@ -23,7 +23,8 @@ const textBub1 = {
   options: [],
   delayTimer: DELAY_TIMER * 1,
   bubContent: {
-    text: "My name is Juan!!!. I am a UX/UI designer currently working at SAP.",
+    text: "My name is **Juan**!!!. I am a **UX/UI designer** currently working at [[SAP]].",
+    link: 'http://design.sap.com/',
     html: "My name is <s>Juan</s>. I am a <s>UX / UI designer</s> currently working at <s className='underline'>SAP</s>."
   },
   isTriggerAnime: false
@@ -140,6 +141,11 @@ const inputBub8 = {
   options: [{
     opId: 0,
     opRequest: 'ok',
+    nextStepLink: 'firstrecommendedproject.html',
+    nextStepId: null
+  }, {
+    opId: 1,
+    opRequest: 'FAIL',
     nextStepId: 9
   }],
   bubContent: {},

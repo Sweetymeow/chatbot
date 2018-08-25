@@ -87,6 +87,7 @@ class Chatbox extends React.Component {
                   isGoNextStep={bub.isGoNextAuto}
                   nextStepId={bub.nextStepId}
                   onCheckNextAuto={onCheckNextStep}
+                  link={bub.bubContent.link}
                   text={this.getTextArr(bub.bubContent.text)} speaker="bot" />);
             }
             if (bub.bubType === CBUB.IMAGE_BUBBLE) {
@@ -118,6 +119,7 @@ class Chatbox extends React.Component {
             if (bub.bubType === CBUB.INPUTPW_BUBBLE) {
               return (<PWInput key={bub.stepId}
                   id={`bubble-${bub.stepId}`}
+                  options={bub.options}
                   delayTimer={bub.delayTimer || 600}
                   onBtnClick={onBubbleClick}
                   nextStepId={bub.nextStepId}

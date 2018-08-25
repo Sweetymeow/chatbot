@@ -3,6 +3,7 @@
   position: relative;
   width: 64px;
   height: 64px;
+  transform: scale(.6);
 }
 .lds-ellipsis div {
   position: absolute;
@@ -10,7 +11,7 @@
   width: 11px;
   height: 11px;
   border-radius: 50%;
-  background: #fff;
+  background: #19ad8c;
   animation-timing-function: cubic-bezier(0, 1, 1, 0);
 }
 .lds-ellipsis div:nth-child(1) {

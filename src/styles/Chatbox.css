@@ -141,6 +141,13 @@
     .chatbox-container .text-bubble p {
       margin: 0.2rem auto;
       font-size: 1rem; }
+  .chatbox-container .text-bubble.left-bubble.loader-container {
+    height: 4.6rem;
+    width: 7.2rem; }
+    .chatbox-container .text-bubble.left-bubble.loader-container .lds-ellipsis {
+      position: absolute;
+      left: 1.3rem;
+      top: 0; }
   .chatbox-container .text-bubble.left-bubble {
     background: #f7f7f7; }
     .chatbox-container .text-bubble.left-bubble:after {
