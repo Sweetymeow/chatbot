@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Icon, Confirm, Form, Button, TextArea, Message, Transition } from 'semantic-ui-react';
-import { toggInputVisible, updateScrollTop } from '../redux/actions';
+import { toggInputVisible, updateScrollTop, fetchPostEmail } from '../redux/actions';
 import { DELAY_TIMER, HOMEPAGE_LINK } from '../redux/constants';
 // import { success } from '../res/imgBundle';
 import '../styles/Chatbox.css';
@@ -39,8 +39,6 @@ class PWInput extends React.Component {
     this.handleAlertDismiss = this.handleAlertDismiss.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleEmailRequestSubmit = this.handleEmailRequestSubmit.bind(this);
-    this.scrollToForm = this.scrollToForm.bind(this);
-    // this.submitPWRequest = this.submitPWRequest.bind(this);
   }
 
   componentDidMount() {
@@ -144,6 +142,7 @@ class PWInput extends React.Component {
 
   handleEmailRequestSubmit() {
     const { userMessage, userEmail } = this.state;
+
     if (userEmail.indexOf("@") < 0 || userEmail.indexOf(".com") < 0) {
       console.log("EMAIL FORMAT ERROR");
       this.setState({
@@ -151,14 +150,25 @@ class PWInput extends React.Component {
       });
     } else {
       const userId = firebase.auth().currentUser.uid || "test12345";
-      firebase.database().ref(`users/${userId}`).set({
+      const date = new Date();
+      firebase.database().ref(`users/${userId}-${date.toString()}`).set({
         userId,
         email: userEmail,
         context: userMessage
       });
+      // this.postEmailReqeust();
+      this.props.postEmailMessage({
+        email: userEmail,
+        content: userMessage
+      })
       this.props.onBtnClick(emailSuccessId); // nextID, bubInfo
     }
   }
+
+  // async postEmailReqeust() {
+  //   const result = await fetchPostEmail();
+  //   return result.then(data => console.log(data));
+  // }
 
   handleAlertDismiss() {
     this.setState({
@@ -260,7 +270,10 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   getInputVisible: (isVisible) => dispatch(toggInputVisible(isVisible)),
   getScrollTopHeight: (height) => {
-    dispatch(updateScrollTop(height))
+    dispatch(updateScrollTop(height));
+  },
+  postEmailMessage: (data) => {
+    dispatch(fetchPostEmail(data));
   }
 });
 
@@ -272,6 +285,7 @@ PWInput.propTypes = {
   nextStepId: PropTypes.number,
   onBtnClick: PropTypes.func,
   getInputVisible: PropTypes.func,
+  postEmailMessage: PropTypes.func,
   getScrollTopHeight: PropTypes.func
 };
 

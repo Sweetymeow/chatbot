@@ -1,5 +1,5 @@
 import fetch from 'cross-fetch';
-import { C, TESTC } from './constants';
+import { C, TESTC, GMAIL_URL } from './constants';
 import { imgBub0, textBub1, textBub2, btnBub3, textBub4, textBub5, btnBub6, textBub7, inputBub8, textBub9, cardsBub10, textBub11, btnBub12, imgBub13 } from './bubble_sample';
 import initState from './initState.json';
 import firebase from '../firebase';
@@ -157,6 +157,28 @@ const fetchWeather = (city) => dispatch => {
 };
 // 返回一个等待处理的 promise。这并不是 redux middleware 所必须的
 
+const postUserEmail = (res) => ({
+  type: C.FETCH_USER_EMAIL,
+  res
+});
+
+const fetchPostEmail = (data) => dispatch => {
+  return fetch(GMAIL_URL,
+    { method: "POST",
+      mode: "cors", // no-cors, cors, *same-origin
+      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+      credentials: "same-origin", // include, same-origin, *omit
+      headers: {
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      body: JSON.stringify(data)// body data type must match "Content-Type" header
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch(postUserEmail(res));
+    });
+};
+
 const getInitBubbles = (delay) => dispatch => {
   // dispatch(initBubbles(delay));
   console.log("initState: ", initState);
@@ -187,4 +209,4 @@ const fetchPostsIfNeeded = (city) => (dispatch, getState) => {
   // return Promise.resolve();
 }
 
-export { getInitBubbles, getNewBubble, nextStep, removeBubble, downloadCV, openNewTab, fetchRequest, getFiredata, goNextAuto, clickBtnInGroup, getActiveIndexArray, toggleVisible, toggInputVisible, getAnimeStyle, updateBoxHeight, updateContainerHeight, updateScrollTop, scrollToPosition, requestBubbles, receiveBubbles, fetchWeather, fetchPostsIfNeeded, getCurrentUser };
+export { getInitBubbles, getNewBubble, nextStep, removeBubble, downloadCV, openNewTab, fetchRequest, getFiredata, goNextAuto, clickBtnInGroup, getActiveIndexArray, toggleVisible, toggInputVisible, getAnimeStyle, updateBoxHeight, updateContainerHeight, updateScrollTop, scrollToPosition, requestBubbles, receiveBubbles, fetchWeather, fetchPostsIfNeeded, getCurrentUser, fetchPostEmail };

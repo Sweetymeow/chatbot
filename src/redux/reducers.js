@@ -56,6 +56,8 @@ export const inputVisible = (state = false, action) => (action.type === C.TOGGLE
 
 export const animeStyle = (state = {}, action) => (action.type === C.BTN_MOVE ? action.style : state);
 
+export const postEmailResult = (state = {}, action) => (action.type === C.FETCH_USER_EMAIL ? action.res : state);
+
 export const allBubbles = (state = [], action) => {
   //let hasProduct = state.some( prod => prod.step_id === action.payload.step_id );
   switch (action.type) {
@@ -82,6 +84,7 @@ export default combineReducers({
   scrollTop,
   containerHeight,
   inputVisible,
+  postEmailResult,
   userInfo: combineReducers({
     getUserEmail,
     fetching,

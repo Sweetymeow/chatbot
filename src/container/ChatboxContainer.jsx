@@ -9,7 +9,7 @@ const scrollToNewPosition = (scrollTop) => {
   const container = document.getElementById("chatbox-outer");
 
   if ( scrollTop - container.scrollTop > 0 ) {
-    console.log(`${container.scrollTop} -> Scroll to -> ${scrollTop}`);
+    // console.log(`${container.scrollTop} -> Scroll to -> ${scrollTop}`);
     scrollAnime(container, container.scrollTop, scrollTop, 10);
   }
 };
@@ -75,7 +75,7 @@ const mapDispatchToProps = dispatch => ({
         const eleRect = document.getElementById(eleId);
         if (eleRect) { // height &&
           const moveDist = eleRect.getBoundingClientRect().top - innerBox.getBoundingClientRect().top;
-          console.log("@@ Move Dist: ", moveDist);
+          // console.log("@@ Move Dist: ", moveDist);
           dispatch(updateScrollTop(moveDist));
         } else {
           // console.log("@@ ELERECT is not exist!1");

@@ -2,6 +2,7 @@ const DELAY_TIMER = 600;
 const FADE_TIMER = 1000;
 
 const HOMEPAGE_LINK = 'http://firstrecommendedproject.html';
+const GMAIL_URL = 'https://script.google.com/macros/s/AKfycbwDpgp_nCrn7y6I8_JnP3sQdLg3gdtS_sfyQ6TduvwPCXi_3Vny/exec';
 
 const C = {
   INIT_STEP: "INIT_STEP",
@@ -20,6 +21,7 @@ const C = {
   SHOW_OPTIONS: "SHOW_OPTIONS",
   DEFAULT_USER_EMAIL: "DEFAULT_USER_EMAIL",
   FETCH_USER_PW: "FETCH_USER_PW",
+  FETCH_USER_EMAIL: "FETCH_USER_EMAIL",
   RECEIVE_DATA: "RECEIVE_DATA",
   CANCEL_FETCHING: "CANCEL_FETCHING",
   INIT_INDEXARRAY: "INIT_INDEXARRAY",
@@ -50,4 +52,4 @@ const CBUB = {
   CARDS_BUBBLE: "CARDS_BUBBLE"
 };
 
-export { C, CBUB, TESTC, DELAY_TIMER, FADE_TIMER, HOMEPAGE_LINK };
+export { C, CBUB, TESTC, DELAY_TIMER, FADE_TIMER, HOMEPAGE_LINK, GMAIL_URL };
