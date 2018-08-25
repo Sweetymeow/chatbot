@@ -87,11 +87,10 @@ class Chatbox extends React.Component {
                   isGoNextStep={bub.isGoNextAuto}
                   nextStepId={bub.nextStepId}
                   onCheckNextAuto={onCheckNextStep}
-                  link={bub.bubContent.link}
+                  bubContent={bub.bubContent}
                   text={this.getTextArr(bub.bubContent.text)} speaker="bot" />);
             }
             if (bub.bubType === CBUB.IMAGE_BUBBLE) {
-              console.log("Image bub: ", bub);
               return ( <ImgBubble id={`bubble-${bub.stepId}`}
                 key={bub.stepId}
                 delayTimer={bub.delayTimer || 600}

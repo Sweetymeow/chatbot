@@ -63,6 +63,11 @@
     margin: $mini-pw 0;
     font-size: $bub-text-size;
 
+    a{
+      font-weight: 600;
+      text-decoration: underline;
+    }
+
     p{
       margin: $text-pw auto;
       font-size: $bub-text-size;
@@ -72,6 +77,7 @@
   .text-bubble.left-bubble.loader-container{
     height: 4.6rem;
     width: 7.2rem;
+
     .lds-ellipsis{
       position: absolute;
       left: 1.3rem;

@@ -4,6 +4,8 @@ import { Transition } from 'semantic-ui-react';
 import '../styles/Chatbox.css';
 import CSSLoader from './CSSLoader';
 
+const sapLink = "http://design.sap.com/";
+
 const Boldspan = (props) => {
   return (
     <strong>{props.text}</strong>
@@ -12,7 +14,7 @@ const Boldspan = (props) => {
 
 const Linkspan = (props) => {
   return (
-    <a href={props.linkHref}>{props.linkText}</a>
+    <a href={sapLink} target="_blank" rel="noreferrer noopener">{props.linkText}</a>
   );
 };
 
@@ -38,13 +40,16 @@ class TextBubble extends React.Component {
     }, delayTimer);
   }
 
-  checkBold(text, link) {
+  checkBold(text) {
     const textArr = text.split("**");
     const newTextArr = textArr.map(item => {
       if (item.indexOf("[[") > 0) {
         const linkArr = item.split("[[");
-        console.log(linkArr);
-        return <span>{linkArr[0]} <Linkspan linkText={` ${linkArr[1]} `} linkHref={link} /> {linkArr[2]}</span>
+        return (
+          <span>
+            {linkArr[0]}
+            <Linkspan linkText={` ${linkArr[1]} `} /> {linkArr[2]}
+          </span>);
       }
       return item
     });
@@ -52,14 +57,14 @@ class TextBubble extends React.Component {
   }
 
   render() {
-    const { isShowText, link } = this.state;
-    const { text, type, id } = this.props;
+    const { isShowText } = this.state;
+    const { text, id } = this.props; // type
     return (
       <div className="bub-fullwidth" id={id}>
         { isShowText ? (
           <div className="text-bubble left-bubble" >
             { text.map((item, i) => {
-              const textArr = this.checkBold(item, link);
+              const textArr = this.checkBold(item);
               return (
                   <Transition key={i}
                     visible={isShowText}

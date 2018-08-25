@@ -1,6 +1,8 @@
 const DELAY_TIMER = 600;
 const FADE_TIMER = 1000;
 
+const HOMEPAGE_LINK = 'http://firstrecommendedproject.html';
+
 const C = {
   INIT_STEP: "INIT_STEP",
   NEXT_STEP: "NEXT_STEP",
@@ -48,4 +50,4 @@ const CBUB = {
   CARDS_BUBBLE: "CARDS_BUBBLE"
 };
 
-export { C, CBUB, TESTC, DELAY_TIMER, FADE_TIMER };
+export { C, CBUB, TESTC, DELAY_TIMER, FADE_TIMER, HOMEPAGE_LINK };

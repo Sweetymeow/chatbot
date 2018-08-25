@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Icon, Confirm, Form, Button, TextArea, Message, Transition } from 'semantic-ui-react';
 import { toggInputVisible, updateScrollTop } from '../redux/actions';
-import { DELAY_TIMER } from '../redux/constants';
-import { success } from '../res/imgBundle';
+import { DELAY_TIMER, HOMEPAGE_LINK } from '../redux/constants';
+// import { success } from '../res/imgBundle';
 import '../styles/Chatbox.css';
 import firebase from '../firebase';
 
@@ -50,9 +50,6 @@ class PWInput extends React.Component {
 
     setTimeout(() => {
       console.log("!!! Update Input Visible to TRUE");
-      // this.setState({
-      //   isPWSuccess: true
-      // });
       getInputVisible(true);
     }, delayTimer);
 
@@ -188,8 +185,8 @@ class PWInput extends React.Component {
       .signInWithEmailAndPassword(this.state.defaultEmail, this.state.password)
       .then( msg => {
         console.log("Success Log in - ", msg);
-        // window.open('https://www.google.com', '_blank');
-        onBtnClick(nextStepId);
+        window.open(HOMEPAGE_LINK, '_blank');
+        // onBtnClick(nextStepId);
       })
       .catch(error => { // Handle Errors here.
         this.setState({

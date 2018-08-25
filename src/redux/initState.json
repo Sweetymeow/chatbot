@@ -9,8 +9,7 @@
     "delayTimer": 500,
     "bubContent": {
       "text": "My name is **Juan**. $$ I am a **UX/UI designer** currently working at [[ SAP [[.",
-      "link": "http://design.sap.com/",
-      "html": "My name is <s>Juan</s>. I am a <s>UX / UI designer</s> currently working at <s className='underline'>SAP</s>."
+      "link": "http://design.sap.com/"
     }
   }]
 }

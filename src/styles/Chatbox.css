@@ -138,6 +138,9 @@
     position: relative;
     margin: 0.6rem 0;
     font-size: 1rem; }
+    .chatbox-container .text-bubble a {
+      font-weight: 600;
+      text-decoration: underline; }
     .chatbox-container .text-bubble p {
       margin: 0.2rem auto;
       font-size: 1rem; }

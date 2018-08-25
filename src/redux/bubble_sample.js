@@ -23,9 +23,8 @@ const textBub1 = {
   options: [],
   delayTimer: DELAY_TIMER * 1,
   bubContent: {
-    text: "My name is **Juan**!!!. I am a **UX/UI designer** currently working at [[SAP]].",
-    link: 'http://design.sap.com/',
-    html: "My name is <s>Juan</s>. I am a <s>UX / UI designer</s> currently working at <s className='underline'>SAP</s>."
+    text: "Hi！My name is **Juan**!!!. I am a **UX/UI designer** currently working at [[SAP]].",
+    link: 'http://design.sap.com/'
   },
   isTriggerAnime: false
 };
@@ -38,8 +37,7 @@ const textBub2 = {
   options: [],
   delayTimer: DELAY_TIMER * 2,
   bubContent: {
-    text: "Thanks for your interest in my portfolio! $$ May I ask your purpose of visiting today? :)",
-    html: "Thanks for your interest in my portfolio! <s>May I ask your purpose of visiting today? :)</s>"
+    text: "Thanks for your interest in my portfolio! $$ **May I ask your purpose of visiting today? :)**"
   },
   isTriggerAnime: false
 };
@@ -76,8 +74,7 @@ const textBub4 = {
   delayTimer: DELAY_TIMER,
   options: [],
   bubContent: {
-    text: "Nice to e-meet you! 😃 Here is my resume.",
-    html: "Nice to e-meet you! &#x1F601; Here is my resume."
+    text: "Nice to e-meet you! 😃 Here is my **resume**."
   },
   isTriggerAnime: false
 };// https://www.quackit.com/character_sets/emoji/emoji_v3.0/unicode_emoji_v3.0_characters_smileys_and_people.cfm
@@ -107,7 +104,7 @@ const btnBub6 = {
   options: [{
     opId: 0,
     opText: "Download CV",
-    opVal: "You download the Resume",
+    opVal: "You download the **Resume**",
     opImage: "../res/DOWNLOAD_CV.svg",
     opLink: "/static/media/cv.5e592567.pdf",
     nextStepId: 7
@@ -124,8 +121,7 @@ const textBub7 = {
   options: [],
   delayTimer: DELAY_TIMER * 3,
   bubContent: {
-    text: "I have been a pretty hands-on UX/UI designer for 3+ years on both B2C and B2B areas. The projects include both release and concept work that cross many industries such as medical, marketing, sales, utility and etc… Before I start to give you a guide, you need a password to access as all my projects are signed with NDA.",
-    html: "I have been a pretty hands-on UX/UI designer for <s>3+ years</s> on both <s>B2C</s> and <s>B2B</s> areas. The projects include both release and concept work that cross many industries such as <s>medical, marketing, sales, utility and etc…</s> Before I start to give you a guide, you need a password to access as all my projects are signed with NDA."
+    text: "I have been a pretty hands-on UX/UI designer for **3+ years** on both B2C and B2B areas. $$ The projects include both release and concept work that cross many industries such as **medical, marketing, sales, utility and etc…** $$ Before I start to give you a guide, you need a password to access as all my projects are signed with NDA."
   },
   isTriggerAnime: true,
   targetId: "bubble-3"
@@ -233,7 +229,7 @@ const btnBub12 = {
     opId: 1,
     opText: "My hobbies",
     opVal: "hobbies",
-    nextStepId: 14
+    nextStepId: 13
   }],
   bubContent: {},
   isTriggerAnime: true
