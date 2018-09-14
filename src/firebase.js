@@ -4,12 +4,12 @@ import firebase from 'firebase';
 // import 'firebase/<PACKAGE>';
 
 const config = {
-  apiKey: "AIzaSyA0Y4J-q6DMQfBwwzMTTCplw3siymlcujM",
-  authDomain: "chatlolw.firebaseapp.com",
-  databaseURL: "https://chatlolw.firebaseio.com",
-  projectId: "chatlolw",
-  storageBucket: "chatlolw.appspot.com",
-  messagingSenderId: "335443221659"
+	apiKey: "AIzaSyBIUNLzh2bWbycTFAGComB8SmDEHJaPT2w",
+    authDomain: "greeting-bot-ljl.firebaseapp.com",
+    databaseURL: "https://greeting-bot-ljl.firebaseio.com",
+    projectId: "greeting-bot-ljl",
+    storageBucket: "greeting-bot-ljl.appspot.com",
+    messagingSenderId: "80731576429"
 };
 
 firebase.initializeApp(config);
