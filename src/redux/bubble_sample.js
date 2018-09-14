@@ -223,13 +223,13 @@ const btnBub12 = {
     opId: 0,
     opText: "My background",
     opVal: "background",
-    nextStepId: 13
+    nextStepId: 14
   },
   {
     opId: 1,
     opText: "My hobbies",
     opVal: "hobbies",
-    nextStepId: 13
+    nextStepId: 16
   }],
   bubContent: {},
   isTriggerAnime: true
@@ -249,8 +249,65 @@ const imgBub13 = {
   },
   isTriggerAnime: true
 };
+
+const textBub14 = {
+  stepId: 14,
+  bubType: "TEXT_BUBBLE",
+  nextStepId: 15,
+  isGoNextAuto: true,
+  options: [],
+  delayTimer: DELAY_TIMER,
+  bubContent: {
+    text: "I studied industrial design in Zhejiang University, China. After that, I worked in pinwu for 2.5 years as an industrial /CMF designer. $$ Then I moved to Cincinnati, OH to start my master in DAAP, University of Cincinnati. At that time, I changed my major to interaction design. "
+  },
+  isTriggerAnime: true,
+  targetId: "bubble-7"
+};
+
+const textBub15 = {
+  stepId: 15,
+  bubType: "TEXT_BUBBLE",
+  nextStepId: null,
+  isGoNextAuto: false,
+  options: [],
+  delayTimer: DELAY_TIMER,
+  bubContent: {
+    text: "aosidnfoaisndofin "
+  },
+  isTriggerAnime: true,
+  targetId: "bubble-7"
+};
+
+const textBub16 = {
+  stepId: 16,
+  bubType: "TEXT_BUBBLE",
+  nextStepId: null,
+  isGoNextAuto: true,
+  options: [],
+  delayTimer: DELAY_TIMER,
+  bubContent: {
+    text: "Since all my projects are signed with NDA , and you are not recruiting people, I’m afraid I can’t give you a password to access… $$ BUT, we still can talk continually! $$ What do you want to know me more?"
+  },
+  isTriggerAnime: true,
+  targetId: "bubble-7"
+};
+const textBub17 = {
+  stepId: 17,
+  bubType: "TEXT_BUBBLE",
+  nextStepId: null,
+  isGoNextAuto: false,
+  options: [],
+  delayTimer: DELAY_TIMER,
+  bubContent: {
+    text: "Since all my projects are signed with NDA , and you are not recruiting people, I’m afraid I can’t give you a password to access… $$ BUT, we still can talk continually! $$ What do you want to know me more?"
+  },
+  isTriggerAnime: true,
+  targetId: "bubble-7"
+};
+
+
 // "Email has been sent!
 // I will try to reply you as soon as possible.
 // Have a nice day! "
 
-export { imgBub0, textBub1, textBub2, btnBub3, textBub4, textBub5, btnBub6, textBub7, inputBub8, textBub9, cardsBub10, textBub11, btnBub12, imgBub13 };
+export { imgBub0, textBub1, textBub2, btnBub3, textBub4, textBub5, btnBub6, textBub7, inputBub8, textBub9, cardsBub10, textBub11, btnBub12, imgBub13, textBub14,textBub15, textBub16, textBub17 };
