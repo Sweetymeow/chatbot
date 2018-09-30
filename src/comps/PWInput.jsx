@@ -14,7 +14,7 @@ class PWInput extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      defaultEmail: "default@gmail.com",
+      defaultEmail: "leeahng18@gmail.com",
       password: "",
       openAlert: false,
       alertContent: "",

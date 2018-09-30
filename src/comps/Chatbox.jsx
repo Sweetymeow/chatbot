@@ -80,6 +80,7 @@ class Chatbox extends React.Component {
               onContainerScroll(bub.targetId, bub.delayTimer * 2);
             }
             if (bub.bubType === CBUB.TEXT_BUBBLE) {
+              // bubContent={bub.bubContent}
               return (
                 <TextBubble id={`bubble-${bub.stepId}`}
                   key={bub.stepId}
@@ -87,7 +88,7 @@ class Chatbox extends React.Component {
                   isGoNextStep={bub.isGoNextAuto}
                   nextStepId={bub.nextStepId}
                   onCheckNextAuto={onCheckNextStep}
-                  bubContent={bub.bubContent}
+                  link={bub.bubContent ? bub.bubContent.link : ""}
                   text={this.getTextArr(bub.bubContent.text)} speaker="bot" />);
             }
             if (bub.bubType === CBUB.IMAGE_BUBBLE) {

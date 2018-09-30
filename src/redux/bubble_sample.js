@@ -221,13 +221,13 @@ const btnBub12 = {
   delayTimer: DELAY_TIMER * 2,
   options: [{
     opId: 0,
-    opText: "My background",
+    opText: "My Background",
     opVal: "background",
     nextStepId: 14
   },
   {
     opId: 1,
-    opText: "My hobbies",
+    opText: "My Hobbies",
     opVal: "hobbies",
     nextStepId: 16
   }],
@@ -258,10 +258,11 @@ const textBub14 = {
   options: [],
   delayTimer: DELAY_TIMER,
   bubContent: {
-    text: "I studied industrial design in Zhejiang University, China. After that, I worked in pinwu for 2.5 years as an industrial /CMF designer. $$ Then I moved to Cincinnati, OH to start my master in DAAP, University of Cincinnati. At that time, I changed my major to interaction design. "
+    text: "I studied industrial design in **Zhejiang University**, China. After that, I was an industrial / CMF designer for 2.5 years. Then I moved to Cincinnati, OH to start my master in DAAP, University of Cincinnati. At that time, I changed my major to interaction design. After graduation, I moved to Seattle first to have my UX design intern in Teague, and then moved down to Silicon Valley to start my first job in SAP until now. During this time, I also worked in SAP Head Quater, Germany more than one year. $$ Feel free to contact me by leeahng18@gmail.com or check my [[Linkedin[[.",
+    link: "https://www.linkedin.com/in/lianglongjuan/"
   },
-  isTriggerAnime: true,
-  targetId: "bubble-7"
+  isTriggerAnime: false,
+  targetId: "bubble-12"
 };
 
 const textBub15 = {
@@ -272,37 +273,55 @@ const textBub15 = {
   options: [],
   delayTimer: DELAY_TIMER,
   bubContent: {
-    text: "aosidnfoaisndofin "
+    text: "Keep in touch, enjoy your day! 😃"
   },
   isTriggerAnime: true,
-  targetId: "bubble-7"
+  targetId: "bubble-12"
 };
 
 const textBub16 = {
   stepId: 16,
   bubType: "TEXT_BUBBLE",
-  nextStepId: null,
+  nextStepId: 17,
   isGoNextAuto: true,
   options: [],
   delayTimer: DELAY_TIMER,
   bubContent: {
-    text: "Since all my projects are signed with NDA , and you are not recruiting people, I’m afraid I can’t give you a password to access… $$ BUT, we still can talk continually! $$ What do you want to know me more?"
+    text: "Hmmm…🤔 I like hiking, swimming, cooking, travelling and drawing. See some of my past illustraion works [[here[[.",
+    link: 'https://dribbble.com/Juanxiaoliang'
   },
   isTriggerAnime: true,
-  targetId: "bubble-7"
+  targetId: "bubble-12"
 };
+
 const textBub17 = {
   stepId: 17,
+  bubType: "TEXT_BUBBLE",
+  nextStepId: 18,
+  isGoNextAuto: true,
+  options: [],
+  delayTimer: DELAY_TIMER,
+  bubContent: {
+    text: "If you have similar hobbies with me, feel free to meaasage me on dibbble. My email address is leeahng18@gmail.com, and here is my [[Linkedin[[.",
+    link: 'https://www.linkedin.com/in/lianglongjuan/'
+  },
+  isTriggerAnime: false,
+  targetId: "bubble-12"
+};
+
+const textBub18 = {
+  stepId: 18,
   bubType: "TEXT_BUBBLE",
   nextStepId: null,
   isGoNextAuto: false,
   options: [],
   delayTimer: DELAY_TIMER,
   bubContent: {
-    text: "Since all my projects are signed with NDA , and you are not recruiting people, I’m afraid I can’t give you a password to access… $$ BUT, we still can talk continually! $$ What do you want to know me more?"
+    text: "Keep in touch, enjoy your day! 😃",
+    link: ''
   },
-  isTriggerAnime: true,
-  targetId: "bubble-7"
+  isTriggerAnime: false,
+  targetId: "bubble-12"
 };
 
 
@@ -310,4 +329,4 @@ const textBub17 = {
 // I will try to reply you as soon as possible.
 // Have a nice day! "
 
-export { imgBub0, textBub1, textBub2, btnBub3, textBub4, textBub5, btnBub6, textBub7, inputBub8, textBub9, cardsBub10, textBub11, btnBub12, imgBub13, textBub14,textBub15, textBub16, textBub17 };
+export { imgBub0, textBub1, textBub2, btnBub3, textBub4, textBub5, btnBub6, textBub7, inputBub8, textBub9, cardsBub10, textBub11, btnBub12, imgBub13, textBub14,textBub15, textBub16, textBub17, textBub18 };

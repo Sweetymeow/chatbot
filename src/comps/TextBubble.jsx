@@ -4,7 +4,7 @@ import { Transition } from 'semantic-ui-react';
 import '../styles/Chatbox.css';
 import CSSLoader from './CSSLoader';
 
-const sapLink = "http://design.sap.com/";
+// const sapLink = "http://design.sap.com/";
 
 const Boldspan = (props) => {
   return (
@@ -14,7 +14,7 @@ const Boldspan = (props) => {
 
 const Linkspan = (props) => {
   return (
-    <a href={sapLink} target="_blank" rel="noreferrer noopener">{props.linkText}</a>
+    <a href={props.linkHref} target="_blank" rel="noreferrer noopener">{props.linkText}</a>
   );
 };
 
@@ -40,7 +40,7 @@ class TextBubble extends React.Component {
     }, delayTimer);
   }
 
-  checkBold(text) {
+  checkBold(text, link) {
     const textArr = text.split("**");
     const newTextArr = textArr.map(item => {
       if (item.indexOf("[[") > 0) {
@@ -48,7 +48,7 @@ class TextBubble extends React.Component {
         return (
           <span>
             {linkArr[0]}
-            <Linkspan linkText={` ${linkArr[1]} `} /> {linkArr[2]}
+            <Linkspan linkText={` ${linkArr[1]} `} linkHref={link} /> {linkArr[2]}
           </span>);
       }
       return item
@@ -58,13 +58,13 @@ class TextBubble extends React.Component {
 
   render() {
     const { isShowText } = this.state;
-    const { text, id } = this.props; // type
+    const { text, id, link } = this.props; // type
     return (
       <div className="bub-fullwidth" id={id}>
         { isShowText ? (
           <div className="text-bubble left-bubble" >
             { text.map((item, i) => {
-              const textArr = this.checkBold(item);
+              const textArr = this.checkBold(item, link);
               return (
                   <Transition key={i}
                     visible={isShowText}
@@ -88,31 +88,15 @@ class TextBubble extends React.Component {
     );
   }
 }
-// CSSLoader
-// { type !== "user" ? (
-//   <div className="text-bubble left-bubble" >
-//       {text.map((item, i) => (
-//         <Transition key={i}
-//           visible={isShowText}
-//           animation="fade down"
-//           duration={1000}>
-//           <p>{item}</p>
-//         </Transition>))}
-//   </div>) : (
-//   <div className="text-bubble right-bubble" >
-//     {text.map((item, i) => <p key={i}>{item}</p>)}
-//   </div>)
-// }
 
 TextBubble.propTypes = {
   text: PropTypes.array.isRequired,
   isGoNextStep: PropTypes.bool,
   nextStepId: PropTypes.number,
-  type: PropTypes.string,
+  link: PropTypes.string,
   id: PropTypes.string,
   delayTimer: PropTypes.number,
   onCheckNextAuto: PropTypes.func
-  // html: PropTypes.string
 };
 
 export default TextBubble;

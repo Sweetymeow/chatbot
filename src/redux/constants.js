@@ -1,7 +1,7 @@
 const DELAY_TIMER = 600;
 const FADE_TIMER = 1000;
 
-const HOMEPAGE_LINK = 'http://firstrecommendedproject.html';
+const HOMEPAGE_LINK = 'http://lj-uxdesign.com/';
 const GMAIL_URL = 'https://script.google.com/macros/s/AKfycbwDpgp_nCrn7y6I8_JnP3sQdLg3gdtS_sfyQ6TduvwPCXi_3Vny/exec';
 
 const C = {
