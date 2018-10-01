@@ -1,5 +1,6 @@
 @import 'var';
 @import 'anime';
+@import 'sffont';
 
 #hidden{
   display: none;
@@ -28,6 +29,11 @@
   border-radius: 9px;
   background-color: $chat-con-bgcolor;
   box-shadow: -1px 2px 28px 1px rgba(155, 155, 155, 0.35);
+
+  .ui.button{
+    font-weight: 400;
+    font-family: $font-stack;
+  }
 
   @media #{$phone-land}{
     height: 100vh;
@@ -62,6 +68,7 @@
     // box-shadow: -1px 2px 2px 1px rgba(155, 155, 155, 0.2);
     margin: $mini-pw 0;
     font-size: $bub-text-size;
+    font-family: $font-stack;
 
     a{
       font-weight: 600;
@@ -108,6 +115,11 @@
   /*------------  image bubble container   ------------*/
   .imgbub-container{
     margin: $md-pw;
+    text-align: center;
+    img.ui.image{
+      margin: 1vh 4vw;
+      width: calc(100% - 8vw);
+    }
   }
 
   /*------------   button group container   ------------*/
@@ -136,7 +148,7 @@
           background-color: $user-bub-color;
           border-radius: 1.4rem;
           font-size: $standard-font-size;
-          box-shadow: $bub-btn-shadow;
+          // box-shadow: $bub-btn-shadow;
 
           &:hover{
             background-color: darken( $user-bub-color, 10% );
@@ -324,9 +336,11 @@
   /*------------   general bubble styles  ------------*/
   .left-bubble{
     float: left;
+    font-weight: 400;
   }
   .right-bubble{
     float: right;
+    font-weight: 400;
   }
   .borderless-btn{
     border: none;
@@ -335,7 +349,7 @@
   /*------------   general styles  ------------*/
   .heightHolder{
     opacity: 0;
-    height: 35vh;
+    height: 15vh; // 35
     @media #{$phone} {
       height: 40vh;
     }

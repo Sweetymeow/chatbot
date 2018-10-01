@@ -121,10 +121,10 @@ const textBub7 = {
   options: [],
   delayTimer: DELAY_TIMER * 3,
   bubContent: {
-    text: "I have been a pretty hands-on UX/UI designer for **3+ years** on both B2C and B2B areas. $$ The projects include both release and concept work that cross many industries such as **medical, marketing, sales, utility and etc…** $$ Before I start to give you a guide, you need a password to access as all my projects are signed with NDA."
+    text: "I have been a pretty hands-on UX/UI designer for **3+ years** on both B2C and B2B areas. $$ The projects include both release and concept work that cross many industries such as **medical, marketing, sales, utility and etc…** $$ Since all my projects are signed with NDA, you need a password to access."
   },
   isTriggerAnime: true,
-  targetId: "bubble-3"
+  targetId: "bubble-4"
 };
 
 const inputBub8 = {
@@ -133,7 +133,7 @@ const inputBub8 = {
   label: "Type the Password",
   isGoNextAuto: false,
   nextStepId: 9,
-  delayTimer: DELAY_TIMER * 4,
+  delayTimer: DELAY_TIMER * 3,
   options: [{
     opId: 0,
     opRequest: 'ok',
@@ -258,7 +258,7 @@ const textBub14 = {
   options: [],
   delayTimer: DELAY_TIMER,
   bubContent: {
-    text: "I studied industrial design in **Zhejiang University**, China. After that, I was an industrial / CMF designer for 2.5 years. Then I moved to Cincinnati, OH to start my master in DAAP, University of Cincinnati. At that time, I changed my major to interaction design. After graduation, I moved to Seattle first to have my UX design intern in Teague, and then moved down to Silicon Valley to start my first job in SAP until now. During this time, I also worked in SAP Head Quater, Germany more than one year. $$ Feel free to contact me by leeahng18@gmail.com or check my [[Linkedin[[.",
+    text: "I had both industrial and interaction design background. I studied industrial design at Zhejiang University and had my master degree in DAAP, University of Cincinnati. After graduation, I moved to the Bay Area to start my career with SAP until now. During this time, I also worked in SAP Header Quater, Germany more than one year. $$ Feel free to contact me by leeahng18@gmail.com or check my [[Linkedin[[.",
     link: "https://www.linkedin.com/in/lianglongjuan/"
   },
   isTriggerAnime: false,

@@ -77,7 +77,7 @@ class Chatbox extends React.Component {
           {/* <CardsBubble bubInfo={bubInfo[0].options} /> */}
           {allBubbles.map((bub) => {
             if (bub.isTriggerAnime) {
-              onContainerScroll(bub.targetId, bub.delayTimer * 2);
+              onContainerScroll(bub.targetId, bub.delayTimer);
             }
             if (bub.bubType === CBUB.TEXT_BUBBLE) {
               // bubContent={bub.bubContent}

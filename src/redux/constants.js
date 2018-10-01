@@ -1,8 +1,9 @@
 const DELAY_TIMER = 600;
 const FADE_TIMER = 1000;
 
-const HOMEPAGE_LINK = 'http://lj-uxdesign.com/';
-const GMAIL_URL = 'https://script.google.com/macros/s/AKfycbwDpgp_nCrn7y6I8_JnP3sQdLg3gdtS_sfyQ6TduvwPCXi_3Vny/exec';
+const HOMEPAGE_LINK = "http://lj-uxdesign.com/public/profilelivedashboard.html";
+const GMAIL_URL = 'https://script.google.com/macros/s/AKfycbz-xKOTMZKrrLRN3NRfKBjddW3K_iXePfbWlzjH-21WVTZ14oI/exec';
+// const GMAIL_URL = 'https://script.google.com/macros/s/AKfycbwDpgp_nCrn7y6I8_JnP3sQdLg3gdtS_sfyQ6TduvwPCXi_3Vny/exec';
 
 const C = {
   INIT_STEP: "INIT_STEP",

@@ -81,6 +81,63 @@
   100% {
     opacity: 0; } }
 
+/*---------------------------------------------------------------------------*
+ * SF UI Display
+ *---------------------------------------------------------------------------*/
+/** Black */
+@font-face {
+  font-family: "SF Display";
+  font-weight: 900;
+  src: url("../fonts/SanFranciscoDisplay-Black.otf"); }
+
+/** Bold */
+@font-face {
+  font-family: "SF Display";
+  font-weight: 700;
+  src: url("../fonts/SanFranciscoDisplay-Bold.otf"); }
+
+/** Heavy */
+@font-face {
+  font-family: "SF Display";
+  font-weight: 800;
+  src: url("../fonts/SanFranciscoDisplay-Heavy.otf"); }
+
+/** Light */
+@font-face {
+  font-family: "SF Display";
+  font-weight: 200;
+  src: url("../fonts/SanFranciscoDisplay-Light.otf"); }
+
+/** Medium */
+@font-face {
+  font-family: "SF Display";
+  font-weight: 500;
+  src: url("../fonts/SanFranciscoDisplay-Medium.otf"); }
+
+/** Regular */
+@font-face {
+  font-family: "SF Display";
+  font-weight: 400;
+  src: url("../fonts/SanFranciscoDisplay-Regular.otf"); }
+
+/** Semibold */
+@font-face {
+  font-family: "SF Display";
+  font-weight: 600;
+  src: url("../fonts/SanFranciscoDisplay-Semibold.otf"); }
+
+/** Thin */
+@font-face {
+  font-family: "SF Display";
+  font-weight: 300;
+  src: url("../fonts/SanFranciscoDisplay-Thin.otf"); }
+
+/** Ultralight */
+@font-face {
+  font-family: "SF Display";
+  font-weight: 100;
+  src: url("../fonts/SanFranciscoDisplay-Ultralight.otf"); }
+
 #hidden {
   display: none; }
 
@@ -113,6 +170,9 @@
   /*------------   Cards styles  ------------*/
   /*------------   general bubble styles  ------------*/
   /*------------   general styles  ------------*/ }
+  .chatbox-container .ui.button {
+    font-weight: 400;
+    font-family: "SF Display", Helvetica, sans-serif; }
   @media screen and (orientation: landscape) and (max-width: 823px) {
     .chatbox-container {
       height: 100vh;
@@ -137,7 +197,8 @@
     border-radius: 1.2rem;
     position: relative;
     margin: 0.6rem 0;
-    font-size: 1rem; }
+    font-size: 1rem;
+    font-family: "SF Display", Helvetica, sans-serif; }
     .chatbox-container .text-bubble a {
       font-weight: 600;
       text-decoration: underline; }
@@ -167,7 +228,11 @@
       right: 0;
       bottom: -.8rem; }
   .chatbox-container .imgbub-container {
-    margin: 1.4rem; }
+    margin: 1.4rem;
+    text-align: center; }
+    .chatbox-container .imgbub-container img.ui.image {
+      margin: 1vh 4vw;
+      width: calc(100% - 8vw); }
   .chatbox-container #chatbox-inner .btn-container {
     text-align: center;
     margin: 1em auto; }
@@ -187,8 +252,7 @@
       .chatbox-container #chatbox-inner .btn-container .btn-group .ui.primary.button {
         background-color: #1fdab0;
         border-radius: 1.4rem;
-        font-size: 1rem;
-        box-shadow: 0 0 6px 1px rgba(74, 74, 74, 0.3); }
+        font-size: 1rem; }
         .chatbox-container #chatbox-inner .btn-container .btn-group .ui.primary.button:hover {
           background-color: #19ad8c; }
       .chatbox-container #chatbox-inner .btn-container .btn-group .ui.primary.button.roundBtn {
@@ -312,14 +376,16 @@
     .chatbox-container .input-container .input-request-form .ui.button {
       border-radius: 1.4rem; }
   .chatbox-container .left-bubble {
-    float: left; }
+    float: left;
+    font-weight: 400; }
   .chatbox-container .right-bubble {
-    float: right; }
+    float: right;
+    font-weight: 400; }
   .chatbox-container .borderless-btn {
     border: none; }
   .chatbox-container .heightHolder {
     opacity: 0;
-    height: 35vh; }
+    height: 15vh; }
     @media only screen and (orientation: portrait) and (max-width: 414px) {
       .chatbox-container .heightHolder {
         height: 40vh; } }

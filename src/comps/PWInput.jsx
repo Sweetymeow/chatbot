@@ -240,7 +240,7 @@ class PWInput extends React.Component {
         {/*<!----------   Form to get password by send email  ----------> */}
         <Transition visible={isFormVisible} animation="slide up" duration={500}>
           <Form className="input-request-form" onSubmit={this.handleEmailRequestSubmit} id="scrollToForm">
-            <Form.Input className="form-input" id="form-email" label="Email Address" placeholder="Your email address"
+            <Form.Input className="form-input" id="form-email" label="Your Email Address" placeholder="Your Email Address"
               name="userEmail"
               value={userEmail} error={showEmailAlert}
               onChange={this.handleInputChange}

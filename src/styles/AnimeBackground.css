@@ -96,9 +96,9 @@
     .bg-container .animeBg img {
       flex: 1 1 10%; }
     .bg-container .animeBg #flydown {
-      animation: flydown 1500ms ease-in-out forwards; }
+      animation: flydown 1000ms ease-in-out forwards; }
     .bg-container .animeBg #flyup {
-      animation: flyup 1500ms ease-in-out forwards; }
+      animation: flyup 1000ms ease-in-out forwards; }
   .bg-container .animeBg-narrow {
     position: fixed;
     display: flex;
@@ -115,9 +115,9 @@
         .bg-container .animeBg-narrow .space-hodler {
           display: none; } }
     .bg-container .animeBg-narrow #flyinleft {
-      animation: flyinleft 1500ms ease-in-out forwards; }
+      animation: flyinleft 1000ms ease-in-out forwards; }
     .bg-container .animeBg-narrow #flyinright {
-      animation: flyinright 1500ms ease-in-out forwards; }
+      animation: flyinright 1000ms ease-in-out forwards; }
   @media only screen and (orientation: portrait) and (max-width: 414px) {
     .bg-container .phone-hidden {
       display: none; } }

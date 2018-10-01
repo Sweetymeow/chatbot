@@ -21,10 +21,10 @@
 
     // &:nth-child(2n+1){
     #flydown{
-      animation: flydown 1500ms ease-in-out forwards;
+      animation: flydown 1000ms ease-in-out forwards;
     }
     #flyup{
-      animation: flyup 1500ms ease-in-out forwards;
+      animation: flyup 1000ms ease-in-out forwards;
     }
 
   }
@@ -49,10 +49,10 @@
     }
 
     #flyinleft{
-      animation: flyinleft 1500ms ease-in-out forwards;
+      animation: flyinleft 1000ms ease-in-out forwards;
     }
     #flyinright{
-      animation: flyinright 1500ms ease-in-out forwards;
+      animation: flyinright 1000ms ease-in-out forwards;
     }
   }
 
