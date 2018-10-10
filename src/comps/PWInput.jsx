@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Icon, Confirm, Form, Button, TextArea, Message, Transition } from 'semantic-ui-react';
 import { toggInputVisible, updateScrollTop, fetchPostEmail } from '../redux/actions';
-import { DELAY_TIMER, HOMEPAGE_LINK } from '../redux/constants';
+import { DELAY_TIMER, HOMEPAGE_LINK, GMAIL_URL, GMAIL_ADDRESS } from '../redux/constants';
 // import { success } from '../res/imgBundle';
 import '../styles/Chatbox.css';
 import firebase from '../firebase';
@@ -22,6 +22,7 @@ class PWInput extends React.Component {
       userMessage: "",
       showEmailAlert: false,
       isPWSuccess: false, // true,
+      isWrongPassword: false,
       innerBox: document.getElementById("chatbox-inner"),
       // pwAnimeDuration: 500,
       isFormVisible: false,
@@ -79,18 +80,17 @@ class PWInput extends React.Component {
 
   handleSubmit() {
     this.loginFirebaseAccount();
-    this.props.getInputVisible(false);
-    this.setState({
-      isPWSuccess: true
-    });
+    // this.setState({
+    //   isPWSuccess: true
+    // }); // isWrongPassword:
 
-    setTimeout(() => {
-      const eleRect = document.getElementById("scrollToThis");
-      // const innerBox = document.getElementById("chatbox-inner");
-      const { innerBox } = this.state;
-      const { getScrollTopHeight } = this.props;
-      getScrollTopHeight(eleRect.getBoundingClientRect().top - innerBox.getBoundingClientRect().top);
-    }, 1);
+    // setTimeout(() => {
+    //   const eleRect = document.getElementById("scrollToThis");
+    //   // const innerBox = document.getElementById("chatbox-inner");
+    //   const { innerBox } = this.state;
+    //   const { getScrollTopHeight } = this.props;
+    //   getScrollTopHeight(eleRect.getBoundingClientRect().top - innerBox.getBoundingClientRect().top);
+    // }, 1);
   }
 
   handleEnterPress(event) {
@@ -149,7 +149,8 @@ class PWInput extends React.Component {
         showEmailAlert: true
       });
     } else {
-      const userId = firebase.auth().currentUser.uid || "test12345";
+      console.log(firebase.auth());
+      const userId = "test12345"; // firebase ? firebase.auth().currentUser.uid :
       const date = new Date();
       firebase.database().ref(`users/${userId}-${date.toString()}`).set({
         userId,
@@ -163,6 +164,8 @@ class PWInput extends React.Component {
       })
       this.props.onBtnClick(emailSuccessId); // nextID, bubInfo
     }
+
+    window.stop();
   }
 
   // async postEmailReqeust() {
@@ -190,25 +193,36 @@ class PWInput extends React.Component {
   }
 
   loginFirebaseAccount() {
-    const { onBtnClick, nextStepId } = this.props;
+    // const { onBtnClick, nextStepId } = this.props;
     firebase.auth()
       .signInWithEmailAndPassword(this.state.defaultEmail, this.state.password)
       .then( msg => {
+        this.setState({
+          isPWSuccess: true
+        }); // isWrongPassword:
         console.log("Success Log in - ", msg);
+        this.props.getInputVisible(false);
         window.open(HOMEPAGE_LINK, '_blank');
         // onBtnClick(nextStepId);
-      })
-      .catch(error => { // Handle Errors here.
+      }, error => { // Handle Errors here.
         this.setState({
           openAlert: true,
+          isWrongPassword: true,
           alertContent: error.message
         });
       });
+    // .catch(error => { // Handle Errors here.
+    //   this.setState({
+    //     openAlert: true,
+    //     isWrongPassword: true,
+    //     alertContent: error.message
+    //   });
+    // });
   }
 
   render() {
     const { label, enableBack, inputVisible } = this.props;
-    const { password, alertContent, openAlert, showEmailAlert, userEmail, userMessage, isFormVisible, isPWSuccess } = this.state;
+    const { password, alertContent, openAlert, showEmailAlert, userEmail, userMessage, isFormVisible, isPWSuccess, isWrongPassword } = this.state;
     return (
       <section className="input-container bub-60wid-center">
         <div className={inputVisible ? "input-pw-container" : "input-pw-container hidden"}>
@@ -218,12 +232,13 @@ class PWInput extends React.Component {
                 : null}
               <p className="input-label">{label}</p>
             </Form.Group>
-            <Form.Input icon className="input-password" ref={this.handleRef} size="big" focus placeholder="Password..." >
+            <Form.Input icon className="input-password" ref={this.handleRef} size="big" focus placeholder="Password..." error={isWrongPassword}>
                <input type="password" value={password}
                   onChange={this.handlePWChange} onKeyPress={this.handleEnterPress} />
                {/*<input type="password" onChange={this.handlePWChange} value={password} onKeyPress={this.handleEnterPress} />*/}
                <Icon circular color="teal" name="arrow right" link onClick={this.handleSubmit} />
             </Form.Input>
+            {isWrongPassword ? <Message error header="Wrong Password" /> : null }
             <Button className="input-email-link borderless-btn" onClick={this.showForm} content="Request the Password" />
           </Form>
         </div>
@@ -232,14 +247,14 @@ class PWInput extends React.Component {
             <p>Password Passed!</p>
           </div>
         </Transition>
-        {/*<Transition className="input-pw-container" animation="fade down" duration={pwAnimeDuration} id={inputVisible ? "" : "hidden"}
+        {/* <Transition className="input-pw-container" animation="fade down" duration={pwAnimeDuration} id={inputVisible ? "" : "hidden"}
           onShow={console.log("!! SHOW")} onHide={
             console.log("@@ HIDE", "// Input visible ? ", inputVisible)
-          }></Transition>*/}
+          }></Transition> */}
         <Confirm content={alertContent} open={openAlert} onCancel={this.closeAlert} onConfirm={this.closeAlert} />
         {/*<!----------   Form to get password by send email  ----------> */}
         <Transition visible={isFormVisible} animation="slide up" duration={500}>
-          <Form className="input-request-form" onSubmit={this.handleEmailRequestSubmit} id="scrollToForm">
+          <Form className="input-request-form" onSubmit={this.handleEmailRequestSubmit} id="scrollToForm" method="post" data-email={GMAIL_ADDRESS} action={GMAIL_URL}>
             <Form.Input className="form-input" id="form-email" label="Your Email Address" placeholder="Your Email Address"
               name="userEmail"
               value={userEmail} error={showEmailAlert}

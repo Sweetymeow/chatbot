@@ -222,13 +222,13 @@ const btnBub12 = {
   options: [{
     opId: 0,
     opText: "My Background",
-    opVal: "background",
+    opVal: "My Background",
     nextStepId: 14
   },
   {
     opId: 1,
     opText: "My Hobbies",
-    opVal: "hobbies",
+    opVal: "My Hobbies",
     nextStepId: 16
   }],
   bubContent: {},

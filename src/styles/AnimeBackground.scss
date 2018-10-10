@@ -95,6 +95,9 @@
     @media #{$phone} {
       display: none;
     }
+    @media #{$phone-land} {
+      display: none;
+    }
   }
 
   .ui.grid.footer-icons{
@@ -107,7 +110,11 @@
     transform: translateY(40vh);
     border-top: 1px solid $border-gray;
     background: $chat-con-bgcolor;
+
     @media #{$phone} {
+      @include animation('barflyup 1200ms ease-in-out 2.4s forwards');
+    }
+    @media #{$phone-land} {
       @include animation('barflyup 1200ms ease-in-out 2.4s forwards');
     }
   }

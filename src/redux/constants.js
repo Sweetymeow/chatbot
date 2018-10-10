@@ -1,9 +1,11 @@
 const DELAY_TIMER = 600;
 const FADE_TIMER = 1000;
 
+const IS_WHITE = false;
 const HOMEPAGE_LINK = "http://lj-uxdesign.com/public/profilelivedashboard.html";
-const GMAIL_URL = 'https://script.google.com/macros/s/AKfycbz-xKOTMZKrrLRN3NRfKBjddW3K_iXePfbWlzjH-21WVTZ14oI/exec';
-// const GMAIL_URL = 'https://script.google.com/macros/s/AKfycbwDpgp_nCrn7y6I8_JnP3sQdLg3gdtS_sfyQ6TduvwPCXi_3Vny/exec';
+
+const GMAIL_URL = IS_WHITE ? 'https://script.google.com/macros/s/AKfycbz-xKOTMZKrrLRN3NRfKBjddW3K_iXePfbWlzjH-21WVTZ14oI/exec' : "https://script.google.com/macros/s/AKfycbzFFAqjdlTvr35suwhe7ZuaOJkAWeg8COrqUEjD1hZIp_JeBug/exec";
+const GMAIL_ADDRESS = IS_WHITE ? "leeahng18@gmail.com" : "wendywen025@gmail.com";
 
 const C = {
   INIT_STEP: "INIT_STEP",
@@ -53,4 +55,4 @@ const CBUB = {
   CARDS_BUBBLE: "CARDS_BUBBLE"
 };
 
-export { C, CBUB, TESTC, DELAY_TIMER, FADE_TIMER, HOMEPAGE_LINK, GMAIL_URL };
+export { C, CBUB, TESTC, DELAY_TIMER, FADE_TIMER, HOMEPAGE_LINK, GMAIL_URL, GMAIL_ADDRESS };

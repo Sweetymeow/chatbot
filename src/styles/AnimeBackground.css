@@ -151,6 +151,9 @@
   @media only screen and (orientation: portrait) and (max-width: 414px) {
     .footer-container .ui.grid.footer-links {
       display: none; } }
+  @media screen and (orientation: landscape) and (max-width: 823px) {
+    .footer-container .ui.grid.footer-links {
+      display: none; } }
   .footer-container .ui.grid.footer-icons {
     display: block;
     position: fixed;
@@ -162,6 +165,12 @@
     border-top: 1px solid #e7e7e7;
     background: #FFF; }
     @media only screen and (orientation: portrait) and (max-width: 414px) {
+      .footer-container .ui.grid.footer-icons {
+        -webkit-animation: barflyup 1200ms ease-in-out 2.4s forwards;
+        -moz-animation: barflyup 1200ms ease-in-out 2.4s forwards;
+        -o-animation: barflyup 1200ms ease-in-out 2.4s forwards;
+        animation: barflyup 1200ms ease-in-out 2.4s forwards; } }
+    @media screen and (orientation: landscape) and (max-width: 823px) {
       .footer-container .ui.grid.footer-icons {
         -webkit-animation: barflyup 1200ms ease-in-out 2.4s forwards;
         -moz-animation: barflyup 1200ms ease-in-out 2.4s forwards;
